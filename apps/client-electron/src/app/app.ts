@@ -16,6 +16,8 @@ export default class App {
     const getFromEnvironment: boolean =
       parseInt(process.env.ELECTRON_IS_DEV, 10) === 1;
 
+    console.log('isDevelopmentMode', isEnvironmentSet ? getFromEnvironment : !environment.production);
+
     return isEnvironmentSet ? getFromEnvironment : !environment.production;
   }
 
@@ -99,6 +101,7 @@ export default class App {
 
   private static loadMainWindow() {
     // load the index.html of the app.
+    console.log('isPackaged', App.application.isPackaged);
     if (!App.application.isPackaged) {
       App.mainWindow.loadURL(`http://localhost:${rendererAppPort}`);
     } else {
