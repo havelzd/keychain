@@ -1,1 +1,32 @@
+@import "./styles/typography";
+@import "./styles/variables";
 /* You can add global styles to this file, and also import other style files */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-size: $font-size-base;
+  font-family: $font-family;
+}
+
+body {
+  background: linear-gradient();
+}
+
+:is(h1, h2, h3, h4, h5, h6) {
+  font-weight: normal;
+}
+
+.container {
+  display: flex;
+  gap: $space;
+  padding: $space-sm;
+  width: 100%;
+
+  & .col {
+    flex-direction: column;
+  }
+}

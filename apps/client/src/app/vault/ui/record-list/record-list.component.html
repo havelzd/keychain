@@ -1,0 +1,10 @@
+<div class="section">
+  <button class="icon-btn"><i></i></button>
+  <ul>
+    @for(record of records(); track $index) {
+    <li>
+      <a>{{ record.name }}</a>
+    </li>
+    }
+  </ul>
+</div>

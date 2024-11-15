@@ -1,0 +1,17 @@
+@import "../../../../styles/mixins";
+@import "../../../../styles/variables";
+
+a {
+  display: block;
+  position: relative;
+  @include pad($space-sm);
+}
+
+a:hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid red;
+  height: 100%;
+}

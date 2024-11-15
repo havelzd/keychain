@@ -1,0 +1,21 @@
+@import "./variables";
+@import "./mixins";
+
+// <a>
+a {
+  cursor: pointer;
+}
+
+// list ul, li
+ul,
+li {
+  list-style: none;
+}
+
+button.btn {
+  @include px($space);
+  @include py($space-sm);
+}
+
+button.icon-btn {
+}
