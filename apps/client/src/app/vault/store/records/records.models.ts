@@ -4,4 +4,5 @@
 export interface RecordEntity {
     id: number; // Primary ID
     name: string;
+    records?: RecordEntity[];
 }

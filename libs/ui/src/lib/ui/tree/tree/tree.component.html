@@ -1,0 +1,32 @@
+<div class="container col">
+  @for (node of viewNodes(); track $index) {
+  <lib-node [node]="node" [rootTemplate]="defaultRoot" [leafTemplate]="defaultLeaf" [bindLabel]="bindLabel()" />
+  } @empty {
+  <div>No data provided</div>
+  }
+</div>
+
+<ng-template #defaultRoot let-node="node">
+  <div class="node">
+    <ng-container [ngTemplateOutlet]="rootContent()"
+      [ngTemplateOutletContext]="{ $implicit: node.value, node: node.value }" />
+    <div class="sub-level">
+      @for(child of node?.children(); track $index) {
+      <lib-node [node]="child" [bindLabel]="bindLabel()" [rootTemplate]="defaultRoot" [leafTemplate]="defaultLeaf" />
+      }
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #defaultLeaf let-node="node">
+  <div class="node-content">
+    <span>{{ bindLabel() ? node.value[bindLabel()] : node }}</span>
+  </div>
+</ng-template>
+
+<ng-template #defaultRootContent let-node="node">
+  <div class="node-content">
+    <button>Click me senpai</button>
+    <span>{{ bindLabel() ? node[bindLabel()] : node }} </span>
+  </div>
+</ng-template>

@@ -1,0 +1,25 @@
+.node {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.node-content {
+  display: inline-flex;
+  padding: 0.5rem;
+  cursor: pointer;
+  width: 100%;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.node-content:hover {
+  background-color: blue;
+  color: white;
+}
+
+.sub-level {
+  padding-left: 2rem;
+  display: flex;
+  flex-direction: column;
+}

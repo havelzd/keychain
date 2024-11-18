@@ -15,7 +15,9 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "strict": false,
-        "paths": {}
+        "paths": {
+            "@keychain/ui": ["libs/ui/src/index.ts"]
+        }
     },
     "exclude": ["node_modules", "tmp"]
 }

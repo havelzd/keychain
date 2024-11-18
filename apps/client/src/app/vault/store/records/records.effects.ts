@@ -14,13 +14,30 @@ export class RecordsEffects {
                 of(
                     RecordsActions.loadRecordsSuccess({
                         records: [
-                            { id: 1, name: "Test 1" },
-                            { id: 2, name: "Test 2" },
-                            { id: 3, name: "Test 3" },
-                            { id: 4, name: "Test 4" },
-                            { id: 5, name: "Test 5" },
-                            { id: 6, name: "Test 6" },
-                            { id: 7, name: "Test 7" },
+                            {
+                                id: 1,
+                                name: "Test 1",
+                                records: [
+                                    {
+                                        id: 8,
+                                        name: "Child1",
+                                        records: [
+                                            { id: 10, name: "GrandChild1" },
+                                            { id: 11, name: "GrandChild2" },
+                                        ],
+                                    },
+                                    {
+                                        id: 9,
+                                        name: "Child2",
+                                    },
+                                ],
+                            },
+                            { id: 2, name: "Test 2", records: [] },
+                            { id: 3, name: "Test 3", records: [] },
+                            { id: 4, name: "Test 4", records: [] },
+                            { id: 5, name: "Test 5", records: [] },
+                            { id: 6, name: "Test 6", records: [] },
+                            { id: 7, name: "Test 7", records: [] },
                         ],
                     }),
                 ),
