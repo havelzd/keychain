@@ -3,13 +3,17 @@ import { RouterModule } from "@angular/router";
 import { MainMenuComponent } from "./shared/feature/main-menu/main-menu.component";
 
 @Component({
-  standalone: true,
-  imports: [RouterModule, MainMenuComponent],
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrl: "./app.component.scss",
-  changeDetection: ChangeDetectionStrategy.OnPush
+    standalone: true,
+    imports: [RouterModule, MainMenuComponent],
+    selector: "app-root",
+    templateUrl: "./app.component.html",
+    styleUrl: "./app.component.scss",
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  title = "client";
+    title = "client";
+
+    nothing() {
+        console.log("App rerender");
+    }
 }

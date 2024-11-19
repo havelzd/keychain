@@ -2,16 +2,51 @@
 @import "../../../../styles/variables";
 
 a {
-  display: block;
-  position: relative;
-  @include pad($space-sm);
+    display: block;
+    position: relative;
+    @include pad($space-sm);
 }
 
 a:hover::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  border: 1px solid red;
-  height: 100%;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid red;
+    height: 100%;
+}
+
+.node{
+    position: relative;
+    display: inline-flex;
+    width: 100%;
+    cursor: pointer;
+    @include pad($space);
+}
+
+::ng-deep.ui-tree-node-content {
+  padding: 0!important;
+  gap: 0!important;
+}
+
+.contextMenu {
+    position: absolute;
+    background-color: gray;
+    min-width: 100px;
+    font-size: 1.5rem;
+}
+
+.contextMenu > button {
+    appearance: none;
+    text-align: left;
+    border: none;
+    background: gray;
+    width: 100%;
+    color: white;
+    @include pad($space-sm);
+}
+
+.contextMenu > button:hover {
+    background: lightgreen;
+    color: gray;
 }

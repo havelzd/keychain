@@ -1,10 +1,22 @@
-<div class="section">
+{{ nothing() }}
+<div class="section relative">
   <lib-tree [dataSource]="dataSource()" bindLabel="name">
-    <!-- <ng-template #parentNode let-node="node"> -->
-    <!--   <label>{{ node }} {{ node.id }} {{ node.name }}</label> -->
-    <!-- </ng-template> -->
-    <!-- <ng-template #leafNode let-node="node"> -->
-    <!--   <label>{{ node }} {{ node.id }} {{ node.name }}</label> -->
-    <!-- </ng-template> -->
+    <ng-template #parentNode let-node="node">
+      <div class="node" (contextmenu)="onNodeSelect($event, node)">
+        <button (click)="toggleNode(node)" class="uni-icon"><i>&#8250;</i></button>
+        <span>{{ node.name }}</span>
+      </div>
+    </ng-template>
+    <ng-template #leafNode let-node="node">
+      <div class="node" (contextmenu)="onNodeSelect($event, node)">
+        <span>{{ node.name }}</span>
+      </div>
+    </ng-template>
   </lib-tree>
+  <div #contextMenu class="contextMenu" *ngIf="showContextMenu()"
+    [ngStyle]="{ top: menuXY()[1] + 'px', left: menuXY()[0] + 'px' }">
+    <button (click)="addNode()">Add</button>
+    <button (click)="removeNode()">Remove</button>
+    <button (click)="removeNode()">Rename</button>
+  </div>
 </div>

@@ -1,11 +1,12 @@
 import { Injectable, inject } from "@angular/core";
-import { select, Store, Action } from "@ngrx/store";
+import { select, Store, Action, ActionsSubject } from "@ngrx/store";
 
 import * as RecordsActions from "./records.actions";
 import * as RecordsFeature from "./records.reducer";
 import * as RecordsSelectors from "./records.selectors";
 import { filter, tap } from "rxjs/operators";
 import { notNull } from "../../../shared/utils/operators";
+import { RecordGroup  } from "./records.models";
 
 @Injectable()
 export class RecordsFacade {
@@ -29,5 +30,9 @@ export class RecordsFacade {
    */
   init() {
     this.store.dispatch(RecordsActions.initRecords());
+  }
+
+  createNode(parent: RecordGroup | undefined) {
+    this.store.dispatch(RecordsActions.createRecordGroup({ parent }));
   }
 }

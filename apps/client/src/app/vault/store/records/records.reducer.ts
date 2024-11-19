@@ -1,8 +1,8 @@
-import { EntityState, EntityAdapter, createEntityAdapter } from "@ngrx/entity";
+import { EntityState, EntityAdapter, createEntityAdapter, Update } from "@ngrx/entity";
 import { createReducer, on, Action } from "@ngrx/store";
 
 import * as RecordsActions from "./records.actions";
-import { RecordEntity } from "./records.models";
+import { RecordItem, RecordEntity, RecordGroup } from "./records.models";
 
 export const RECORDS_FEATURE_KEY = "records";
 
@@ -34,6 +34,26 @@ const reducer = createReducer(
     recordsAdapter.setAll(records, { ...state, loaded: true }),
   ),
   on(RecordsActions.loadRecordsFailure, (state, { error }) => ({ ...state, error })),
+  on(RecordsActions.createRecordGroup, (state, { parent  }) => {
+    console.log("Parent", parent);
+    const id = new Date().getTime();
+    const newNode: RecordGroup = {
+      id,
+      name: "new",
+      records: []
+    };
+    if (parent) {
+      const update: Update<RecordEntity> = {
+        id: parent.id,
+        changes: {
+          records: [...(parent?.records ?? []), newNode],
+        },
+      };
+      return recordsAdapter.updateOne(update, state);
+    } else {
+      return recordsAdapter.addOne(newNode, state);
+    }
+  }),
 );
 
 export function recordsReducer(state: RecordsState | undefined, action: Action) {

@@ -4,6 +4,7 @@ import { AbstractDataSource } from "./abstract-data-source";
 
 export class StaticTreeDataSource<T> extends AbstractDataSource<T> {
     protected nodes: WritableSignal<TreeNode<T>[]>;
+    private nodeCounter = 0;
 
     constructor(nodes: T[], hasChilren: (n: T) => boolean, getChildren: (n: T) => T[] | undefined) {
         super(hasChilren, getChildren);
@@ -15,6 +16,7 @@ export class StaticTreeDataSource<T> extends AbstractDataSource<T> {
             nodes?.map((n) => {
                 const hasChildren = this.hasChilren(n);
                 const treeNode: TreeNode<T> = {
+                    id: this.nodeCounter++,
                     value: n,
                     expanded: signal(false),
                     hasChildren: signal(hasChildren),
