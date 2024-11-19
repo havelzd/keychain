@@ -1,0 +1,14 @@
+@import "../../../../styles/colors";
+
+.container-middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: auto 0;
+}
+
+.no-content-msg {
+  color: $color-text-mute;
+  font-size: 1.5rem;
+}

@@ -1,12 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
   ElementRef,
   HostListener,
   input,
+  OnChanges,
   output,
   signal,
+  SimpleChanges,
   viewChild,
 } from "@angular/core";
 import { CommonModule, NgStyle } from "@angular/common";
@@ -21,28 +22,37 @@ import { TreeComponent, StaticTreeDataSource } from "@keychain/ui";
   styleUrl: "./record-list.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RecordListComponent {
+export class RecordListComponent implements OnChanges {
   records = input.required<RecordItem[] | null>();
   nodeCreated = output<RecordGroup | undefined>();
 
   contextMenu = viewChild<ElementRef<HTMLDivElement>>("contextMenu");
 
+  protected readonly trackBy = (_idx: number, value: RecordEntity) => value.id;
   protected readonly hasChildren = (node: RecordEntity) =>
     "records" in node ? node?.records != null && node.records.length > 0 : false;
   protected readonly getChildren = (node: RecordEntity) =>
     "records" in node ? node?.records : [];
-  protected readonly dataSource = computed(
-    () => new StaticTreeDataSource(this.records() ?? [], this.hasChildren, this.getChildren),
+  protected readonly dataSource = new StaticTreeDataSource(
+    [],
+    this.hasChildren,
+    this.getChildren,
   );
 
   protected showContextMenu = signal(false);
   protected menuXY = signal<[number, number]>([0, 0]);
-  protected selectedNode: RecordGroup | undefined = undefined;
+  protected contextMenuNode: RecordGroup | undefined = undefined;
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes["records"]) {
+      this.dataSource.nodes = this.records() ?? [];
+    }
+  }
 
   onNodeSelect($event: MouseEvent | PointerEvent, node: RecordGroup | undefined) {
     $event.stopPropagation();
     $event.preventDefault();
-    this.selectedNode = node;
+    this.contextMenuNode = node;
     this.showContextMenu.update(() => true);
     this.contextMenu()?.nativeElement.focus();
     this.menuXY.set([$event.clientX + 10, $event.clientY]);
@@ -58,12 +68,13 @@ export class RecordListComponent {
     }
   }
 
-  toggleNode(node: RecordItem) {
-    console.log("toggle");
+  toggleNode($event: Event, node: RecordItem) {
+    $event.stopPropagation();
+    this.dataSource.toggleNode(node);
   }
 
   addNode() {
-    this.nodeCreated.emit(this.selectedNode);
+    this.nodeCreated.emit(this.contextMenuNode);
   }
 
   removeNode() {

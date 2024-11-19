@@ -34,7 +34,12 @@ body {
 }
 
 button.uni-icon {
+  appearance:  none;
+  background: none;
+  border: none;
   font-size: 1rem;
+  color: inherit;
+  cursor: pointer;
 }
 
 .relative {

@@ -1,5 +1,5 @@
 <div class="flex-col">
-  @for (node of viewNodes(); track node.id ) {
+  @for (node of viewNodes(); track trackBy()) {
   <lib-node [node]="node" [rootTemplate]="defaultRoot" [leafTemplate]="defaultLeaf" [bindLabel]="bindLabel()" />
   } @empty {
   <div>No data provided</div>
@@ -8,30 +8,32 @@
 
 <ng-template #defaultRoot let-node="node">
   <div class="ui-tree-node">
-  <div class="ui-tree-node-content">
-    <ng-container [ngTemplateOutlet]="rootContent()"
-      [ngTemplateOutletContext]="{ $implicit: node.value, node: node.value }" />
-  </div>
+    <div class="ui-tree-node-content" [class.active]="node.id === selectedNode()?.id" (click)="selectNode(node)">
+      <ng-container [ngTemplateOutlet]="rootContent()"
+        [ngTemplateOutletContext]="{ $implicit: node.value, node: node.value }" />
+    </div>
+    @if(node.expanded()){
     <div class="ui-tree-sub-level">
-      @for(child of node?.children(); track child.id ) {
+      @for(child of node?.children(); track trackBy() ) {
       <lib-node [node]="child" [bindLabel]="bindLabel()" [rootTemplate]="defaultRoot" [leafTemplate]="defaultLeaf" />
       }
     </div>
+    }
   </div>
 </ng-template>
 
 <ng-template #defaultLeaf let-node="node">
-  <div class="ui-tree-node-content">
-  <ng-container [ngTemplateOutlet]="leafContent()"
-    [ngTemplateOutletContext]="{ $implicit: node.value, node: node.value }" />
+  <div class="ui-tree-node-content" [class.active]="node.id === selectedNode()?.id" (click)="selectNode(node)">
+    <ng-container [ngTemplateOutlet]="leafContent()"
+      [ngTemplateOutletContext]="{ $implicit: node.value, node: node.value }" />
   </div>
 </ng-template>
 
 <ng-template #defaultLeafContent let-node="node">
-    <span>{{ bindLabel() ? node[bindLabel()] : node }}</span>
+  <span>{{ bindLabel() ? node[bindLabel()] : node }}</span>
 </ng-template>
 
 <ng-template #defaultRootContent let-node="node">
-    <button>Click me senpai</button>
-    <span>{{ bindLabel() ? node[bindLabel()] : node }} </span>
+  <button>Click me senpai</button>
+  <span>{{ bindLabel() ? node[bindLabel()] : node }} </span>
 </ng-template>

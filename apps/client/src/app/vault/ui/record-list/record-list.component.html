@@ -1,15 +1,15 @@
 {{ nothing() }}
 <div class="section relative">
-  <lib-tree [dataSource]="dataSource()" bindLabel="name">
+  <lib-tree [dataSource]="dataSource" bindLabel="name" [trackBy]="trackBy">
     <ng-template #parentNode let-node="node">
       <div class="node" (contextmenu)="onNodeSelect($event, node)">
-        <button (click)="toggleNode(node)" class="uni-icon"><i>&#8250;</i></button>
-        <span>{{ node.name }}</span>
+        <button (click)="toggleNode($event, node)" class="uni-icon">&#10095;</button>
+        {{ node.name }}
       </div>
     </ng-template>
     <ng-template #leafNode let-node="node">
       <div class="node" (contextmenu)="onNodeSelect($event, node)">
-        <span>{{ node.name }}</span>
+        {{ node.name }}
       </div>
     </ng-template>
   </lib-tree>

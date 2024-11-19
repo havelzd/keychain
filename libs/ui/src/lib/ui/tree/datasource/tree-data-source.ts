@@ -3,12 +3,12 @@ import { TreeNode } from "../types/types";
 import { AbstractDataSource } from "./abstract-data-source";
 
 export class StaticTreeDataSource<T> extends AbstractDataSource<T> {
-    protected nodes: WritableSignal<TreeNode<T>[]>;
+    protected _nodes: WritableSignal<TreeNode<T>[]>;
     private nodeCounter = 0;
 
     constructor(nodes: T[], hasChilren: (n: T) => boolean, getChildren: (n: T) => T[] | undefined) {
         super(hasChilren, getChildren);
-        this.nodes = signal(this.createTreeNodes(nodes));
+        this._nodes = signal(this.createTreeNodes(nodes));
     }
 
     private createTreeNodes(nodes: T[]) {
@@ -31,7 +31,18 @@ export class StaticTreeDataSource<T> extends AbstractDataSource<T> {
     }
 
     get rootNodes() {
-        console.log("nodes", this.nodes());
-        return this.nodes;
+        return this._nodes();
+    }
+
+    set nodes(nodes: T[]) {
+        this._nodes.set(this.createTreeNodes(nodes));
+    }
+
+    toggleNode(valueNode: T) {
+        const treeNode = this._nodes()?.find((n) => n.value === valueNode);
+        if (treeNode) {
+            treeNode.expanded.update((v) => !v);
+            console.log(treeNode);
+        }
     }
 }
