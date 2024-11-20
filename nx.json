@@ -79,6 +79,5 @@
             "linter": "eslint",
             "unitTestRunner": "jest"
         }
-    },
-    "defaultProject": "client-electron"
+    }
 }
