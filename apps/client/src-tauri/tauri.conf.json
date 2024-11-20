@@ -5,7 +5,7 @@
   "identifier": "com.tauri.dev",
   "build": {
     "frontendDist": "../../../dist/client/",
-    "devUrl": "localhost:4200",
+    "devUrl": "http://localhost:4200",
     "beforeDevCommand": "nx run client:serve",
     "beforeBuildCommand": "nx run client:build"
   },
