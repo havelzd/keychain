@@ -1,17 +1,30 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
 import { MENU_ITEMS } from "./menu-items";
+import { FaIconComponent } from "@fortawesome/angular-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { NgClass } from "@angular/common";
+import { RouterLink, RouterLinkActive } from "@angular/router";
 
 @Component({
-    selector: "app-main-menu",
-    standalone: true,
-    imports: [],
-    templateUrl: "./main-menu.component.html",
-    styleUrl: "./main-menu.component.scss",
-    changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: "app-main-menu",
+  standalone: true,
+  imports: [FaIconComponent, NgClass, RouterLink, RouterLinkActive],
+  templateUrl: "./main-menu.component.html",
+  styleUrl: "./main-menu.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainMenuComponent {
-    protected readonly MENU_ITEMS = MENU_ITEMS;
-    nothing() {
-        console.log("Main Menu rerender");
-    }
+  protected readonly MENU_ITEMS = MENU_ITEMS;
+
+  protected readonly FA_BARS = faBars;
+
+  protected menuExpanded = signal(false);
+
+  nothing() {
+    console.log("Main Menu rerender");
+  }
+
+  toggleMenu() {
+    this.menuExpanded.update((v) => !v);
+  }
 }

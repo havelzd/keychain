@@ -3,50 +3,50 @@
 @import "./styles/mixins";
 
 /* You can add global styles to this file, and also import other style files */
-* {
-  margin: 0;
-  padding: 0;
-}
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
 
-html,
-body {
-  font-size: $font-size-base;
-  font-family: $font-family;
-}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-body {
-  background: linear-gradient();
-}
+  html {
+    font-size: $font-size-base;
+    font-family: $font-family;
+  }
 
-:is(h1, h2, h3, h4, h5, h6) {
-  font-weight: normal;
-}
+  body {
+    background-color: $color-bg-secondary;
+    color: light-dark($font-color-light, $font-color-dark);
+    height: 100vh;
+    overflow: hidden;
+  }
 
-.container {
-  display: flex;
-  gap: $space;
-  padding: $space-sm;
-  width: 100%;
+  :is(h1, h2, h3, h4, h5, h6) {
+    font-weight: normal;
+  }
 
-  & .col {
+  .container {
+    display: flex;
+    gap: $space;
+    width: 100%;
+
+    &.col {
+      flex-direction: column;
+    }
+  }
+
+  .relative {
+    position: relative;
+  }
+
+  .flex-col {
+    display: flex;
     flex-direction: column;
   }
-}
 
-button.uni-icon {
-  appearance:  none;
-  background: none;
-  border: none;
-  font-size: 1rem;
-  color: inherit;
-  cursor: pointer;
-}
-
-.relative {
-  position: relative;
-}
-
-.flex-col {
-  display: flex;
-  flex-direction: column;
 }

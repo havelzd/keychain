@@ -1,4 +1,16 @@
+// bg colors
+$bg-color-light: #f1f3f5;
+$bg-color-dark: #343a40;
+$bg-color-light-secondary: #f8f9fa;
+$bg-color-dark-secondary: #212529;
+
+// Bg colors themed
+$color-bg-primary: light-dark($bg-color-light, $bg-color-dark);
+$color-bg-secondary: light-dark($bg-color-light-secondary, $bg-color-dark-secondary);
+
+$font-color-light: #343a40;
+$font-color-dark: #f8f9fa;
 // Borders
 $border-color-primary: #cfcfcf;
-
 $color-text-mute: #6c757d;
+

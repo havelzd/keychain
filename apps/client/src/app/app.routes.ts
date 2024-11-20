@@ -6,6 +6,13 @@ export const appRoutes: Routes = [
     loadChildren: () => import("./vault/vault.routes").then((r) => r.VAULT_ROUTES),
   },
   {
+    path: "settings",
+    loadComponent: () =>
+      import("./setting/feature/setting-shell.component").then(
+        (r) => r.SettingShellComponent,
+      ),
+  },
+  {
     path: "",
     redirectTo: "/vault",
     pathMatch: "full",
@@ -14,5 +21,4 @@ export const appRoutes: Routes = [
     path: "**",
     redirectTo: "/vault",
   },
-
 ];

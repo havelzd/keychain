@@ -1,8 +1,6 @@
 {{ nothing() }}
-<div>
-  @if(node().hasChildren() ){
-  <ng-container [ngTemplateOutlet]="rootTemplate()" [ngTemplateOutletContext]="{ $implicit: node(), node: node() }" />
-  } @else {
-  <ng-container [ngTemplateOutlet]="leafTemplate()" [ngTemplateOutletContext]="{ $implicit: node(), node: node() }" />
-  }
-</div>
+@if(node().hasChildren() ){
+<ng-container [ngTemplateOutlet]="rootTemplate()" [ngTemplateOutletContext]="{ $implicit: node(), node: node() }" />
+} @else {
+<ng-container [ngTemplateOutlet]="leafTemplate()" [ngTemplateOutletContext]="{ $implicit: node(), node: node() }" />
+}

@@ -1,0 +1,73 @@
+@import "../../../../styles/colors";
+@import "../../../../styles/variables";
+@import "../../../../styles/mixins";
+
+#main-menu {
+  background-color: $color-bg-primary;
+  height: 100%;
+  position: sticky;
+  top: 0;
+}
+
+nav {
+  width: 60px;
+  height: 100%;
+  will-change: width;
+  transition: width 0.3s ease-in;
+}
+
+nav.expanded {
+  width: 150px;
+}
+
+ul {
+  display: flex;
+    height: 100%;
+  flex-direction: column;
+  @include py($space)
+}
+
+fa-icon {
+  font-size: 1.5rem;
+}
+
+a {
+  display: inline-flex;
+  width: 100%;
+  overflow: hidden;
+  @include pad($space);
+  align-items: center;
+}
+
+.menu-icon {
+  margin-right: 0;
+  transition: margin-right 0.3s ease-in;
+}
+
+.menu-text {
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity 0.3s ease-in;
+}
+
+nav.expanded .menu-icon {
+  margin-right: $space-sm;
+}
+
+nav.expanded .menu-text {
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+}
+
+a:hover, a.active {
+  background-color: $color-bg-secondary;
+}
+
+li:last-child {
+  margin-top: auto;
+}
+
+button {
+  align-self: flex-start;
+  padding: 1rem;
+}
