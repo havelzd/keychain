@@ -7,10 +7,7 @@ export const appRoutes: Routes = [
   },
   {
     path: "settings",
-    loadComponent: () =>
-      import("./setting/feature/setting-shell.component").then(
-        (r) => r.SettingShellComponent,
-      ),
+    loadChildren: () => import("./setting/setting.routes").then((r) => r.ROUTES),
   },
   {
     path: "",

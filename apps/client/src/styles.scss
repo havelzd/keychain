@@ -22,8 +22,10 @@
   body {
     background-color: $color-bg-secondary;
     color: light-dark($font-color-light, $font-color-dark);
-    height: 100vh;
-    overflow: hidden;
+  }
+
+  main {
+    width: 100%;
   }
 
   :is(h1, h2, h3, h4, h5, h6) {
@@ -40,13 +42,33 @@
     }
   }
 
-  .relative {
-    position: relative;
+  .flex {
+    display: flex;
+
+    &.just-center {
+      justify-items: center;
+    }
+
+    &.align-center {
+      align-items: center;
+    }
   }
 
   .flex-col {
     display: flex;
     flex-direction: column;
   }
+}
 
+.feature-list {
+  height: 100dvh;
+  max-height: 100dvh;
+  min-width: 100px;
+  width: 250px;
+  max-width: 600px;
+  overflow-y: auto;
+  overflow-x: visible;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  resize: horizontal;
 }

@@ -5,10 +5,12 @@
   </button>
   <nav [class.expanded]="menuExpanded()">
     <ul>
-      @for(item of MENU_ITEMS; track item.name){
+      @for(item of MENU_ITEMS; track item.href){
       <li>
         <a [routerLink]="[item.href]" routerLinkActive="active"><fa-icon class="menu-icon" [icon]="item.icon" /><span
-            class="menu-text">Vault</span></a>
+            class="menu-text">{{
+            item.name
+            }}</span></a>
       </li>
       }
     </ul>

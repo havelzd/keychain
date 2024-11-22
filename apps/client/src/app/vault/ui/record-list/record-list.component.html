@@ -1,9 +1,9 @@
 {{ nothing() }}
-<div class="section relative">
+<div class="record-list" (contextmenu)="onNodeSelect($event, undefined)">
   <lib-tree [dataSource]="dataSource" bindLabel="name" [trackBy]="trackBy">
     <ng-template #parentNode let-node="node">
       <div class="node" (contextmenu)="onNodeSelect($event, node)">
-        <button (click)="toggleNode($event, node)" class="uni-icon">&#10095;</button>
+        <button (click)="toggleNode($event, node)" class="icon-btn">&#10095;</button>
         {{ node.name }}
       </div>
     </ng-template>
@@ -13,10 +13,11 @@
       </div>
     </ng-template>
   </lib-tree>
-  <div #contextMenu class="contextMenu" *ngIf="showContextMenu()"
-    [ngStyle]="{ top: menuXY()[1] + 'px', left: menuXY()[0] + 'px' }">
-    <button (click)="addNode()">Add</button>
-    <button (click)="removeNode()">Remove</button>
-    <button (click)="removeNode()">Rename</button>
-  </div>
+</div>
+<div #contextMenu class="contextMenu" *ngIf="showContextMenu()"
+  [ngStyle]="{ top: menuXY()[1] + 'px', left: menuXY()[0] + 'px' }">
+  <button (click)="addNode()">Create Record</button>
+  <button (click)="addNode()">Create Record Group</button>
+  <button (click)="removeNode()">Remove</button>
+  <button (click)="removeNode()">Rename</button>
 </div>

@@ -1,23 +1,29 @@
 @import "../../../../styles/mixins";
 @import "../../../../styles/variables";
+@import "../../../../styles/colors";
 
-a {
-  display: block;
-  position: relative;
-  @include pad($space-sm);
+.record-list {
+  height: 100dvh;
+  max-height: 100dvh;
+  min-width: 100px;
+  width: 250px;
+  max-width: 600px;
+  overflow-y: auto;
+  overflow-x: visible;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  resize: horizontal;
 }
 
-a:hover::after {
+.record-list::after {
   content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  border: 1px solid red;
-  height: 100%;
+}
+
+lib-tree {
+  min-width: 250px;
 }
 
 .node {
-  position: relative;
   display: inline-flex;
   width: 100%;
   cursor: pointer;
@@ -32,23 +38,24 @@ a:hover::after {
 }
 
 ::ng-deep.ui-tree-node-content:hover {
-  background-color: lightblue !important;
+  background-color: $color-bg-primary !important;
   color: white !important;
 }
 
 .contextMenu {
   position: absolute;
   background-color: gray;
-  min-width: 100px;
+  width: max-content;
   font-size: 1.5rem;
 }
 
 .contextMenu>button {
   appearance: none;
+  display: block;
+  width: 100%;
   text-align: left;
   border: none;
   background: gray;
-  width: 100%;
   color: white;
   @include pad($space-sm);
 }

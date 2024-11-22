@@ -1,0 +1,27 @@
+@import "../../../../styles/mixins";
+@import "../../../../styles/variables";
+
+a {
+  position: relative;
+  display: inline-flex;
+  width: 100%;
+  @include pad($space);
+  gap: $space;
+}
+
+a:hover,
+a.selected {
+  background-color: $color-bg-primary;
+}
+
+a:hover::after,
+a.selected::after {
+  content: "";
+  position: absolute;
+  margin-left: auto;
+  left:0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  color: blue;
+}
