@@ -4,18 +4,20 @@
 a {
   position: relative;
   display: inline-flex;
-  width: 100%;
+  width: 90%;
   @include pad($space);
   gap: $space;
+  border-radius: $space-sm;
+  margin: 0 $space;
 }
 
 a:hover,
-a.selected {
+a.active {
   background-color: $color-bg-primary;
 }
 
 a:hover::after,
-a.selected::after {
+a.active::after {
   content: "";
   position: absolute;
   margin-left: auto;

@@ -1,18 +1,20 @@
-<div class="section-group">
-  <section>
-    <h2>Theme</h2>
-    <div class="group">
-      <h3>Base theme</h3>
-      <div class="container" role="radiogroup">
-        <div class="theme-choice">
-          <input id="light" name="theme" type="radio" />
-          <label for="light">Light</label>
+<section>
+  <h2>Theme</h2>
+  <div class="group">
+    <h3>Base theme</h3>
+    <div class="container" role="radiogroup">
+      <div class="theme-choice">
+        <div class="theme-color light">
+          <input id="light" name="theme" type="radio" value="light" (change)="onSelect($event)" />
         </div>
-        <div class="theme-choice">
-          <input id="dark" name="theme" type="radio" />
-          <label for="dark">Dark</label>
+        <label for="light">Light</label>
+      </div>
+      <div class="theme-choice">
+        <div class="theme-color dark">
+          <input id="dark" name="theme" type="radio" value="dark" (change)="onSelect($event)" />
         </div>
+        <label for="dark">Dark</label>
       </div>
     </div>
-  </section>
-</div>
+  </div>
+</section>

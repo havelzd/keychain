@@ -18,7 +18,9 @@
         "@ngrx/effects": "^18.0.2",
         "@ngrx/entity": "^18.0.2",
         "@ngrx/router-store": "^18.0.2",
+        "@ngrx/signals": "^18.1.1",
         "@ngrx/store": "^18.0.2",
+        "@tauri-apps/api": "^2.1.1",
         "rxjs": "~7.8.0",
         "zone.js": "~0.14.3"
     },

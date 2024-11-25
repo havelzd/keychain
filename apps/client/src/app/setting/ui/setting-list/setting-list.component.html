@@ -1,7 +1,7 @@
 <div class="feature-list">
   <nav>
     @for(setting of ITEMS; track setting.name){
-    <a [routerLink]="[setting.href]"><fa-icon [icon]="setting.icon" />{{ setting.name }}</a>
+    <a [routerLink]="[setting.href]" routerLinkActive="active"><fa-icon [icon]="setting.icon" />{{ setting.name }}</a>
     }
   </nav>
 </div>

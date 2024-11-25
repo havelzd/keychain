@@ -10,6 +10,10 @@ export const appRoutes: Routes = [
     loadChildren: () => import("./setting/setting.routes").then((r) => r.ROUTES),
   },
   {
+    path: "about",
+    loadChildren: () => import("./about/about.routes").then((r) => r.ROUTES),
+  },
+  {
     path: "",
     redirectTo: "/vault",
     pathMatch: "full",
