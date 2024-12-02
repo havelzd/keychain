@@ -1,15 +1,25 @@
 {{ nothing() }}
-<div class="record-list" (contextmenu)="onNodeSelect($event, undefined)">
+<div class="feature-list" (contextmenu)="onNodeSelect($event, undefined)">
+  <div class="top-bar">
+    <label for="record-search" class="visually-hidden">Search</label>
+    <input id="record-search" placeholder="Search..." />
+  </div>
   <lib-tree [dataSource]="dataSource" bindLabel="name" [trackBy]="trackBy">
     <ng-template #parentNode let-node="node">
       <div class="node" (contextmenu)="onNodeSelect($event, node)">
         <button (click)="toggleNode($event, node)" class="icon-btn">&#10095;</button>
-        {{ node.name }}
+        {{ node.id }} {{ node.name }}
       </div>
     </ng-template>
     <ng-template #leafNode let-node="node">
-      <div class="node" (contextmenu)="onNodeSelect($event, node)">
-        {{ node.name }}
+      <div class="node leaf" (contextmenu)="onNodeSelect($event, node)">
+        @if (nodeRenaming()?.id == node.id){
+        <label for="node-rename" class="visually-hidden">Rename</label>
+        <input #renameInput id="node-rename" type="text" [value]="node.name" (blur)="cancelRename()"
+          (keyup.enter)="completeRename()" (keyup.esc)="cancelRename()" />
+        } @else {
+        <span>{{ node.id }} {{ node.name }}</span>
+        }
       </div>
     </ng-template>
   </lib-tree>
@@ -19,5 +29,5 @@
   <button (click)="addNode()">Create Record</button>
   <button (click)="addNode()">Create Record Group</button>
   <button (click)="removeNode()">Remove</button>
-  <button (click)="removeNode()">Rename</button>
+  <button (click)="renameNode($event)">Rename</button>
 </div>

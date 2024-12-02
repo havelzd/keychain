@@ -26,9 +26,10 @@ export class RecordListComponent implements OnChanges {
   records = input.required<RecordItem[] | null>();
   nodeCreated = output<RecordGroup | undefined>();
 
-  contextMenu = viewChild<ElementRef<HTMLDivElement>>("contextMenu");
+  protected contextMenu = viewChild<ElementRef<HTMLDivElement>>("contextMenu");
 
   protected readonly trackBy = (_idx: number, value: RecordEntity) => value.id;
+  // protected readonly treeTrackBy = (val: RecordEntity) => val.id;
   protected readonly hasChildren = (node: RecordEntity) =>
     "records" in node ? node?.records != null && node.records.length > 0 : false;
   protected readonly getChildren = (node: RecordEntity) =>
@@ -37,11 +38,16 @@ export class RecordListComponent implements OnChanges {
     [],
     this.hasChildren,
     this.getChildren,
+    // this.treeTrackBy,
   );
 
   protected showContextMenu = signal(false);
   protected menuXY = signal<[number, number]>([0, 0]);
   protected contextMenuNode: RecordGroup | undefined = undefined;
+
+  // node rename
+  protected nodeRenaming = signal<RecordEntity | undefined>(undefined);
+  protected renameInput = viewChild<ElementRef<HTMLInputElement>>("renameInput");
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes["records"]) {
@@ -75,6 +81,26 @@ export class RecordListComponent implements OnChanges {
 
   addNode() {
     this.nodeCreated.emit(this.contextMenuNode);
+  }
+
+  renameNode($event: Event) {
+    this.nodeRenaming.set(this.contextMenuNode);
+    $event.stopPropagation();
+    setTimeout(() => {
+      if (this.renameInput() != null) {
+        this.renameInput()?.nativeElement.focus();
+      }
+    });
+    this.showContextMenu.set(false);
+  }
+
+  cancelRename() {
+    this.nodeRenaming.set(undefined);
+  }
+
+  completeRename() {
+    this.nodeRenaming.set(undefined);
+    // TODO: update node name
   }
 
   removeNode() {

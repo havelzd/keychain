@@ -30,4 +30,13 @@
     width: fit-content;
     padding: $space-sm;
   }
+
+
+  input {
+      appearance: none;
+      background: $color-bg-secondary;
+      border: 1px solid $color-bg-primary;
+      width: 100%;
+      border-radius: $space-sm;
+  }
 }
