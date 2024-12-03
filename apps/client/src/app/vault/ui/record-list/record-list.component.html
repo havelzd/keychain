@@ -1,24 +1,30 @@
 {{ nothing() }}
-<div class="feature-list" (contextmenu)="onNodeSelect($event, undefined)">
+<div class="feature-list" (contextmenu)="onContextMenu($event, undefined)">
   <div class="top-bar">
     <label for="record-search" class="visually-hidden">Search</label>
     <input id="record-search" placeholder="Search..." />
   </div>
   <lib-tree [dataSource]="dataSource" bindLabel="name" [trackBy]="trackBy">
     <ng-template #parentNode let-node="node">
-      <div class="node" (contextmenu)="onNodeSelect($event, node)">
-        <button (click)="toggleNode($event, node)" class="icon-btn">&#10095;</button>
+      <div class="node" (contextmenu)="onContextMenu($event, node)" (click)="toggleNode($event, node)">
+        <fa-icon class="icon" [icon]="dataSource.isNodeExpanded(node) ? folderOpenIcon : folderIcon" />
+        @if(nodeRenaming()?.id == node.id){
+        <input #renameInput id="nodeRename" type="text" [value]="node.name" (blur)="cancelRename()"
+          (keyup.enter)="completeRename()" (keyup.esc)="cancelRename()" />
+        } @else {
         {{ node.id }} {{ node.name }}
+        }
       </div>
     </ng-template>
     <ng-template #leafNode let-node="node">
-      <div class="node leaf" (contextmenu)="onNodeSelect($event, node)">
+      <div class="node leaf" (contextmenu)="onContextMenu($event, node)">
+        <fa-icon class="icon" [icon]="keyIcon" />
         @if (nodeRenaming()?.id == node.id){
-        <label for="node-rename" class="visually-hidden">Rename</label>
-        <input #renameInput id="node-rename" type="text" [value]="node.name" (blur)="cancelRename()"
+        <label for="nodeRename" class="visually-hidden">Rename</label>
+        <input #renameInput id="nodeRename" type="text" [value]="node.name" (blur)="cancelRename()"
           (keyup.enter)="completeRename()" (keyup.esc)="cancelRename()" />
         } @else {
-        <span>{{ node.id }} {{ node.name }}</span>
+        {{ node.id }} {{ node.name }}
         }
       </div>
     </ng-template>

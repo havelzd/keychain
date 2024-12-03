@@ -12,10 +12,24 @@ lib-tree {
   cursor: pointer;
   align-items: center;
   gap: $space-sm;
+  padding: $space-sm;
 
   &.leaf {
-    padding: $space-sm;
-    padding-left: calc(4 * $space-sm);
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 1rem;
+      height: 100%;
+      left: -1rem;
+      bottom: 50%;
+      border-bottom: 2px solid $color-bg-primary;
+      border-left: 2px solid $color-bg-primary;
+      border-radius: 0.1rem;
+      border-color: $color-bg-primary;
+      z-index: -1;
+    }
   }
 }
 
@@ -50,4 +64,8 @@ lib-tree {
 .contextMenu>button:hover {
   background: lightgreen;
   color: gray;
+}
+
+#nodeRename {
+  padding: 0.5rem;
 }

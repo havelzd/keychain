@@ -13,21 +13,33 @@ import {
 import { CommonModule, NgStyle } from "@angular/common";
 import { RecordEntity, RecordGroup, RecordItem } from "../../store/records/records.models";
 import { TreeComponent, StaticTreeDataSource } from "@keychain/ui";
+import { FaIconComponent } from "@fortawesome/angular-fontawesome";
+import { faFolder, faFolderOpen, faKey } from "@fortawesome/free-solid-svg-icons";
+
+export type RecordEvent = {
+  record: RecordEntity;
+  value: string;
+};
 
 @Component({
   selector: "app-record-list",
   standalone: true,
-  imports: [CommonModule, TreeComponent, NgStyle],
+  imports: [CommonModule, TreeComponent, NgStyle, FaIconComponent],
   templateUrl: "./record-list.component.html",
   styleUrl: "./record-list.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RecordListComponent implements OnChanges {
-  records = input.required<RecordItem[] | null>();
+  records = input.required<RecordEntity[] | null>();
   nodeCreated = output<RecordGroup | undefined>();
+
+  nodeRenamed = output<RecordEvent>();
 
   protected contextMenu = viewChild<ElementRef<HTMLDivElement>>("contextMenu");
 
+  protected readonly folderIcon = faFolder;
+  protected readonly folderOpenIcon = faFolderOpen;
+  protected readonly keyIcon = faKey;
   protected readonly trackBy = (_idx: number, value: RecordEntity) => value.id;
   // protected readonly treeTrackBy = (val: RecordEntity) => val.id;
   protected readonly hasChildren = (node: RecordEntity) =>
@@ -55,7 +67,7 @@ export class RecordListComponent implements OnChanges {
     }
   }
 
-  onNodeSelect($event: MouseEvent | PointerEvent, node: RecordGroup | undefined) {
+  onContextMenu($event: MouseEvent | PointerEvent, node: RecordGroup | undefined) {
     $event.stopPropagation();
     $event.preventDefault();
     this.contextMenuNode = node;
@@ -80,7 +92,11 @@ export class RecordListComponent implements OnChanges {
   }
 
   addNode() {
+    if (this.contextMenuNode != null && "records" in this.contextMenuNode) {
+      this.dataSource.toggleNode(this.contextMenuNode, true);
+    }
     this.nodeCreated.emit(this.contextMenuNode);
+    this.closeContextMenu();
   }
 
   renameNode($event: Event) {
@@ -91,7 +107,7 @@ export class RecordListComponent implements OnChanges {
         this.renameInput()?.nativeElement.focus();
       }
     });
-    this.showContextMenu.set(false);
+    this.closeContextMenu();
   }
 
   cancelRename() {
@@ -99,8 +115,12 @@ export class RecordListComponent implements OnChanges {
   }
 
   completeRename() {
+    const newName = this.renameInput()?.nativeElement.value;
+    const node = this.nodeRenaming();
+    if (node != null && newName) {
+      this.nodeRenamed.emit({ record: node, value: newName });
+    }
     this.nodeRenaming.set(undefined);
-    // TODO: update node name
   }
 
   removeNode() {
@@ -113,5 +133,13 @@ export class RecordListComponent implements OnChanges {
 
   nothing() {
     console.log("RecordList rerender");
+  }
+
+  private closeContextMenu() {
+    this.showContextMenu.set(false);
+  }
+
+  private openContextMenu() {
+    this.showContextMenu.set(true);
   }
 }

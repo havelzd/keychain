@@ -59,11 +59,16 @@ export class StaticTreeDataSource<T> extends AbstractDataSource<T> {
     this._nodes.set(this.createTreeNodes(nodes));
   }
 
-  toggleNode(valueNode: T) {
+  toggleNode(valueNode: T, expanded: boolean | undefined = undefined) {
     const treeNode = this._flatNodes()?.find((n) => n.value === valueNode);
     if (treeNode) {
-      treeNode.expanded.update((v) => !v);
+      treeNode.expanded.update((v) => (expanded != null ? expanded : !v));
     }
+  }
+
+  isNodeExpanded(valueNode: T) {
+    const treeNode = this.collapsedState.get(this.trackBy(valueNode));
+    return treeNode?.expanded() ?? false
   }
 
   private _flattenNodes(nodes: TreeNode<T>[]) {

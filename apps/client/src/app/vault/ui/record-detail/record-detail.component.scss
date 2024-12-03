@@ -1,5 +1,8 @@
 @import "../../../../styles/colors";
 
+:host {
+  width: 100%;
+}
 .container-middle {
   display: flex;
   justify-content: center;

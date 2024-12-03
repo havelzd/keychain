@@ -4,6 +4,7 @@ import { provideEffects } from "@ngrx/effects";
 import * as fromRecords from ".//store/records//records.reducer";
 import { RecordsEffects } from ".//store/records//records.effects";
 import { RecordsFacade } from ".//store/records//records.facade";
+import { RecordsStore } from "./store/records/records.store";
 
 export const VAULT_ROUTES: Routes = [
   {
@@ -12,10 +13,6 @@ export const VAULT_ROUTES: Routes = [
       import("./feature/vault-shell/vault-shell.component").then(
         (c) => c.VaultShellComponent,
       ),
-    providers: [
-      RecordsFacade,
-      provideState(fromRecords.RECORDS_FEATURE_KEY, fromRecords.recordsReducer),
-      provideEffects(RecordsEffects),
-    ],
+    providers: [RecordsStore],
   },
 ];

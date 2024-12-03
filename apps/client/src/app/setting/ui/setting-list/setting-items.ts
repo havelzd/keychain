@@ -4,6 +4,7 @@ export const SETTING_SECTIONS = [
   {
     icon: faPalette,
     name: "Appearance",
-    href: "appearance"
+    href: "appearance",
+    keywords: ["appearance", "theme", "color", "style", "dark", "light"],
   },
 ];

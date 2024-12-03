@@ -1,6 +1,10 @@
 <div class="feature-list">
+  <div class="top-bar">
+    <label for="setting-search" class="visually-hidden">Search</label>
+    <input placeholder="Search..."/>
+  </div>
   <nav>
-    @for(setting of ITEMS; track setting.name){
+    @for(setting of filteredItems(); track setting.name){
     <a [routerLink]="[setting.href]" routerLinkActive="active"><fa-icon [icon]="setting.icon" />{{ setting.name }}</a>
     }
   </nav>

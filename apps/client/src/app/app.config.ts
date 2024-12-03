@@ -26,8 +26,8 @@ export const appConfig: ApplicationConfig = {
     // provideZoneChangeDetection({ eventCoalescing: true }),
     provideExperimentalZonelessChangeDetection(),
     provideRouter(appRoutes),
-    provideStore(),
-    provideEffects(),
+    // provideStore(),
+    // provideEffects(),
     { provide: IS_WEB_OR_TAURI, useFactory: IS_WEB_OR_TAURI_FACTORY },
     { provide: SETTING_STORAGE, useFactory: SettingStorageStrategyFactory },
     {

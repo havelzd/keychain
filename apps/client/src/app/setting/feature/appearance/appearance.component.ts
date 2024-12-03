@@ -11,7 +11,6 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
 export class AppearanceSettingComponent {
 
   onSelect($event: Event): void {
-    console.log($event);
     const radioButton = $event?.target as HTMLInputElement;
     const value = radioButton?.value;
     console.log(value);

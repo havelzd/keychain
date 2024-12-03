@@ -12,6 +12,5 @@ export class SettingService {
     console.log("Inititalizing SettingService");
     console.log(this.platformToken);
     console.log(this.settingStorage);
-    configDir().then(console.log);
   }
 }

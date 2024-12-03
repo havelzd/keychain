@@ -4,10 +4,10 @@
 @import "../../../../styles/layout.scss";
 
 :host {
-  width: 100%;
   display: flex;
   @include pad($space);
   justify-items: center;
+  width: max-content;
 }
 
 section {
@@ -16,6 +16,7 @@ section {
   background-color: $color-bg-primary;
   box-shadow: inset 1px 1px 0 0 $color-bg-secondary;
   height: fit-content;
+  width: 100%;
 }
 
 .group {
@@ -41,6 +42,10 @@ section h2:after {
   border-bottom: 1px solid $color-bg-secondary;
 }
 
+.section.wrap{
+  flex-wrap: wrap;
+}
+
 .theme-choice {
   display: flex;
   flex-direction: column;
@@ -64,6 +69,10 @@ section h2:after {
 
     &.dark {
       background: #000;
+    }
+
+    &.system {
+      background: $color-bg-system;
     }
 
   }

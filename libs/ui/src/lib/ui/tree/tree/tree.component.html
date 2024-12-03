@@ -8,7 +8,7 @@
 
 <ng-template #defaultRoot let-node="node">
   <div class="ui-tree-node">
-    <div class="ui-tree-node-content" [class.active]="node.id === selectedNode()?.id" (click)="selectNode(node)">
+    <div class="ui-tree-node-content">
       <ng-container [ngTemplateOutlet]="rootContent()"
         [ngTemplateOutletContext]="{ $implicit: node.value, node: node.value }" />
     </div>
@@ -23,7 +23,7 @@
 </ng-template>
 
 <ng-template #defaultLeaf let-node="node">
-  <div class="ui-tree-node-content" [class.active]="node.id === selectedNode()?.id" (click)="selectNode(node)">
+  <div class="ui-tree-node-content">
     <ng-container [ngTemplateOutlet]="leafContent()"
       [ngTemplateOutletContext]="{ $implicit: node.value, node: node.value }" />
   </div>

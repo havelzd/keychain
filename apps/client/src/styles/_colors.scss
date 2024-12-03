@@ -7,6 +7,7 @@ $bg-color-dark-secondary: #212529;
 // Bg colors themed
 $color-bg-primary: light-dark($bg-color-light, $bg-color-dark);
 $color-bg-secondary: light-dark($bg-color-light-secondary, $bg-color-dark-secondary);
+$color-bg-system: light-dark(white, black);
 
 $font-color-light: #343a40;
 $font-color-dark: #f8f9fa;

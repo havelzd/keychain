@@ -38,10 +38,4 @@ export class TreeComponent<T, K extends keyof T> {
     protected readonly viewNodes = computed(() =>
         this.nodes == null || this.nodes.length === 0 ? this.dataSource().rootNodes : this.nodes(),
     );
-
-    protected selectedNode = computed(() => this.dataSource()?.selectedNode());
-
-    protected selectNode(node: TreeNode<T>) {
-        this.dataSource().selectNode = node;
-    }
 }

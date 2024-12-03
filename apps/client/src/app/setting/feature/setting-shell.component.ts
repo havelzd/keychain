@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { SettingListComponent } from "../ui/setting-list/setting-list.component";
 import { RouterOutlet } from "@angular/router";
 
@@ -8,5 +8,6 @@ import { RouterOutlet } from "@angular/router";
   imports: [SettingListComponent, RouterOutlet],
   templateUrl: "./setting-shell.component.html",
   styleUrl: "./setting-shell.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SettingShellComponent { }
