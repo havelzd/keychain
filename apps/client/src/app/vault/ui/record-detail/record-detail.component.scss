@@ -1,17 +1,17 @@
 @import "../../../../styles/colors";
 
 :host {
-  width: 100%;
+    width: 100%;
 }
 .container-middle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  margin: auto 0;
+    display: flex;
+    place-content: center;
+    height: 100%;
+    margin: auto 0;
 }
 
 .no-content-msg {
-  color: $color-text-mute;
-  font-size: 1.5rem;
+    color: $color-text-mute;
+    font-size: 1.5rem;
+    margin: auto 0;
 }

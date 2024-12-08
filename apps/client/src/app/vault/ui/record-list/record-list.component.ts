@@ -1,14 +1,14 @@
 import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  HostListener,
-  input,
-  OnChanges,
-  output,
-  signal,
-  SimpleChanges,
-  viewChild,
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    HostListener,
+    signal,
+    viewChild,
+    OnChanges,
+    input,
+    output,
+    SimpleChanges,
 } from "@angular/core";
 import { CommonModule, NgStyle } from "@angular/common";
 import { RecordEntity, RecordGroup, RecordItem } from "../../store/records/records.models";
@@ -17,129 +17,153 @@ import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 import { faFolder, faFolderOpen, faKey } from "@fortawesome/free-solid-svg-icons";
 
 export type RecordEvent = {
-  record: RecordEntity;
-  value: string;
+    record: RecordEntity;
+    value: string;
 };
 
 @Component({
-  selector: "app-record-list",
-  standalone: true,
-  imports: [CommonModule, TreeComponent, NgStyle, FaIconComponent],
-  templateUrl: "./record-list.component.html",
-  styleUrl: "./record-list.component.scss",
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: "app-record-list",
+    standalone: true,
+    imports: [CommonModule, TreeComponent, NgStyle, FaIconComponent],
+    templateUrl: "./record-list.component.html",
+    styleUrl: "./record-list.component.scss",
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RecordListComponent implements OnChanges {
-  records = input.required<RecordEntity[] | null>();
-  nodeCreated = output<RecordGroup | undefined>();
+    records = input.required<RecordEntity[]>();
+    recordCreated = output<RecordGroup | undefined>();
+    recordGroupCreated = output<RecordEntity | undefined>();
+    recordRenamed = output<RecordEvent>();
+    recordRemoved = output<RecordEntity>();
+    recordSelected = output<RecordItem>();
 
-  nodeRenamed = output<RecordEvent>();
+    // Tree
+    protected readonly folderIcon = faFolder;
+    protected readonly folderOpenIcon = faFolderOpen;
+    protected readonly keyIcon = faKey;
+    protected readonly trackBy = (_idx: number, value: RecordEntity) => value.id;
+    // protected readonly treeTrackBy = (val: RecordEntity) => val.id;
+    protected readonly hasChildren = (node: RecordEntity) =>
+        "records" in node ? node?.records != null : false;
+    protected readonly getChildren = (node: RecordEntity) =>
+        "records" in node ? node?.records : [];
+    protected readonly dataSource = new StaticTreeDataSource(
+        [],
+        this.hasChildren,
+        this.getChildren,
+        "id",
+    );
 
-  protected contextMenu = viewChild<ElementRef<HTMLDivElement>>("contextMenu");
+    // Context menu
+    protected contextMenu = viewChild<ElementRef<HTMLDivElement>>("contextMenu");
+    protected showContextMenu = signal(false);
+    protected menuXY = signal<[number, number]>([0, 0]);
+    protected contextMenuHeight = 150;
+    protected contextMenuNode: RecordEntity | undefined = undefined;
 
-  protected readonly folderIcon = faFolder;
-  protected readonly folderOpenIcon = faFolderOpen;
-  protected readonly keyIcon = faKey;
-  protected readonly trackBy = (_idx: number, value: RecordEntity) => value.id;
-  // protected readonly treeTrackBy = (val: RecordEntity) => val.id;
-  protected readonly hasChildren = (node: RecordEntity) =>
-    "records" in node ? node?.records != null && node.records.length > 0 : false;
-  protected readonly getChildren = (node: RecordEntity) =>
-    "records" in node ? node?.records : [];
-  protected readonly dataSource = new StaticTreeDataSource(
-    [],
-    this.hasChildren,
-    this.getChildren,
-    // this.treeTrackBy,
-  );
+    // Events
+    protected nodeRenaming = signal<RecordEntity | undefined>(undefined);
+    protected renameInput = viewChild<ElementRef<HTMLInputElement>>("renameInput");
+    protected selectedNode = signal<RecordItem | undefined>(undefined);
 
-  protected showContextMenu = signal(false);
-  protected menuXY = signal<[number, number]>([0, 0]);
-  protected contextMenuNode: RecordGroup | undefined = undefined;
-
-  // node rename
-  protected nodeRenaming = signal<RecordEntity | undefined>(undefined);
-  protected renameInput = viewChild<ElementRef<HTMLInputElement>>("renameInput");
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes["records"]) {
-      this.dataSource.nodes = this.records() ?? [];
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes["records"]) {
+            console.log(this.records());
+            this.dataSource.nodes = this.records() ?? [];
+        }
     }
-  }
 
-  onContextMenu($event: MouseEvent | PointerEvent, node: RecordGroup | undefined) {
-    $event.stopPropagation();
-    $event.preventDefault();
-    this.contextMenuNode = node;
-    this.showContextMenu.update(() => true);
-    this.contextMenu()?.nativeElement.focus();
-    this.menuXY.set([$event.clientX + 10, $event.clientY]);
-  }
-
-  @HostListener("document:mousedown", ["$event"])
-  onDocumentClick(event: MouseEvent): void {
-    if (
-      this.contextMenu() &&
-      !this.contextMenu()?.nativeElement?.contains(event.target as Node)
-    ) {
-      this.showContextMenu.set(false);
+    onContextMenu($event: MouseEvent | PointerEvent, node: RecordGroup | undefined) {
+        $event.stopPropagation();
+        $event.preventDefault();
+        this.contextMenuNode = node;
+        this.showContextMenu.update(() => true);
+        this.contextMenu()?.nativeElement.focus();
+        const viewportHeight = window.innerHeight;
+        if ($event.clientY + this.contextMenuHeight > viewportHeight) {
+            this.menuXY.set([$event.clientX + 10, viewportHeight - this.contextMenuHeight - 10]);
+        } else {
+            this.menuXY.set([$event.clientX + 10, $event.clientY]);
+        }
     }
-  }
 
-  toggleNode($event: Event, node: RecordItem) {
-    $event.stopPropagation();
-    this.dataSource.toggleNode(node);
-  }
-
-  addNode() {
-    if (this.contextMenuNode != null && "records" in this.contextMenuNode) {
-      this.dataSource.toggleNode(this.contextMenuNode, true);
+    @HostListener("document:mousedown", ["$event"])
+    onDocumentClick(event: MouseEvent): void {
+        if (
+            this.contextMenu() &&
+            !this.contextMenu()?.nativeElement?.contains(event.target as Node)
+        ) {
+            this.showContextMenu.set(false);
+        }
     }
-    this.nodeCreated.emit(this.contextMenuNode);
-    this.closeContextMenu();
-  }
 
-  renameNode($event: Event) {
-    this.nodeRenaming.set(this.contextMenuNode);
-    $event.stopPropagation();
-    setTimeout(() => {
-      if (this.renameInput() != null) {
-        this.renameInput()?.nativeElement.focus();
-      }
-    });
-    this.closeContextMenu();
-  }
-
-  cancelRename() {
-    this.nodeRenaming.set(undefined);
-  }
-
-  completeRename() {
-    const newName = this.renameInput()?.nativeElement.value;
-    const node = this.nodeRenaming();
-    if (node != null && newName) {
-      this.nodeRenamed.emit({ record: node, value: newName });
+    toggleNode($event: Event, node: RecordItem) {
+        $event.stopPropagation();
+        this.dataSource.toggleNode(node);
     }
-    this.nodeRenaming.set(undefined);
-  }
 
-  removeNode() {
-    throw new Error("not implemented yet");
-  }
+    addNode() {
+        if (this.contextMenuNode != null && "records" in this.contextMenuNode) {
+            this.dataSource.toggleNode(this.contextMenuNode, true);
+            this.recordCreated.emit(this.contextMenuNode);
+        } else {
+            this.recordCreated.emit(undefined);
+        }
+        this.closeContextMenu();
+    }
 
-  menuBlur($event: Event) {
-    console.log($event);
-  }
+    addRecordGroup() {
+        if (this.contextMenuNode != null && "records" in this.contextMenuNode) {
+            this.dataSource.toggleNode(this.contextMenuNode, true);
+        }
+        this.recordGroupCreated.emit(this.contextMenuNode);
+        this.closeContextMenu();
+    }
 
-  nothing() {
-    console.log("RecordList rerender");
-  }
+    renameNode($event: Event) {
+        this.nodeRenaming.set(this.contextMenuNode);
+        $event.stopPropagation();
+        setTimeout(() => {
+            if (this.renameInput() != null) {
+                this.renameInput()?.nativeElement.focus();
+            }
+        });
+        this.closeContextMenu();
+    }
 
-  private closeContextMenu() {
-    this.showContextMenu.set(false);
-  }
+    cancelRename() {
+        this.nodeRenaming.set(undefined);
+    }
 
-  private openContextMenu() {
-    this.showContextMenu.set(true);
-  }
+    completeRename() {
+        const newName = this.renameInput()?.nativeElement.value;
+        const node = this.nodeRenaming();
+        if (node != null && newName) {
+            this.recordRenamed.emit({ record: node, value: newName });
+        }
+        this.nodeRenaming.set(undefined);
+    }
+
+    removeNode() {
+        if (this.contextMenuNode) {
+            this.recordRemoved.emit(this.contextMenuNode);
+        }
+    }
+
+    nothing() {
+        console.log("RecordList rerender");
+    }
+
+    private closeContextMenu() {
+        this.showContextMenu.set(false);
+    }
+
+    private openContextMenu() {
+        this.showContextMenu.set(true);
+    }
+
+    selectNode($event: MouseEvent, node: RecordItem) {
+        $event.stopPropagation();
+        this.recordSelected.emit(node);
+    }
 }

@@ -7,12 +7,12 @@ import { RecordsFacade } from ".//store/records//records.facade";
 import { RecordsStore } from "./store/records/records.store";
 
 export const VAULT_ROUTES: Routes = [
-  {
-    path: "",
-    loadComponent: () =>
-      import("./feature/vault-shell/vault-shell.component").then(
-        (c) => c.VaultShellComponent,
-      ),
-    providers: [RecordsStore],
-  },
+    {
+        path: "",
+        loadComponent: () =>
+            import("./feature/vault-shell/vault-shell.component").then(
+                (c) => c.VaultShellComponent,
+            ),
+        providers: [RecordsStore],
+    },
 ];

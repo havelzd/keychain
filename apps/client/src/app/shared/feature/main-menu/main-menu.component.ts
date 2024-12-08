@@ -6,25 +6,25 @@ import { NgClass } from "@angular/common";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 
 @Component({
-  selector: "app-main-menu",
-  standalone: true,
-  imports: [FaIconComponent, NgClass, RouterLink, RouterLinkActive],
-  templateUrl: "./main-menu.component.html",
-  styleUrl: "./main-menu.component.scss",
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: "app-main-menu",
+    standalone: true,
+    imports: [FaIconComponent, NgClass, RouterLink, RouterLinkActive],
+    templateUrl: "./main-menu.component.html",
+    styleUrl: "./main-menu.component.scss",
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainMenuComponent {
-  protected readonly MENU_ITEMS = MENU_ITEMS;
+    protected readonly MENU_ITEMS = MENU_ITEMS;
 
-  protected readonly FA_BARS = faBars;
+    protected readonly FA_BARS = faBars;
 
-  protected menuExpanded = signal(false);
+    protected menuExpanded = signal(false);
 
-  nothing() {
-    console.log("Main Menu rerender");
-  }
+    nothing() {
+        console.log("Main Menu rerender");
+    }
 
-  toggleMenu() {
-    this.menuExpanded.update((v) => !v);
-  }
+    toggleMenu() {
+        this.menuExpanded.update((v) => !v);
+    }
 }

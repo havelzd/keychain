@@ -5,12 +5,12 @@ import { configDir } from "@tauri-apps/api/path";
 
 @Injectable({ providedIn: "root" })
 export class SettingService {
-  private readonly platformToken = inject(IS_WEB_OR_TAURI);
-  private readonly settingStorage: SettingStorageStrategy = inject(SETTING_STORAGE);
+    private readonly platformToken = inject(IS_WEB_OR_TAURI);
+    private readonly settingStorage: SettingStorageStrategy = inject(SETTING_STORAGE);
 
-  public init() {
-    console.log("Inititalizing SettingService");
-    console.log(this.platformToken);
-    console.log(this.settingStorage);
-  }
+    public init() {
+        console.log("Inititalizing SettingService");
+        console.log(this.platformToken);
+        console.log(this.settingStorage);
+    }
 }

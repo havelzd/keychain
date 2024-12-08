@@ -1,39 +1,64 @@
 {{ nothing() }}
 <div class="feature-list" (contextmenu)="onContextMenu($event, undefined)">
-  <div class="top-bar">
-    <label for="record-search" class="visually-hidden">Search</label>
-    <input id="record-search" placeholder="Search..." />
-  </div>
-  <lib-tree [dataSource]="dataSource" bindLabel="name" [trackBy]="trackBy">
-    <ng-template #parentNode let-node="node">
-      <div class="node" (contextmenu)="onContextMenu($event, node)" (click)="toggleNode($event, node)">
-        <fa-icon class="icon" [icon]="dataSource.isNodeExpanded(node) ? folderOpenIcon : folderIcon" />
-        @if(nodeRenaming()?.id == node.id){
-        <input #renameInput id="nodeRename" type="text" [value]="node.name" (blur)="cancelRename()"
-          (keyup.enter)="completeRename()" (keyup.esc)="cancelRename()" />
-        } @else {
-        {{ node.id }} {{ node.name }}
-        }
-      </div>
-    </ng-template>
-    <ng-template #leafNode let-node="node">
-      <div class="node leaf" (contextmenu)="onContextMenu($event, node)">
-        <fa-icon class="icon" [icon]="keyIcon" />
-        @if (nodeRenaming()?.id == node.id){
-        <label for="nodeRename" class="visually-hidden">Rename</label>
-        <input #renameInput id="nodeRename" type="text" [value]="node.name" (blur)="cancelRename()"
-          (keyup.enter)="completeRename()" (keyup.esc)="cancelRename()" />
-        } @else {
-        {{ node.id }} {{ node.name }}
-        }
-      </div>
-    </ng-template>
-  </lib-tree>
+    <div class="top-bar">
+        <label for="record-search" class="visually-hidden">Search</label>
+        <input id="record-search" placeholder="Search..." />
+    </div>
+    <lib-tree [dataSource]="dataSource" bindLabel="name">
+        <ng-template #parentNode let-node="node">
+            <div
+                class="node"
+                (contextmenu)="onContextMenu($event, node)"
+                (click)="toggleNode($event, node)"
+            >
+                <fa-icon
+                    class="icon"
+                    [icon]="dataSource.isNodeExpanded(node) ? folderOpenIcon : folderIcon"
+                />
+                <ng-container
+                    [ngTemplateOutlet]="nodeTemplate"
+                    [ngTemplateOutletContext]="{ node: node }"
+                ></ng-container>
+            </div>
+        </ng-template>
+        <ng-template #leafNode let-node="node">
+            <div
+                class="node leaf"
+                (contextmenu)="onContextMenu($event, node)"
+                (click)="selectNode($event, node)"
+            >
+                <fa-icon class="icon" [icon]="keyIcon" />
+                <ng-container
+                    [ngTemplateOutlet]="nodeTemplate"
+                    [ngTemplateOutletContext]="{ node: node }"
+                ></ng-container>
+            </div>
+        </ng-template>
+    </lib-tree>
 </div>
-<div #contextMenu class="contextMenu" *ngIf="showContextMenu()"
-  [ngStyle]="{ top: menuXY()[1] + 'px', left: menuXY()[0] + 'px' }">
-  <button (click)="addNode()">Create Record</button>
-  <button (click)="addNode()">Create Record Group</button>
-  <button (click)="removeNode()">Remove</button>
-  <button (click)="renameNode($event)">Rename</button>
+<div
+    #contextMenu
+    class="contextMenu"
+    *ngIf="showContextMenu()"
+    [ngStyle]="{ top: menuXY()[1] + 'px', left: menuXY()[0] + 'px' }"
+>
+    <button (click)="addNode()">Create Record</button>
+    <button (click)="addRecordGroup()">Create Record Group</button>
+    <button (click)="removeNode()">Remove</button>
+    <button (click)="renameNode($event)">Rename</button>
 </div>
+<ng-template #nodeTemplate let-node="node">
+    @if (nodeRenaming()?.id === node.id) {
+    <input
+        #renameInput
+        id="nodeRename"
+        type="text"
+        [value]="node.name"
+        (blur)="cancelRename()"
+        (keyup.enter)="completeRename()"
+        (keyup.escape)="cancelRename()"
+    />
+    } @else {
+    <p>{{ node.name }}</p>
+    }
+</ng-template>

@@ -1,9 +1,10 @@
-<div class="container">
-    @if (record()){
-    <span></span>
-    } @else {
-  <div class="container-middle">
-    <p class="no-content-msg">No record selected.</p>
-  </div>
-    }
-</div>
+@if (record()) {
+    <section>
+        <h2>{{ record()?.name }}</h2>
+        <p>{{ record()?.type }}</p>
+    </section>
+} @else {
+    <div class="container-middle">
+        <p class="no-content-msg">No record selected.</p>
+    </div>
+}

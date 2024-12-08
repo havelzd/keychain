@@ -3,69 +3,69 @@
 @import "../../../../styles/colors";
 
 lib-tree {
-  min-width: 250px;
+    min-width: 250px;
 }
 
 .node {
-  display: inline-flex;
-  width: 100%;
-  cursor: pointer;
-  align-items: center;
-  gap: $space-sm;
-  padding: $space-sm;
+    display: inline-flex;
+    width: 100%;
+    cursor: pointer;
+    align-items: center;
+    gap: $space-sm;
+    padding: $space-sm;
 
-  &.leaf {
-    position: relative;
+    &.leaf {
+        position: relative;
 
-    &::before {
-      content: "";
-      position: absolute;
-      width: 1rem;
-      height: 100%;
-      left: -1rem;
-      bottom: 50%;
-      border-bottom: 2px solid $color-bg-primary;
-      border-left: 2px solid $color-bg-primary;
-      border-radius: 0.1rem;
-      border-color: $color-bg-primary;
-      z-index: -1;
+        &::before {
+            content: "";
+            position: absolute;
+            width: 1rem;
+            height: 100%;
+            left: -1rem;
+            bottom: 50%;
+            border-bottom: 2px solid $color-bg-primary;
+            border-left: 2px solid $color-bg-primary;
+            border-radius: 0.1rem;
+            border-color: $color-bg-primary;
+            z-index: -1;
+        }
     }
-  }
 }
 
 ::ng-deep.ui-tree-node-content {
-  padding: 0 !important;
-  gap: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
 }
 
 ::ng-deep.ui-tree-node-content:hover {
-  background-color: $color-bg-primary !important;
-  color: white !important;
+    background-color: $color-bg-primary !important;
+    color: green !important;
 }
 
 .contextMenu {
-  position: absolute;
-  background-color: gray;
-  width: max-content;
-  font-size: 1.5rem;
+    position: absolute;
+    background-color: gray;
+    width: max-content;
+    font-size: 1.5rem;
 }
 
-.contextMenu>button {
-  appearance: none;
-  display: block;
-  width: 100%;
-  text-align: left;
-  border: none;
-  background: gray;
-  color: white;
-  @include pad($space-sm);
+.contextMenu > button {
+    appearance: none;
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: gray;
+    color: white;
+    @include pad($space-sm);
 }
 
-.contextMenu>button:hover {
-  background: lightgreen;
-  color: gray;
+.contextMenu > button:hover {
+    background: lightgreen;
+    color: gray;
 }
 
 #nodeRename {
-  padding: 0.5rem;
+    padding: 0.5rem;
 }

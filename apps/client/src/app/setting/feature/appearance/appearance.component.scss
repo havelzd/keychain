@@ -4,95 +4,94 @@
 @import "../../../../styles/layout.scss";
 
 :host {
-  display: flex;
-  @include pad($space);
-  justify-items: center;
-  width: max-content;
+    display: flex;
+    @include pad($space);
+    justify-items: center;
+    width: max-content;
 }
 
 section {
-  border-radius: $space;
-  @include pad($space);
-  background-color: $color-bg-primary;
-  box-shadow: inset 1px 1px 0 0 $color-bg-secondary;
-  height: fit-content;
-  width: 100%;
+    border-radius: $space;
+    @include pad($space);
+    background-color: $color-bg-primary;
+    box-shadow: inset 1px 1px 0 0 $color-bg-secondary;
+    height: fit-content;
+    width: 100%;
 }
 
 .group {
-  @include py($space);
+    @include py($space);
 
-  & h3 {
-    @include py($space-sm);
-  }
+    & h3 {
+        @include py($space-sm);
+    }
 }
 
 section h2 {
-  display: block;
-  position: relative;
-  @include py($space-sm);
+    display: block;
+    position: relative;
+    @include py($space-sm);
 }
 
 section h2:after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  border-bottom: 1px solid $color-bg-secondary;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid $color-bg-secondary;
 }
 
-.section.wrap{
-  flex-wrap: wrap;
+.section.wrap {
+    flex-wrap: wrap;
 }
 
 .theme-choice {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  @include pad($space);
-  position: relative;
-  box-sizing: border-box;
-  border-radius: $space-sm;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    @include pad($space);
+    position: relative;
+    box-sizing: border-box;
+    border-radius: $space-sm;
 
-  &:hover {
-    border: 1px solid white;
-  }
-
-  .theme-color {
-    width: 3rem;
-    height: 3rem;
-
-    &.light {
-      background: #fff;
+    &:hover {
+        border: 1px solid white;
     }
 
-    &.dark {
-      background: #000;
-    }
+    .theme-color {
+        width: 3rem;
+        height: 3rem;
 
-    &.system {
-      background: $color-bg-system;
-    }
+        &.light {
+            background: #fff;
+        }
 
-  }
+        &.dark {
+            background: #000;
+        }
+
+        &.system {
+            background: $color-bg-system;
+        }
+    }
     & input[type="radio"] {
-      cursor: pointer;
-      appearance: none;
-      background: transparent;
-      display: block;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
+        cursor: pointer;
+        appearance: none;
+        background: transparent;
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
     }
 
-  &:has(input[type="radio"]:checked) {
-    border: 2px solid white;
-  }
+    &:has(input[type="radio"]:checked) {
+        border: 2px solid white;
+    }
 }
 
 input[type="radio"] {
-  border-radius: 0;
+    border-radius: 0;
 }

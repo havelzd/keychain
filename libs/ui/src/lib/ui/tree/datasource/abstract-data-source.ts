@@ -1,29 +1,23 @@
 import { signal, WritableSignal } from "@angular/core";
 import { TreeNode } from "../types/types";
 
-export type TrackVal<T> = number | string | T;
+export type TrackVal<T, K extends keyof T> = number | string | T;
 
-export abstract class AbstractDataSource<T> {
-  protected abstract _nodes: WritableSignal<TreeNode<T>[]>;
-  protected hasChilren: (n: T) => boolean;
-  protected getChildren: (n: T) => T[] | undefined;
-  protected trackBy: ((value: T) => number | string) | ((value: T) => T);
+export abstract class AbstractDataSource<T, K extends keyof T> {
+    protected abstract _nodes: WritableSignal<TreeNode<T>[]>;
+    protected hasChildren: (n: T) => boolean;
+    protected getChildren: (n: T) => T[] | undefined;
+    public trackBy: K;
 
-  private identity = (n: T) => n;
-
-  constructor(
-    hasChilren: (n: T) => boolean,
-    getChildren: (n: T) => T[] | undefined,
-    trackBy: ((value: T) => number | string) | undefined = undefined,
-  ) {
-    this.hasChilren = hasChilren;
-    this.getChildren = getChildren;
-    if (trackBy == null) {
-      this.trackBy = this.identity;
-    } else {
-      this.trackBy = trackBy;
+    protected constructor(
+        hasChildren: (n: T) => boolean,
+        getChildren: (n: T) => T[] | undefined,
+        trackBy: K,
+    ) {
+        this.hasChildren = hasChildren;
+        this.getChildren = getChildren;
+        this.trackBy = trackBy;
     }
-  }
 
-  abstract get rootNodes(): TreeNode<T>[];
+    abstract get rootNodes(): TreeNode<T>[];
 }

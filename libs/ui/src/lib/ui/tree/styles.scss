@@ -1,25 +1,25 @@
 .ui-tree-node {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .ui-tree-node-content {
-  display: inline-flex;
-  padding: 0.5rem;
-  cursor: pointer;
-  width: 100%;
-  align-items: center;
-  gap: 0.5rem;
+    display: inline-flex;
+    padding: 0.5rem;
+    cursor: pointer;
+    width: 100%;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .ui-tree-node-content:hover,
- .ui-tree-node-content.active {
-  background-color: blue;
-  color: white;
+.ui-tree-node-content.active {
+    background-color: blue;
+    color: white;
 }
 
 .ui-tree-sub-level {
-  padding-left: 2rem;
-  display: flex;
-  flex-direction: column;
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
 }

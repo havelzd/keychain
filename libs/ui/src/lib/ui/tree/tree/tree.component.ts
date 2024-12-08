@@ -21,10 +21,9 @@ import { AbstractDataSource } from "../datasource/abstract-data-source";
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TreeComponent<T, K extends keyof T> {
-    dataSource = input.required<AbstractDataSource<T>>();
+    dataSource = input.required<AbstractDataSource<T, K>>();
     nodes = input<TreeNode<T>[]>();
     bindLabel = input<K>();
-    trackBy = input.required<(idx: number, value: T) => number>();
 
     protected readonly rootTmpl = contentChild<TemplateRef<unknown>>("parentNode");
     protected readonly leafTmpl = contentChild<TemplateRef<unknown>>("leafNode");

@@ -4,117 +4,129 @@
 
 /* You can add global styles to this file, and also import other style files */
 @layer base {
-  :root {
-    color-scheme: light dark;
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  html {
-    font-size: $font-size-base;
-    font-family: $font-family;
-  }
-
-  body {
-    background-color: $color-bg-secondary;
-    color: light-dark($font-color-light, $font-color-dark);
-  }
-
-  main {
-    width: 100%;
-  }
-
-  :is(h1, h2, h3, h4, h5, h6) {
-    font-weight: normal;
-  }
-
-  .container {
-    display: flex;
-    gap: $space;
-    width: 100%;
-
-    &.col {
-      flex-direction: column;
-    }
-  }
-
-  .flex {
-    display: flex;
-
-    &.just-center {
-      justify-items: center;
+    :root {
+        color-scheme: light dark;
     }
 
-    &.align-center {
-      align-items: center;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
-  }
 
-  .flex-col {
-    display: flex;
-    flex-direction: column;
-  }
+    html {
+        font-size: $font-size-base;
+        font-family: $font-family;
+    }
+
+    body {
+        background-color: $color-bg-secondary;
+        color: light-dark($font-color-light, $font-color-dark);
+    }
+
+    main {
+        width: 100%;
+    }
+
+    :is(h1, h2, h3, h4, h5, h6) {
+        font-weight: normal;
+    }
+
+    .container {
+        display: flex;
+        gap: $space;
+        width: 100%;
+
+        &.col {
+            flex-direction: column;
+        }
+    }
+
+    .flex {
+        display: flex;
+
+        &.just-center {
+            justify-items: center;
+        }
+
+        &.align-center {
+            align-items: center;
+        }
+    }
+
+    .flex-col {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .feature-list {
-  height: 100dvh;
-  max-height: 100dvh;
-  min-width: 100px;
-  width: 250px;
-  max-width: 600px;
-  overflow-y: auto;
-  overflow-x: visible;
-  scrollbar-gutter: stable;
-  scrollbar-width: thin;
-  resize: horizontal;
-  display: flex;
-  flex-direction: column;
-  gap: $space-sm;
-  box-sizing: content-box;
-  border-right: 1px solid $color-bg-primary;
+    height: 100dvh;
+    max-height: 100dvh;
+    min-width: 100px;
+    width: 250px;
+    max-width: 600px;
+    overflow-y: auto;
+    overflow-x: visible;
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
+    resize: horizontal;
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+    box-sizing: content-box;
+    border-right: 1px solid $color-bg-primary;
 
-  &>.top-bar {
-    padding: $space;
-    position: relative;
+    & > .top-bar {
+        padding: $space;
+        position: relative;
 
-    &>input {
-      line-height: 1.5rem;
-      padding: $space-sm;
-      display: block;
+        & > input {
+            line-height: 1.5rem;
+            padding: $space-sm;
+            display: block;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: $color-bg-primary;
+        }
     }
-
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background-color: $color-bg-primary;
-    }
-  }
 }
 
 // hidden label
 .visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
 }
 
 .icon {
-  background: none;
-  font-size: 1rem;
-  color: inherit;
-  padding: $space-sm;
+    background: none;
+    font-size: 1rem;
+    color: inherit;
+    padding: $space-sm;
+}
+
+dialog {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+::backdrop {
+    filter: blur(1px);
+    background: $color-bg-primary;
+    opacity: 75%;
 }

@@ -2,28 +2,28 @@
 @import "../../../../styles/variables";
 
 a {
-  position: relative;
-  display: inline-flex;
-  width: 90%;
-  @include pad($space);
-  gap: $space;
-  border-radius: $space-sm;
-  margin: 0 $space;
+    position: relative;
+    display: inline-flex;
+    width: 90%;
+    @include pad($space);
+    gap: $space;
+    border-radius: $space-sm;
+    margin: 0 $space;
 }
 
 a:hover,
 a.active {
-  background-color: $color-bg-primary;
+    background-color: $color-bg-primary;
 }
 
 a:hover::after,
 a.active::after {
-  content: "";
-  position: absolute;
-  margin-left: auto;
-  left:0;
-  top: 0;
-  height: 100%;
-  width: 4px;
-  color: blue;
+    content: "";
+    position: absolute;
+    margin-left: auto;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    color: blue;
 }

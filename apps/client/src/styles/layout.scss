@@ -1,11 +1,11 @@
 .row {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
 }
 
 .col-sp-1 {
-  grid-column: span 1;
+    grid-column: span 1;
 }
 .col-sp-6 {
-  grid-column: span 1;
+    grid-column: span 1;
 }

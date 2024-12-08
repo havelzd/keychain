@@ -1,23 +1,23 @@
 @import "./colors";
 
 @mixin p-1 {
-  padding: 1rem;
+    padding: 1rem;
 }
 
 @mixin pad($size) {
-  padding: $size;
+    padding: $size;
 }
 
 @mixin px($size) {
-  padding-left: $size;
-  padding-right: $size;
+    padding-left: $size;
+    padding-right: $size;
 }
 
 @mixin py($size) {
-  padding-top: $size;
-  padding-bottom: $size;
+    padding-top: $size;
+    padding-bottom: $size;
 }
 
 @mixin border-right {
-  border-right: 1px solid $border-color-primary;
+    border-right: 1px solid $border-color-primary;
 }

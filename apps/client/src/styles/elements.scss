@@ -2,41 +2,39 @@
 @import "./mixins";
 
 @layer base {
+    // <a>
+    a {
+        cursor: pointer;
+        text-decoration: none;
+    }
 
-  // <a>
-  a {
-    cursor: pointer;
-    text-decoration: none;
-  }
+    // list ul, li
+    ul,
+    li {
+        list-style: none;
+    }
 
-  // list ul, li
-  ul,
-  li {
-    list-style: none;
-  }
+    button.btn {
+        @include px($space);
+        @include py($space-sm);
+    }
 
-  button.btn {
-    @include px($space);
-    @include py($space-sm);
-  }
+    button.icon-btn {
+        appearance: none;
+        background: none;
+        border: none;
+        font-size: 1rem;
+        color: inherit;
+        cursor: pointer;
+        width: fit-content;
+        padding: $space-sm;
+    }
 
-  button.icon-btn {
-    appearance: none;
-    background: none;
-    border: none;
-    font-size: 1rem;
-    color: inherit;
-    cursor: pointer;
-    width: fit-content;
-    padding: $space-sm;
-  }
-
-
-  input {
-      appearance: none;
-      background: $color-bg-secondary;
-      border: 1px solid $color-bg-primary;
-      width: 100%;
-      border-radius: $space-sm;
-  }
+    input {
+        appearance: none;
+        background: $color-bg-secondary;
+        border: 1px solid $color-bg-primary;
+        width: 100%;
+        border-radius: $space-sm;
+    }
 }

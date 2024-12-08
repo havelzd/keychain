@@ -9,8 +9,8 @@ const initialState: AppSetting = {
 export const SettingStore = signalStore(
     withState(initialState),
     withMethods((store) => ({
-      setTheme: (theme: AppSetting["appearance"]["theme"]) => {
-      // patchState(store, (state) => ({}))
-    },
-  })),
+        setTheme: (theme: AppSetting["appearance"]["theme"]) => {
+            // patchState(store, (state) => ({}))
+        },
+    })),
 );

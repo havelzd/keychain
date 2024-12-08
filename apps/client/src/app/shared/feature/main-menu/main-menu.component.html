@@ -1,18 +1,14 @@
 {{ nothing() }}
 <aside id="main-menu" class="container col">
-  <button title="menu-toggle" class="icon-btn" (click)="toggleMenu()">
-    <fa-icon [icon]="FA_BARS" />
-  </button>
-  <nav [class.expanded]="menuExpanded()">
-    <ul>
-      @for(item of MENU_ITEMS; track item.href){
-      <li>
-        <a [routerLink]="[item.href]" routerLinkActive="active"><fa-icon class="menu-icon" [icon]="item.icon" /><span
-            class="menu-text">{{
-            item.name
-            }}</span></a>
-      </li>
-      }
-    </ul>
-  </nav>
+    <button title="menu-toggle" class="icon-btn" (click)="toggleMenu()">
+        <fa-icon [icon]="FA_BARS" />
+    </button>
+    <nav [class.expanded]="menuExpanded()">
+        @for (item of MENU_ITEMS; track item.href) {
+        <a [routerLink]="[item.href]" routerLinkActive="active">
+            <fa-icon class="menu-icon" [icon]="item.icon" />
+            <span class="menu-text">{{ item.name }}</span></a
+        >
+        }
+    </nav>
 </aside>
