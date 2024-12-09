@@ -9,6 +9,7 @@
             <div
                 class="node"
                 (contextmenu)="onContextMenu($event, node)"
+                [class.selected]="selectedNode()?.id === node.id"
                 (click)="toggleNode($event, node)"
             >
                 <fa-icon
@@ -24,6 +25,7 @@
         <ng-template #leafNode let-node="node">
             <div
                 class="node leaf"
+                [class.selected]="selectedNode()?.id === node.id"
                 (contextmenu)="onContextMenu($event, node)"
                 (click)="selectNode($event, node)"
             >

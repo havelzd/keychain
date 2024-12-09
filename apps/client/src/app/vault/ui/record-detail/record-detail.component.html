@@ -1,10 +1,14 @@
 @if (record()) {
-    <section>
-        <h2>{{ record()?.name }}</h2>
-        <p>{{ record()?.type }}</p>
-    </section>
+<h2>{{ record()?.name }}</h2>
+<section class="wrapper">
+    <p>{{ record()?.type }}</p>
+    <p>{{ record()?.description }}</p>
+    <p>{{ record()?.username }}</p>
+    <p class="password-container">{{ password() }}</p>
+</section>
+
 } @else {
-    <div class="container-middle">
-        <p class="no-content-msg">No record selected.</p>
-    </div>
+<div class="container-middle">
+    <p class="no-content-msg">No record selected.</p>
+</div>
 }

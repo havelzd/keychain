@@ -35,7 +35,7 @@ export class RecordListComponent implements OnChanges {
     recordGroupCreated = output<RecordEntity | undefined>();
     recordRenamed = output<RecordEvent>();
     recordRemoved = output<RecordEntity>();
-    recordSelected = output<RecordItem>();
+    recordSelected = output<RecordEntity>();
 
     // Tree
     protected readonly folderIcon = faFolder;
@@ -64,7 +64,7 @@ export class RecordListComponent implements OnChanges {
     // Events
     protected nodeRenaming = signal<RecordEntity | undefined>(undefined);
     protected renameInput = viewChild<ElementRef<HTMLInputElement>>("renameInput");
-    protected selectedNode = signal<RecordItem | undefined>(undefined);
+    protected selectedNode = signal<RecordEntity | undefined>(undefined);
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes["records"]) {
@@ -100,6 +100,8 @@ export class RecordListComponent implements OnChanges {
     toggleNode($event: Event, node: RecordItem) {
         $event.stopPropagation();
         this.dataSource.toggleNode(node);
+        this.selectedNode.set(node);
+        this.selectRecord(node);
     }
 
     addNode() {
@@ -158,12 +160,13 @@ export class RecordListComponent implements OnChanges {
         this.showContextMenu.set(false);
     }
 
-    private openContextMenu() {
-        this.showContextMenu.set(true);
+    protected selectNode($event: MouseEvent, node: RecordEntity) {
+        $event.stopPropagation();
+        this.selectRecord(node);
     }
 
-    selectNode($event: MouseEvent, node: RecordItem) {
-        $event.stopPropagation();
-        this.recordSelected.emit(node);
+    private selectRecord(record: RecordEntity) {
+        this.selectedNode.set(record);
+        this.recordSelected.emit(record);
     }
 }

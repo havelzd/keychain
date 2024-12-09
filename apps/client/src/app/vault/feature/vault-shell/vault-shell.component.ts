@@ -1,14 +1,16 @@
-import { ChangeDetectionStrategy, Component, ElementRef, inject, viewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, computed, inject } from "@angular/core";
 import { AsyncPipe } from "@angular/common";
 import { RecordEvent, RecordListComponent } from "../../ui/record-list/record-list.component";
 import { RecordDetailComponent } from "../../ui/record-detail/record-detail.component";
 import { RecordsStore } from "../../store/records/records.store";
 import { RecordEntity, RecordGroup, RecordItem } from "../../store/records/records.models";
+import { RecordGroupDetailComponent } from "../../ui/record-group-detail/record-group-detail.component";
+import { isRecordGroup, isRecordItem } from "../../store/records/records.guards";
 
 @Component({
     selector: "app-vault-shell",
     standalone: true,
-    imports: [AsyncPipe, RecordListComponent, RecordDetailComponent],
+    imports: [AsyncPipe, RecordListComponent, RecordDetailComponent, RecordGroupDetailComponent],
     templateUrl: "./vault-shell.component.html",
     styleUrl: "./vault-shell.component.scss",
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,12 +19,19 @@ export class VaultShellComponent {
     private readonly recordsStore = inject(RecordsStore);
 
     protected selectedRecord = this.recordsStore.selectedRecord;
+    protected selectedRecordGroup = computed(() => {
+        return isRecordGroup(this.selectedRecord())
+            ? (this.selectedRecord() as RecordGroup)
+            : undefined;
+    });
+    protected selectedRecordItem = computed(() => {
+        return isRecordItem(this.selectedRecord())
+            ? (this.selectedRecord() as RecordItem)
+            : undefined;
+    });
     protected readonly records = this.recordsStore.entities;
 
-    protected readonly dialog = viewChild<ElementRef<HTMLDialogElement>>("dialog");
-
     onRecordCreated(selectedNode: RecordGroup | undefined) {
-        this.dialog()?.nativeElement.showModal();
         this.recordsStore.createRecord(selectedNode);
     }
 
@@ -38,7 +47,7 @@ export class VaultShellComponent {
         this.recordsStore.removeRecord(record);
     }
 
-    onRecordSelected(item: RecordItem) {
+    onRecordSelected(item: RecordEntity) {
         this.recordsStore.selectItem(item);
     }
 }

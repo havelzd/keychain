@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, computed, input, signal } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RecordItem } from "../../store/records/records.models";
 
@@ -12,4 +12,11 @@ import { RecordItem } from "../../store/records/records.models";
 })
 export class RecordDetailComponent {
     record = input.required<RecordItem | undefined>();
+
+    passwordVisible = signal(false);
+    password = computed(() =>
+        this.passwordVisible()
+            ? this.record()?.password
+            : "•".repeat(this.record()?.password?.length ?? 0),
+    );
 }

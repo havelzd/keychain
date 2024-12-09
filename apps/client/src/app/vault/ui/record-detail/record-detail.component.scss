@@ -1,8 +1,14 @@
 @import "../../../../styles/colors";
+@import "../../../../styles/mixins";
+@import "../../../../styles/variables";
 
 :host {
-    width: 100%;
+    @include pad($space);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
+
 .container-middle {
     display: flex;
     place-content: center;
@@ -14,4 +20,12 @@
     color: $color-text-mute;
     font-size: 1.5rem;
     margin: auto 0;
+}
+
+.password-container {
+    display: flex;
+    padding: $space-sm;
+    margin: auto 0;
+    border: 1px solid $color-bg-secondary;
+    border-radius: $space-sm;
 }

@@ -12,6 +12,7 @@ const initialRecords: RecordEntity[] = [
     {
         id: 1,
         name: "Test 1",
+        description: "This is a group for personal stuff and let's say it's a bit longer description",
         records: [
             {
                 id: 8,
@@ -54,8 +55,8 @@ const initialRecords: RecordEntity[] = [
 ];
 
 type RecordsState = {
-    selectedRecord: RecordItem | undefined;
-}
+    selectedRecord: RecordEntity | undefined;
+};
 
 const initialState: RecordsState = {
     selectedRecord: undefined,
@@ -66,6 +67,9 @@ export const RecordsStore = signalStore(
     withHooks({
         onInit: (store) => {
             patchState(store, addEntities(initialRecords));
+            patchState(store, {
+                selectedRecord: initialRecords[0],
+            });
         },
     }),
     withMethods((store) => ({
@@ -104,7 +108,7 @@ export const RecordsStore = signalStore(
         removeRecord(record: RecordEntity): void {
             patchState(store, removeEntity(record.id));
         },
-        selectItem(record: RecordItem): void {
+        selectItem(record: RecordEntity): void {
             patchState(store, { selectedRecord: record });
         },
     })),

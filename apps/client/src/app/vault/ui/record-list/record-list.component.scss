@@ -22,7 +22,7 @@ lib-tree {
             position: absolute;
             width: 1rem;
             height: 100%;
-            left: -1rem;
+            left: -0.5rem;
             bottom: 50%;
             border-bottom: 2px solid $color-bg-primary;
             border-left: 2px solid $color-bg-primary;
@@ -30,6 +30,11 @@ lib-tree {
             border-color: $color-bg-primary;
             z-index: -1;
         }
+    }
+
+    &.selected {
+        background-color: $color-bg-primary !important;
+        color: green !important;
     }
 }
 
@@ -50,7 +55,7 @@ lib-tree {
     font-size: 1.5rem;
 }
 
-.contextMenu > button {
+.contextMenu>button {
     appearance: none;
     display: block;
     width: 100%;
@@ -61,7 +66,7 @@ lib-tree {
     @include pad($space-sm);
 }
 
-.contextMenu > button:hover {
+.contextMenu>button:hover {
     background: lightgreen;
     color: gray;
 }
