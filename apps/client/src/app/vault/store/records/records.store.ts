@@ -12,7 +12,8 @@ const initialRecords: RecordEntity[] = [
     {
         id: 1,
         name: "Test 1",
-        description: "This is a group for personal stuff and let's say it's a bit longer description",
+        description: "This is a group for personal stuff and let's say it's a bit longer description" +
+            " and I mean it's reeeeeeeaaaaaaaaaaaaallllyyy long",
         records: [
             {
                 id: 8,
@@ -25,6 +26,7 @@ const initialRecords: RecordEntity[] = [
                         description: "",
                         username: "user",
                         password: "user",
+                        createdOn: new Date('2024-01-01'),
                     },
                     {
                         id: 11,
@@ -33,6 +35,7 @@ const initialRecords: RecordEntity[] = [
                         description: "",
                         username: "user",
                         password: "user",
+                        createdOn: new Date('2024-01-01'),
                     },
                 ],
             },
@@ -43,6 +46,7 @@ const initialRecords: RecordEntity[] = [
                 description: "",
                 username: "user",
                 password: "user",
+                createdOn: new Date('2024-01-01'),
             },
         ],
     },
@@ -68,7 +72,15 @@ export const RecordsStore = signalStore(
         onInit: (store) => {
             patchState(store, addEntities(initialRecords));
             patchState(store, {
-                selectedRecord: initialRecords[0],
+                selectedRecord: {
+                    id: 10,
+                    name: "GrandChild1",
+                    type: RecordType.LOGIN,
+                    description: "",
+                    username: "user",
+                    password: "user",
+                    createdOn: new Date('2024-01-01'),
+                },
             });
         },
     }),
@@ -81,6 +93,7 @@ export const RecordsStore = signalStore(
                 description: "",
                 username: "ads",
                 password: "asda",
+                createdOn: new Date('2024-01-01'),
             };
             if (parent && "records" in parent) {
                 parent.records.push(newRecord);

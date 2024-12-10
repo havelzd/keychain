@@ -13,8 +13,8 @@
 section {
     border-radius: $space;
     @include pad($space);
-    background-color: $color-bg-primary;
-    box-shadow: inset 1px 1px 0 0 $color-bg-secondary;
+    background-color: $color-bg-elevated;
+    box-shadow: inset 1px 1px 0 0 $color-bg-primary;
     height: fit-content;
     width: 100%;
 }
@@ -39,7 +39,7 @@ section h2:after {
     bottom: 0;
     left: 0;
     width: 100%;
-    border-bottom: 1px solid $color-bg-secondary;
+    border-bottom: 1px solid $color-bg-primary;
 }
 
 .theme-choice {
@@ -48,12 +48,9 @@ section h2:after {
     gap: 1rem;
     @include pad($space);
     position: relative;
-    box-sizing: border-box;
     border-radius: $space-sm;
+    width: max-content;
 
-    &:hover {
-        border: 1px solid white;
-    }
 
     .theme-color {
         width: 3rem;
@@ -81,13 +78,10 @@ section h2:after {
         height: 100%;
         top: 0;
         left: 0;
-    }
+        box-sizing: border-box;
 
-    &:has(input[type="radio"]:checked) {
-        border: 2px solid white;
+        &:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
     }
-}
-
-input[type="radio"] {
-    border-radius: 0;
 }

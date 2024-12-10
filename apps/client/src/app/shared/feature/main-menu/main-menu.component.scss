@@ -3,7 +3,7 @@
 @import "../../../../styles/mixins";
 
 #main-menu {
-    background-color: $color-bg-primary;
+    background-color: $color-bg-elevated;
     height: 100dvh;
     position: sticky;
     top: 0;
@@ -33,6 +33,7 @@ a {
     overflow: hidden;
     @include pad($space);
     align-items: center;
+    color: $color-text-mute;
 }
 
 .menu-icon {
@@ -57,7 +58,21 @@ nav.expanded .menu-text {
 
 a:hover,
 a.active {
-    background-color: $color-bg-secondary;
+    position: relative;
+    color: $color-font-primary;
+
+
+}
+
+a.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background-color: var(--color-primary);
+
 }
 
 a:last-child {

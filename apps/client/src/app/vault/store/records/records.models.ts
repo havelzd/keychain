@@ -19,6 +19,7 @@ export interface RecordGroup extends RecordEntityBase {
 
 export interface Record extends RecordEntityBase {
     type: RecordType;
+    createdOn: Date | number;
 }
 
 export interface LoginRecord extends Record {

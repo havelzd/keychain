@@ -3,9 +3,8 @@
 @import "../../../../styles/colors";
 
 lib-tree {
-    min-width: 250px;
+    padding: 0.5rem;
 }
-
 .node {
     display: inline-flex;
     width: 100%;
@@ -13,28 +12,30 @@ lib-tree {
     align-items: center;
     gap: $space-sm;
     padding: $space-sm;
+    border-radius: 4px;
 
     &.leaf {
         position: relative;
 
-        &::before {
-            content: "";
-            position: absolute;
-            width: 1rem;
-            height: 100%;
-            left: -0.5rem;
-            bottom: 50%;
-            border-bottom: 2px solid $color-bg-primary;
-            border-left: 2px solid $color-bg-primary;
-            border-radius: 0.1rem;
-            border-color: $color-bg-primary;
-            z-index: -1;
-        }
+        //&::before {
+        //    content: "";
+        //    position: absolute;
+        //    width: 1rem;
+        //    height: 100%;
+        //    left: -0.5rem;
+        //    bottom: 50%;
+        //    border-bottom: 2px solid $color-bg-elevated;
+        //    border-left: 2px solid $color-bg-elevated;
+        //    border-radius: 0.1rem;
+        //    border-color: $color-bg-elevated;
+        //    z-index: -1;
+        //}
     }
 
-    &.selected {
-        background-color: $color-bg-primary !important;
-        color: green !important;
+    &:hover, .selected {
+        background-color: $color-bg-elevated !important;
+        color: var(--color-primary) !important;
+        border-radius: 4px;
     }
 }
 
@@ -44,8 +45,8 @@ lib-tree {
 }
 
 ::ng-deep.ui-tree-node-content:hover {
-    background-color: $color-bg-primary !important;
-    color: green !important;
+    background-color: $color-bg-elevated !important;
+    color: var(--color-primary) !important;
 }
 
 .contextMenu {
@@ -53,9 +54,11 @@ lib-tree {
     background-color: gray;
     width: max-content;
     font-size: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
 }
 
-.contextMenu>button {
+.contextMenu > button {
     appearance: none;
     display: block;
     width: 100%;
@@ -63,12 +66,13 @@ lib-tree {
     border: none;
     background: gray;
     color: white;
-    @include pad($space-sm);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
 }
 
-.contextMenu>button:hover {
-    background: lightgreen;
-    color: gray;
+.contextMenu > button:hover {
+    background: var(--color-primary);
+    color: $color-font-primary;
 }
 
 #nodeRename {

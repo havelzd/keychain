@@ -1,14 +1,66 @@
 @if (record()) {
-<h2>{{ record()?.name }}</h2>
-<section class="wrapper">
-    <p>{{ record()?.type }}</p>
-    <p>{{ record()?.description }}</p>
-    <p>{{ record()?.username }}</p>
-    <p class="password-container">{{ password() }}</p>
-</section>
-
+    <section class="content-wrapper flex col gap-1">
+        @if (!isEdit()) {
+            <div class="section-header">
+                <h2>{{ record()?.name }}</h2>
+                <button class="icon-btn" (click)="isEdit.set(true)">
+                    <fa-icon [icon]="faPenToSquare" />
+                </button>
+            </div>
+            <p class="mute">Type</p>
+            <p>{{ record()?.type }}</p>
+            <p class="mute">Username</p>
+            <p>{{ record()?.username }}</p>
+            <p class="mute">Password</p>
+            <p class="password-container">{{ password() }}
+                <fa-icon [icon]="eyeIcon" />
+            </p>
+            <p class="mute">Description</p>
+            <textarea disabled>{{ record()?.description }}</textarea>
+        } @else {
+            <div class="section-header">
+                <h2>{{ record()?.name }}</h2>
+                <button class="icon-btn" (click)="isEdit.set(false)">
+                    <fa-icon [icon]="faSave" />
+                </button>
+            </div>
+            <label for="type_input">Type</label>
+            <input
+                id="type_input"
+                type="text"
+                [ngModel]="record()?.type"
+                placeholder="Type"
+            />
+            <label for="name_input">Name</label>
+            <input
+                id="name_input"
+                type="text"
+                [ngModel]="record()?.name"
+                placeholder="Name"
+            />
+            <label for="username_input">Username</label>
+            <input
+                id="username_input"
+                type="text"
+                [ngModel]="record()?.username"
+                placeholder="Username"
+            />
+            <label for="password_input">Password</label>
+            <input
+                id="password_input"
+                type="password"
+                [ngModel]="record()?.password"
+                placeholder="Password"
+            />
+            <label for="description_input">Description</label>
+            <textarea
+                id="description_input"
+                [ngModel]="record()?.description"
+                placeholder="Description"></textarea>
+        }
+    </section>
 } @else {
-<div class="container-middle">
-    <p class="no-content-msg">No record selected.</p>
-</div>
+    <div class="container-middle">
+        <p class="no-content-msg">No record selected.</p>
+    </div>
 }
