@@ -2,6 +2,15 @@
 @import "./mixins";
 
 @layer base {
+
+    @mixin element-base {
+        border: 1px solid $color-bg-elevated;
+        line-height: 1.5rem;
+        padding: $space-sm;
+        width: 100%;
+        border-radius: $space-sm;
+        background-color: $color-bg-elevated;
+    }
     // <a>
     a {
         cursor: pointer;
@@ -30,15 +39,19 @@
         padding: $space-sm;
     }
 
+    select {
+        @include element-base;
+    }
+
+    option {
+
+    }
+
     input, textarea {
         appearance: none;
-        border: 1px solid $color-bg-elevated;
-        line-height: 1.5rem;
-        padding: $space-sm;
-        width: 100%;
-        border-radius: $space-sm;
-        background-color: $color-bg-elevated;
-        &:focus,:checked {
+        @include element-base;
+
+        &:focus, :checked {
             outline: none;
             border-color: $color-primary;
             border-radius: 4px;

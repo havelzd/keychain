@@ -1,66 +1,84 @@
-@if (record()) {
-    <section class="content-wrapper flex col gap-1">
-        @if (!isEdit()) {
-            <div class="section-header">
-                <h2>{{ record()?.name }}</h2>
-                <button class="icon-btn" (click)="isEdit.set(true)">
-                    <fa-icon [icon]="faPenToSquare" />
-                </button>
-            </div>
-            <p class="mute">Type</p>
-            <p>{{ record()?.type }}</p>
-            <p class="mute">Username</p>
-            <p>{{ record()?.username }}</p>
-            <p class="mute">Password</p>
-            <p class="password-container">{{ password() }}
-                <fa-icon [icon]="eyeIcon" />
-            </p>
-            <p class="mute">Description</p>
-            <textarea disabled>{{ record()?.description }}</textarea>
-        } @else {
-            <div class="section-header">
-                <h2>{{ record()?.name }}</h2>
-                <button class="icon-btn" (click)="isEdit.set(false)">
-                    <fa-icon [icon]="faSave" />
-                </button>
-            </div>
-            <label for="type_input">Type</label>
-            <input
-                id="type_input"
-                type="text"
-                [ngModel]="record()?.type"
-                placeholder="Type"
-            />
-            <label for="name_input">Name</label>
-            <input
-                id="name_input"
-                type="text"
-                [ngModel]="record()?.name"
-                placeholder="Name"
-            />
-            <label for="username_input">Username</label>
-            <input
-                id="username_input"
-                type="text"
-                [ngModel]="record()?.username"
-                placeholder="Username"
-            />
-            <label for="password_input">Password</label>
-            <input
-                id="password_input"
-                type="password"
-                [ngModel]="record()?.password"
-                placeholder="Password"
-            />
-            <label for="description_input">Description</label>
-            <textarea
-                id="description_input"
-                [ngModel]="record()?.description"
-                placeholder="Description"></textarea>
-        }
-    </section>
-} @else {
-    <div class="container-middle">
-        <p class="no-content-msg">No record selected.</p>
-    </div>
-}
+<div class="page-wrapper">
+    @if (record()) {
+        <section class="content-wrapper flex col gap-1">
+            @if (!isEdit()) {
+                <div class="section-header">
+                    <h2>{{ record()?.name }}</h2>
+                    <button class="icon-btn" (click)="isEdit.set(true)">
+                        <fa-icon [icon]="faPenToSquare" />
+                    </button>
+                </div>
+                <div>
+                    <p class="mute">Type</p>
+                    <p>{{ recordType() }}</p>
+                </div>
+                <div>
+                    <p class="mute">Username</p>
+                    <p class="can-copy" (click)="copyToClipBoard(record()?.username)">{{ record()?.username }}</p>
+                </div>
+                <div>
+                    <p class="mute">Password</p>
+                    <p class="password-container can-copy" (click)="copyToClipBoard(record()?.password)">{{ password() }}
+                        @if (passwordVisible()) {
+                            <fa-icon [icon]="eyeSlashIcon" (click)="$event.stopPropagation();passwordVisible.set(false)" />
+                        } @else {
+                            <fa-icon [icon]="eyeIcon" (click)="$event.stopPropagation();passwordVisible.set(true)" />
+                        }
+                    </p>
+                </div>
+                <div>
+                    <p class="mute">Description</p>
+                    <label for="view_description_dis" class="visually-hidden">Description</label>
+                    <textarea id="view_description_dis" disabled>{{ record()?.description }}</textarea>
+                </div>
+            } @else {
+                <div class="section-header">
+                    <h2>{{ editedRecord()?.name }}</h2>
+                    <button class="icon-btn" (click)="saveRecord()">
+                        <fa-icon [icon]="faSave" />
+                    </button>
+                </div>
+                <label for="type_select">Type</label>
+                <select id="type_select">
+                    @for (entry of recordTypeOpts; track $index) {
+                        <option>{{ entry[1] }}</option>
+                    }
+                </select>
+                <label for="name_input">Name</label>
+                <input
+                    id="name_input"
+                    type="text"
+                    [ngModel]="editedRecord().name"
+                    (ngModelChange)="editedRecord().name = $event"
+                    placeholder="Name"
+                />
+                <label for="username_input">Username</label>
+                <input
+                    id="username_input"
+                    type="text"
+                    [ngModel]="editedRecord().username"
+                    (ngModelChange)="editedRecord().username = $event"
+                    placeholder="Username"
+                />
+                <label for="password_input">Password</label>
+                <input
+                    id="password_input"
+                    type="password"
+                    [ngModel]="editedRecord().password" (ngModelChange)="editedRecord().password = $event"
+                    placeholder="Password"
+                />
+                <label for="description_input">Description</label>
+                <textarea
+                    id="description_input"
+                    [ngModel]="editedRecord().description"
+                    (ngModelChange)="editedRecord().description = $event"
+                    placeholder="Description"></textarea>
+            }
+        </section>
+    } @else {
+        <div class="container-middle">
+            <p class="no-content-msg">No record selected.</p>
+        </div>
+    }
+
+</div>

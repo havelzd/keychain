@@ -23,6 +23,8 @@
     body {
         background-color: $color-bg-primary;
         color: $color-font-primary;
+        height: 100dvh;
+        max-height: 100dvh;
     }
 
     main {
@@ -136,6 +138,12 @@ dialog {
     filter: blur(1px);
     background: $color-bg-elevated;
     opacity: 75%;
+}
+
+.page-wrapper {
+    height: 100%;
+    max-height: 90dvh;
+    overflow-y: auto;
 }
 
 .content-wrapper {

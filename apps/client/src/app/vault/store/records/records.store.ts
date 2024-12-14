@@ -1,4 +1,4 @@
-import { patchState, signalStore, withHooks, withMethods, withState } from "@ngrx/signals";
+import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from "@ngrx/signals";
 import {
     addEntities,
     removeEntity,
@@ -26,7 +26,7 @@ const initialRecords: RecordEntity[] = [
                         description: "",
                         username: "user",
                         password: "user",
-                        createdOn: new Date('2024-01-01'),
+                        createdOn: new Date("2024-01-01"),
                     },
                     {
                         id: 11,
@@ -35,7 +35,7 @@ const initialRecords: RecordEntity[] = [
                         description: "",
                         username: "user",
                         password: "user",
-                        createdOn: new Date('2024-01-01'),
+                        createdOn: new Date("2024-01-01"),
                     },
                 ],
             },
@@ -46,7 +46,7 @@ const initialRecords: RecordEntity[] = [
                 description: "",
                 username: "user",
                 password: "user",
-                createdOn: new Date('2024-01-01'),
+                createdOn: new Date("2024-01-01"),
             },
         ],
     },
@@ -79,7 +79,7 @@ export const RecordsStore = signalStore(
                     description: "",
                     username: "user",
                     password: "user",
-                    createdOn: new Date('2024-01-01'),
+                    createdOn: new Date("2024-01-01"),
                 },
             });
         },
@@ -93,7 +93,7 @@ export const RecordsStore = signalStore(
                 description: "",
                 username: "ads",
                 password: "asda",
-                createdOn: new Date('2024-01-01'),
+                createdOn: new Date("2024-01-01"),
             };
             if (parent && "records" in parent) {
                 parent.records.push(newRecord);
@@ -123,6 +123,11 @@ export const RecordsStore = signalStore(
         },
         selectItem(record: RecordEntity): void {
             patchState(store, { selectedRecord: record });
+        },
+        updateRecord(record: RecordEntity): void {
+            patchState(store, updateEntity({ id: record.id, changes: record }));
+            patchState(store, { selectedRecord: record });
+            console.log(record);
         },
     })),
 );

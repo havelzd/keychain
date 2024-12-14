@@ -9,7 +9,7 @@
             <div
                 class="node"
                 (contextmenu)="onContextMenu($event, node)"
-                [class.selected]="selectedNode()?.id === node.id"
+                [class.selected]="selectedRecord()?.id === node.id"
                 (click)="toggleNode($event, node)"
             >
                 <fa-icon
@@ -25,7 +25,7 @@
         <ng-template #leafNode let-node="node">
             <div
                 class="node leaf"
-                [class.selected]="selectedNode()?.id === node.id"
+                [class.selected]="selectedRecord()?.id === node.id"
                 (contextmenu)="onContextMenu($event, node)"
                 (click)="selectNode($event, node)"
             >
@@ -51,16 +51,16 @@
 </div>
 <ng-template #nodeTemplate let-node="node">
     @if (nodeRenaming()?.id === node.id) {
-    <input
-        #renameInput
-        id="nodeRename"
-        type="text"
-        [value]="node.name"
-        (blur)="cancelRename()"
-        (keyup.enter)="completeRename()"
-        (keyup.escape)="cancelRename()"
-    />
+        <input
+            #renameInput
+            id="nodeRename"
+            type="text"
+            [value]="node.name"
+            (blur)="cancelRename()"
+            (keyup.enter)="completeRename()"
+            (keyup.escape)="cancelRename()"
+        />
     } @else {
-    <p>{{ node.name }}</p>
+        <p>{{ node.id }}{{ node.name }}</p>
     }
 </ng-template>

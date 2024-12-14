@@ -5,6 +5,7 @@
 lib-tree {
     padding: 0.5rem;
 }
+
 .node {
     display: inline-flex;
     width: 100%;
@@ -32,7 +33,12 @@ lib-tree {
         //}
     }
 
-    &:hover, .selected {
+    &:hover {
+        background-color: $color-bg-elevated !important;
+        border-radius: 4px;
+    }
+
+    &.selected {
         background-color: $color-bg-elevated !important;
         color: var(--color-primary) !important;
         border-radius: 4px;
@@ -42,12 +48,13 @@ lib-tree {
 ::ng-deep.ui-tree-node-content {
     padding: 0 !important;
     gap: 0 !important;
+    margin: 0.2rem 0;
 }
 
-::ng-deep.ui-tree-node-content:hover {
-    background-color: $color-bg-elevated !important;
-    color: var(--color-primary) !important;
-}
+//::ng-deep.ui-tree-node-content:hover {
+//    background-color: $color-bg-elevated !important;
+//    color: var(--color-primary) !important;
+//}
 
 .contextMenu {
     position: absolute;

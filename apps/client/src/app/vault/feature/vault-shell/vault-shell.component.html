@@ -1,10 +1,11 @@
 <div class="flex">
-    <app-record-list [records]="records()" (recordCreated)="onRecordCreated($event)"
-        (recordRenamed)="onRecordRenamed($event)" (recordGroupCreated)="onRecordGroupCreated($event)"
-        (recordRemoved)="onRecordRemoved($event)" (recordSelected)="onRecordSelected($event)" />
+    <app-record-list [records]="records()"
+                     [selectedRecord]="selectedRecord()" (recordCreated)="onRecordCreated($event)"
+                     (recordRenamed)="onRecordRenamed($event)" (recordGroupCreated)="onRecordGroupCreated($event)"
+                     (recordRemoved)="onRecordRemoved($event)" (recordSelected)="onRecordSelected($event)" />
     @if (selectedRecordItem()) {
-    <app-record-detail [record]="selectedRecordItem()" />
+        <app-record-detail [record]="selectedRecordItem()" (saved)="onRecordSave($event)" />
     } @else if (selectedRecordGroup()) {
-    <app-record-group-detail [recordGroup]="selectedRecordGroup()" />
+        <app-record-group-detail [recordGroup]="selectedRecordGroup()" />
     }
 </div>

@@ -50,4 +50,8 @@ export class VaultShellComponent {
     onRecordSelected(item: RecordEntity) {
         this.recordsStore.selectItem(item);
     }
+
+    onRecordSave(item: RecordItem) {
+        this.recordsStore.updateRecord(item);
+    }
 }

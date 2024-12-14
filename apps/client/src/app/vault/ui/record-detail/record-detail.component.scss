@@ -34,13 +34,19 @@
     justify-content: space-between;
 }
 
+.group {
+    margin: 0.5rem 0;
+}
 p {
-    padding: 0.5rem 0;
+    padding: 0.2rem 0;
     line-height: 1.5rem;
+
+    &.can-copy {
+        cursor: pointer;
+    }
 
     &:not(.mute) {
         position: relative;
-        cursor: pointer;
         min-width: 250px;
 
         &::after {

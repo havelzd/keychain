@@ -11,7 +11,7 @@ import {
     SimpleChanges,
 } from "@angular/core";
 import { CommonModule, NgStyle } from "@angular/common";
-import { RecordEntity, RecordGroup, RecordItem } from "../../store/records/records.models";
+import { RecordEntity, RecordGroup, RecordItem, RecordTypeLabels } from "../../store/records/records.models";
 import { TreeComponent, StaticTreeDataSource } from "@keychain/ui";
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 import { faFolder, faFolderOpen, faKey } from "@fortawesome/free-solid-svg-icons";
@@ -31,6 +31,7 @@ export type RecordEvent = {
 })
 export class RecordListComponent implements OnChanges {
     records = input.required<RecordEntity[]>();
+    selectedRecord = input<RecordEntity | undefined>();
     recordCreated = output<RecordGroup | undefined>();
     recordGroupCreated = output<RecordEntity | undefined>();
     recordRenamed = output<RecordEvent>();
@@ -64,9 +65,9 @@ export class RecordListComponent implements OnChanges {
     // Events
     protected nodeRenaming = signal<RecordEntity | undefined>(undefined);
     protected renameInput = viewChild<ElementRef<HTMLInputElement>>("renameInput");
-    protected selectedNode = signal<RecordEntity | undefined>(undefined);
 
     ngOnChanges(changes: SimpleChanges) {
+        console.log("SELECTED RECORD INP", this.selectedRecord());
         if (changes["records"]) {
             console.log(this.records());
             this.dataSource.nodes = this.records() ?? [];
@@ -100,7 +101,7 @@ export class RecordListComponent implements OnChanges {
     toggleNode($event: Event, node: RecordItem) {
         $event.stopPropagation();
         this.dataSource.toggleNode(node);
-        this.selectedNode.set(node);
+        this.recordSelected.emit(node);
         this.selectRecord(node);
     }
 
@@ -166,7 +167,6 @@ export class RecordListComponent implements OnChanges {
     }
 
     private selectRecord(record: RecordEntity) {
-        this.selectedNode.set(record);
         this.recordSelected.emit(record);
     }
 }
