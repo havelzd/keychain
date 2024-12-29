@@ -10,4 +10,6 @@ import { RouterOutlet } from "@angular/router";
     styleUrl: "./setting-shell.component.scss",
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SettingShellComponent {}
+export class SettingShellComponent {
+
+}

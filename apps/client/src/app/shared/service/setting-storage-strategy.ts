@@ -1,25 +1,24 @@
 import { inject, InjectionToken } from "@angular/core";
-import { AppSetting } from "../store/setting/setting.types";
 import { APP_PLATFORM, IS_WEB_OR_TAURI } from "../tokens/platform.token";
-import { FileSettingStorage } from "./file-setting-storage";
-import { RemoteSettingStorage } from "./remote-setting-storage";
+import { FileStorage } from "./file-setting-storage";
+import { RemoteStorage } from "./remote-setting-storage";
 
-export const SETTING_STORAGE = new InjectionToken<SettingStorageStrategy>("SettingStorageStrategy");
+export const StorageType = new InjectionToken<StorageStrategy>("SettingStorageStrategy");
+export const BrowserStorageType = new InjectionToken<Storage>("BrowserStorageType");
 
-export const SettingStorageStrategyFactory = () => {
+export const StorageStrategyFactory = () => {
     const appPlatform: APP_PLATFORM = inject(IS_WEB_OR_TAURI);
     if (appPlatform === APP_PLATFORM.TAURI) {
-        return FileSettingStorage;
+        return FileStorage;
     } else if (appPlatform === APP_PLATFORM.WEB) {
-        return RemoteSettingStorage;
+        return RemoteStorage;
     }
 
     throw new Error("Unknown platform " + appPlatform);
 };
 
-export interface SettingStorageStrategy {
-    getStoredSettings(): AppSetting;
-    get(key: string): string | null;
+export interface StorageStrategy {
+    get(key: string): string | null | Promise<string | null>;
     set(key: string, value: string): void;
     remove(key: string): void;
 }

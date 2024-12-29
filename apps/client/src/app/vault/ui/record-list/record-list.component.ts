@@ -11,7 +11,7 @@ import {
     SimpleChanges,
 } from "@angular/core";
 import { CommonModule, NgStyle } from "@angular/common";
-import { RecordEntity, RecordGroup, RecordItem, RecordTypeLabels } from "../../store/records/records.models";
+import { RecordEntity, RecordGroup, RecordItem } from "../../store/records/records.models";
 import { TreeComponent, StaticTreeDataSource } from "@keychain/ui";
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 import { faFolder, faFolderOpen, faKey } from "@fortawesome/free-solid-svg-icons";

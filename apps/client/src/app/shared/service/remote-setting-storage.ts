@@ -1,10 +1,6 @@
-import { AppSetting } from "../store/setting/setting.types";
-import { SettingStorageStrategy } from "./setting-storage-strategy";
+import { StorageStrategy } from "./setting-storage-strategy";
 
-export class RemoteSettingStorage implements SettingStorageStrategy {
-    getStoredSettings(): AppSetting {
-        throw new Error("Method not implemented.");
-    }
+export class RemoteStorage implements StorageStrategy {
     get(key: string): string | null {
         throw new Error("Method not implemented.");
     }

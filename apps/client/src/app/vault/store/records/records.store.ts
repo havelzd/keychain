@@ -1,4 +1,10 @@
-import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from "@ngrx/signals";
+import {
+    patchState,
+    signalStore,
+    withHooks,
+    withMethods,
+    withState,
+} from "@ngrx/signals";
 import {
     addEntities,
     removeEntity,
@@ -12,7 +18,8 @@ const initialRecords: RecordEntity[] = [
     {
         id: 1,
         name: "Test 1",
-        description: "This is a group for personal stuff and let's say it's a bit longer description" +
+        description:
+            "This is a group for personal stuff and let's say it's a bit longer description" +
             " and I mean it's reeeeeeeaaaaaaaaaaaaallllyyy long",
         records: [
             {
@@ -103,7 +110,7 @@ export const RecordsStore = signalStore(
             }
         },
         renameRecord: (record: RecordEntity, name: string): void => {
-            patchState(store, updateEntity({ id: record.id, changes: { name: name } }));
+            patchState(store, updateEntity({ id: record.id, changes: { name } }));
         },
         createRecordGroup(parent: RecordEntity | undefined): void {
             const recordGroup: RecordGroup = {

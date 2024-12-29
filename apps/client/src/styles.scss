@@ -9,6 +9,18 @@
         --color-primary: #{$color-primary};
     }
 
+    body .light {
+        color-scheme: light;
+    }
+
+    body .dark {
+        color-scheme: dark;
+    }
+
+    body .light-dark {
+        color-scheme: light dark;
+    }
+
     * {
         margin: 0;
         padding: 0;
@@ -86,11 +98,11 @@
     box-sizing: content-box;
     border-right: 1px solid $color-bg-elevated;
 
-    & > .top-bar {
+    &>.top-bar {
         padding: $space;
         position: relative;
 
-        & > input {
+        &>input {
             line-height: 1.5rem;
             padding: $space-sm;
             display: block;

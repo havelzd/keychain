@@ -51,7 +51,6 @@ section h2:after {
     border-radius: $space-sm;
     width: max-content;
 
-
     .theme-color {
         width: 3rem;
         height: 3rem;
@@ -64,10 +63,11 @@ section h2:after {
             background: #000;
         }
 
-        &.system {
+        &.light-dark {
             background: $color-bg-system;
         }
     }
+
     & input[type="radio"] {
         cursor: pointer;
         appearance: none;
@@ -82,6 +82,10 @@ section h2:after {
 
         &:hover {
             background: rgba(255, 255, 255, 0.1);
+        }
+
+        &:checked {
+            background: rgba(255, 255, 255, 0.2);
         }
     }
 }

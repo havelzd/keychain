@@ -1,17 +1,13 @@
 import { Injectable } from "@angular/core";
-import { AppSetting } from "../store/setting/setting.types";
-import { SettingStorageStrategy } from "./setting-storage-strategy";
+import { StorageStrategy } from "./setting-storage-strategy";
 
 @Injectable()
-export class FileSettingStorage implements SettingStorageStrategy {
-    getStoredSettings(): AppSetting {
-        throw new Error("Method not implemented.");
-    }
+export class FileStorage implements StorageStrategy {
     get(key: string): string | null {
-        throw new Error("Method not implemented.");
+        return null;
     }
     set(key: string, value: string): void {
-        throw new Error("Method not implemented.");
+        console.log("SET")
     }
     remove(key: string): void {
         throw new Error("Method not implemented.");

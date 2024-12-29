@@ -3,42 +3,15 @@
     <div class="group">
         <h3>Base theme</h3>
         <div class="container wrap" role="radiogroup">
+            @for (theme of themeChoices; track $index) {
             <div class="theme-choice">
-                <div class="theme-color light">
-                    <input
-                        id="light"
-                        name="theme"
-                        type="radio"
-                        value="light"
-                        (change)="onSelect($event)"
-                    />
+                <div class="theme-color" [ngClass]="theme.value">
+                    <input [id]="theme.value" name="theme" type="radio" [value]="theme.value"
+                        (change)="onSelect($event)" />
                 </div>
-                <label for="light">Light</label>
+                <label [for]="theme.value">{{ theme.label }}</label>
             </div>
-            <div class="theme-choice">
-                <div class="theme-color dark">
-                    <input
-                        id="dark"
-                        name="theme"
-                        type="radio"
-                        value="dark"
-                        (change)="onSelect($event)"
-                    />
-                </div>
-                <label for="dark">Dark</label>
-            </div>
-            <div class="theme-choice">
-                <div class="theme-color system">
-                    <input
-                        id="system"
-                        name="theme"
-                        type="radio"
-                        value="system"
-                        (change)="onSelect($event)"
-                    />
-                </div>
-                <label for="system">System</label>
-            </div>
+            }
         </div>
     </div>
 </section>
