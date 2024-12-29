@@ -38,6 +38,7 @@ export class StaticTreeDataSource<T, K extends keyof T> extends AbstractDataSour
                     this.collapsedState.set(trackValue, treeNode);
                     return treeNode;
                 } else {
+                    knownNode.value = { ...n };
                     knownNode.hasChildren.set(this.hasChildren(n));
                     const children = this.getChildren(n);
                     if (knownNode.hasChildren() && children) {
