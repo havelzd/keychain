@@ -1,29 +1,25 @@
-$border-color-primary: #cfcfcf;
-$color-text-mute: rgba(255, 255, 255, 0.7);
+/* $clr-text-light: hsl(5, 32%, 7%); */
+/* $clr-background-light: hsl(0, 33%, 97%); */
+/* $clr-primary-light: hsl(6, 33%, 53%); */
+/* $clr-secondary-light: hsl(37, 33%, 74%); */
+/* $clr-accent-light: hsl(47, 33%, 62%); */
+/**/
+/* $clr-text-dark: hsl(5, 33%, 93%); */
+/* $clr-background-dark: hsl(0, 33%, 3%); */
+/* $clr-primary-dark: hsl(6, 33%, 47%); */
+/* $clr-secondary-dark: hsl(37, 33%, 26%); */
+/* $clr-accent-dark: hsl(47, 33%, 38%); */
 
-/**
-  Light Theme
- */
-// background colors
-$bg-color-light-elevated: #f1f3f5;
-$bg-color-light-primary: #f8f9fa;
-// font colors
-$font-color-light: #343a40;
+$clr-text-light: hsl(353, 18%, 10%);
+$clr-background-light: hsl(350, 20%, 94%);
+$clr-background-elevated-light: #efefef;
+$clr-primary-light: hsl(352, 16%, 28%);
+$clr-secondary-light: hsl(51, 16%, 66%);
+$clr-accent-light: hsl(69, 16%, 42%);
 
-/**
-  Dark Theme
- */
-// background colors
-$bg-color-dark-elevated: hsl(0deg 0% 100% / 10%);
-$bg-color-dark-primary: #121212;
-// font colors
-$font-color-dark: #f9f9f9;
-
-/**
-  Exposed color variables
- */
-$color-bg-elevated: light-dark($bg-color-light-elevated, $bg-color-dark-elevated);
-$color-bg-primary: light-dark($bg-color-light-primary, $bg-color-dark-primary);
-$color-bg-system: light-dark(white, black);
-$color-font-primary: light-dark($font-color-light, $font-color-dark);
-$color-primary: #4fa1f3;
+$clr-text-dark: hsl(353, 18%, 90%);
+$clr-background-dark: hsl(350, 20%, 6%);
+$clr-background-elevated-dark: #303030;
+$clr-primary-dark: hsl(352, 16%, 72%);
+$clr-secondary-dark: hsl(49, 16%, 34%);
+$clr-accent-dark: hsl(69, 16%, 58%);

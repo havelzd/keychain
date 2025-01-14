@@ -18,7 +18,7 @@ export const AppearanceStore = signalStore(
                 console.log(element);
                 renderer.setStyle(element, "color-scheme", theme);
                 console.log(storage);
-                storage.set("appearance.theme", theme);
+                // storage.set("appearance.theme", theme);
             },
         }),
     ),

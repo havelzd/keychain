@@ -43,7 +43,7 @@ export const appConfig: ApplicationConfig = {
             provide: APP_INITIALIZER,
             multi: true,
             useFactory: initFactory,
-            deps: [SettingService, StorageType, Renderer2],
+            deps: [SettingService, StorageType],
         },
     ],
 };

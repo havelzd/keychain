@@ -1,14 +1,16 @@
 {{ nothing() }}
-<aside id="main-menu" class="container col">
-    <button title="menu-toggle" class="icon-btn" (click)="toggleMenu()">
+<nav class="navbar max-height" [class.expanded]="menuExpanded()">
+    <button title="menu-toggle" class="btn btn--icon nav__toggle" (click)="toggleMenu()">
         <fa-icon [icon]="FA_BARS" />
     </button>
-    <nav [class.expanded]="menuExpanded()">
+    <ul class="nav nav--vertical">
         @for (item of MENU_ITEMS; track item.href) {
-        <a [routerLink]="[item.href]" routerLinkActive="active">
-            <fa-icon class="menu-icon" [icon]="item.icon" />
-            <span class="menu-text">{{ item.name }}</span></a
-        >
+        <li class="nav__item">
+            <a class="nav__item__link" [routerLink]="[item.href]" routerLinkActive="active">
+                <fa-icon class="menu-icon" [icon]="item.icon" />
+                <span class="menu-text">{{ item.name }}</span>
+            </a>
+        </li>
         }
-    </nav>
-</aside>
+    </ul>
+</nav>

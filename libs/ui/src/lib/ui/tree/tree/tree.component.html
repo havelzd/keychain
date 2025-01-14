@@ -13,14 +13,14 @@
 
 <ng-template #defaultRoot let-node="node">
     <div class="ui-tree-node">
-        <div class="ui-tree-node-content">
+        <div class="ui-tree-node__content">
             <ng-container
                 [ngTemplateOutlet]="rootContent()"
                 [ngTemplateOutletContext]="{ $implicit: node.value, node: node.value }"
             />
         </div>
         @if (node.expanded()) {
-        <div class="ui-tree-sub-level">
+        <div class="ui-tree__sub-level">
             @for (child of node?.children(); track child.value[dataSource().trackBy]) {
             <lib-node
                 [node]="child"
@@ -35,7 +35,7 @@
 </ng-template>
 
 <ng-template #defaultLeaf let-node="node">
-    <div class="ui-tree-node-content">
+    <div class="ui-tree-node__content">
         <ng-container
             [ngTemplateOutlet]="leafContent()"
             [ngTemplateOutletContext]="{ $implicit: node.value, node: node.value }"

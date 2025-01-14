@@ -9,13 +9,13 @@ import {
 } from "@angular/core";
 import { TreeNode } from "../types/types";
 import { NodeComponent } from "../node/node.component";
-import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { NgTemplateOutlet } from "@angular/common";
 import { AbstractDataSource } from "../datasource/abstract-data-source";
 
 @Component({
     selector: "lib-tree",
     standalone: true,
-    imports: [NodeComponent, NgTemplateOutlet, NgClass],
+    imports: [NodeComponent, NgTemplateOutlet],
     templateUrl: "./tree.component.html",
     styleUrl: "../styles.scss",
     changeDetection: ChangeDetectionStrategy.OnPush,

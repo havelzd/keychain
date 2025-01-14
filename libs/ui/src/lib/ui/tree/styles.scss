@@ -3,7 +3,7 @@
     flex-direction: column;
 }
 
-.ui-tree-node-content {
+.ui-tree-node__content {
     display: inline-flex;
     padding: 0.5rem;
     cursor: pointer;
@@ -12,7 +12,7 @@
     gap: 0.5rem;
 }
 
-.ui-tree-sub-level {
+.ui-tree__sub-level {
     padding-left: 2rem;
     display: flex;
     flex-direction: column;

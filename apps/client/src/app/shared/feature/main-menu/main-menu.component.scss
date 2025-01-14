@@ -1,85 +1,94 @@
-@import "../../../../styles/colors";
-@import "../../../../styles/variables";
-@import "../../../../styles/mixins";
+/* @import "../../../../styles/colors"; */
+/* @import "../../../../styles/variables"; */
+/* @import "../../../../styles/mixins"; */
+/**/
+/* #main-menu { */
+/*     background-color: $color-bg-elevated; */
+/*     height: 100dvh; */
+/*     position: sticky; */
+/*     top: 0; */
+/* } */
+/**/
+/* nav { */
+/*     width: 3.5rem; */
+/*     height: 100%; */
+/*     will-change: width; */
+/*     transition: width 0.3s ease-in; */
+/*     display: flex; */
+/*     flex-direction: column; */
+/*     @include py($space); */
+/* } */
+/**/
+/* nav.expanded { */
+/*     width: 150px; */
+/* } */
+/**/
+/* fa-icon { */
+/*     font-size: 1.5rem; */
+/* } */
+/**/
+/* a { */
+/*     display: inline-flex; */
+/*     width: 100%; */
+/*     overflow: hidden; */
+/*     @include pad($space); */
+/*     align-items: center; */
+/*     color: $color-text-mute; */
+/* } */
+/**/
+/* .menu-icon { */
+/*     margin-right: 0; */
+/*     transition: margin-right 0.3s ease-in; */
+/* } */
+/**/
+/* .menu-text { */
+/*     opacity: 0; */
+/*     white-space: nowrap; */
+/*     transition: opacity 0.3s ease-in; */
+/* } */
+/**/
+/* nav.expanded .menu-icon { */
+/*     margin-right: $space-sm; */
+/* } */
+/**/
+/* nav.expanded .menu-text { */
+/*     opacity: 1; */
+/*     transition: opacity 0.3s ease-in; */
+/* } */
+/**/
+/* a:hover, */
+/* a.active { */
+/*     position: relative; */
+/*     color: $color-font-primary; */
+/**/
+/**/
+/* } */
+/**/
+/* a.active::after { */
+/*     content: ""; */
+/*     position: absolute; */
+/*     left: 0; */
+/*     top: 0; */
+/*     height: 100%; */
+/*     width: 2px; */
+/*     background-color: var(--color-primary); */
+/**/
+/* } */
+/**/
+/* a:last-child { */
+/*     margin-top: auto; */
+/* } */
+/**/
+/* button { */
+/*     align-self: flex-start; */
+/*     padding: 1rem; */
+/* } */
 
-#main-menu {
-    background-color: $color-bg-elevated;
-    height: 100dvh;
-    position: sticky;
-    top: 0;
+:host {
+    display:block;
+    height: 100%;
 }
 
 nav {
-    width: 3.5rem;
-    height: 100%;
-    will-change: width;
-    transition: width 0.3s ease-in;
-    display: flex;
-    flex-direction: column;
-    @include py($space);
-}
-
-nav.expanded {
-    width: 150px;
-}
-
-fa-icon {
-    font-size: 1.5rem;
-}
-
-a {
-    display: inline-flex;
-    width: 100%;
-    overflow: hidden;
-    @include pad($space);
-    align-items: center;
-    color: $color-text-mute;
-}
-
-.menu-icon {
-    margin-right: 0;
-    transition: margin-right 0.3s ease-in;
-}
-
-.menu-text {
-    opacity: 0;
-    white-space: nowrap;
-    transition: opacity 0.3s ease-in;
-}
-
-nav.expanded .menu-icon {
-    margin-right: $space-sm;
-}
-
-nav.expanded .menu-text {
-    opacity: 1;
-    transition: opacity 0.3s ease-in;
-}
-
-a:hover,
-a.active {
-    position: relative;
-    color: $color-font-primary;
-
-
-}
-
-a.active::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 2px;
-    background-color: var(--color-primary);
-
-}
-
-a:last-child {
-    margin-top: auto;
-}
-
-button {
-    align-self: flex-start;
-    padding: 1rem;
+    border-right: 1px solid var(--clr-primary);
 }

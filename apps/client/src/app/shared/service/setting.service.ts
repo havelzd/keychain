@@ -7,13 +7,13 @@ import { configDir } from "@tauri-apps/api/path";
 export class SettingService {
     private readonly platformToken = inject(IS_WEB_OR_TAURI);
     private readonly settingStorage: StorageStrategy = inject(StorageType);
-    private readonly renderer = inject(Renderer2);
+    // private readonly renderer = inject(Renderer2);
 
     public init() {
         console.log("Inititalizing SettingService");
         console.log(this.platformToken);
         console.log(this.settingStorage);
-        const theme = this.settingStorage.get("appearance.theme");
-        this.renderer.setStyle(document.querySelector("body"), "color-scheme", theme);
+        // const theme = this.settingStorage.get("appearance.theme");
+        // this.renderer.setStyle(document.querySelector("body"), "color-scheme", theme);
     }
 }

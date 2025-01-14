@@ -1,0 +1,104 @@
+@mixin element-base {
+    border-radius: var(--space-reg);
+}
+
+/**
+    Button
+*/
+
+.btn {
+    @include element-base;
+    padding: var(--space-reg);
+
+    &--primary {
+        background: var(--clr-primary);
+    }
+
+    &--icon {
+        background: none;
+        border: none;
+        font-size: 1rem;
+        cursor: pointer;
+        width: fit-content;
+    }
+}
+
+/**
+    Navigation
+*/
+
+.navbar {
+    height: 100%;
+    width: 100%;
+}
+
+.nav {
+    display: flex;
+
+    &--vertical {
+        flex-direction: column;
+        height: 100%;
+    }
+}
+
+.nav__item {
+    border-radius: 4px;
+
+    &:last-of-type {
+        margin-top: auto;
+        margin-bottom: var(--space-reg);
+    }
+}
+
+.nav__item__link {
+    --fs: var(--fs-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xsm);
+    color: var(--clr-text);
+    padding: var(--space-xsm);
+    cursor: pointer;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--fs);
+
+    &>fa-icon {
+        font-size: 1.1rem;
+    }
+
+    &.active,
+    &:hover {
+        color: var(--clr-primary);
+    }
+
+    &.active {
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--clr-primary);
+        }
+    }
+}
+
+.nav__toggle {
+    display: none;
+}
+
+@media (max-width: 480px) {
+    .nav__item__link {
+        --fs: var(--fs-regular);
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    .nav__toggle {
+        display: block;
+    }
+}

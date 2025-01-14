@@ -1,0 +1,51 @@
+@import "colors";
+@import "variables";
+
+:root {
+    color-scheme: light dark;
+
+    /* colors */
+    --clr-primary: light-dark(#{$clr-primary-light}, #{$clr-primary-dark});
+    --clr-secondary: light-dark(#{$clr-secondary-light}, #{$clr-primary-dark});
+    --clr-accent: light-dark(#{$clr-accent-light}, #{$clr-accent-dark});
+    --clr-bg: light-dark(#{$clr-background-light}, #{$clr-background-dark});
+    --clr-bg-elevated: light-dark(#{$clr-background-elevated-light},
+        #{$clr-background-elevated-dark});
+    --clr-text: light-dark(#{$clr-text-light}, #{$clr-text-dark});
+    --clr-text-primary: light-dark(#{$clr-text-dark}, #{$clr-text-light});
+
+    /* types */
+    --fs-regular: #{$font-size-0};
+    --fs-sm: #{$font-size--1};
+    --fs-large: #{$font-size-1};
+    --fs-larger: #{$font-size-2};
+
+    /* spaces */
+    --space-reg: #{$space-xs};
+    --space-sm: #{$space-2xs};
+    --space-xsm: #{$space-3xs};
+    --space-large: #{$space-m};
+}
+
+body {
+    background: var(--clr-bg);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: var(--fs-regular);
+    color: var(--clr-text);
+}
+
+.container {
+    padding: var(--space-reg);
+
+    &.elevated {
+        background: var(--clr-bg-elevated);
+    }
+
+    &--max-height {
+        overflow-y: auto;
+        scrollbar-gutter: stable;
+        scrollbar-width: thin;
+        scrollbar-color: var(--clr-accent);
+    }
+}

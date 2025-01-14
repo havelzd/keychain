@@ -1,7 +1,6 @@
-@import "../../../../styles/mixins";
-@import "../../../../styles/variables";
-@import "../../../../styles/colors";
-
+:host {
+    min-width: 25%;
+}
 lib-tree {
     padding: 0.5rem;
 }
@@ -11,48 +10,34 @@ lib-tree {
     width: 100%;
     cursor: pointer;
     align-items: center;
-    gap: $space-sm;
-    padding: $space-sm;
+    gap: var(--space-sm);
+    padding: var(--space-sm);
     border-radius: 4px;
 
     &.leaf {
         position: relative;
-
-        //&::before {
-        //    content: "";
-        //    position: absolute;
-        //    width: 1rem;
-        //    height: 100%;
-        //    left: -0.5rem;
-        //    bottom: 50%;
-        //    border-bottom: 2px solid $color-bg-elevated;
-        //    border-left: 2px solid $color-bg-elevated;
-        //    border-radius: 0.1rem;
-        //    border-color: $color-bg-elevated;
-        //    z-index: -1;
-        //}
     }
 
     &:hover {
-        background-color: $color-bg-elevated !important;
+        background-color: var(--clr-bg) !important;
         border-radius: 4px;
     }
 
     &.selected {
-        background-color: $color-bg-elevated !important;
-        color: var(--color-primary) !important;
+        background-color: var(--clr-bg) !important;
+        color: var(--clr-primary) !important;
         border-radius: 4px;
     }
 }
 
-::ng-deep.ui-tree-node-content {
+::ng-deep.ui-tree-node__content {
     padding: 0 !important;
     gap: 0 !important;
     margin: 0.2rem 0;
 }
 
 //::ng-deep.ui-tree-node-content:hover {
-//    background-color: $color-bg-elevated !important;
+//    background-color: var(--clr-bg) !important;
 //    color: var(--color-primary) !important;
 //}
 
@@ -67,7 +52,7 @@ lib-tree {
     z-index: 1;
 }
 
-.contextMenu > button {
+.contextMenu>button {
     appearance: none;
     display: block;
     width: 100%;
@@ -79,9 +64,9 @@ lib-tree {
     padding: 0.5rem 1rem;
 }
 
-.contextMenu > button:hover {
-    background: var(--color-primary);
-    color: $color-font-primary;
+.contextMenu>button:hover {
+    background: var(--clr-accent);
+    color: var(--clr-text-primary);
 }
 
 #nodeRename {
