@@ -1,18 +1,10 @@
-import {
-    Component,
-    computed,
-    input,
-    OnInit,
-    output,
-    signal,
-} from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { Component, computed, input, OnInit, output, signal } from "@angular/core";
 import { PopupOptions } from "./popup";
 
 @Component({
     selector: "lib-popup",
     standalone: true,
-    imports: [CommonModule],
+    imports: [],
     templateUrl: "./popup.component.html",
     styleUrl: "./popup.component.scss",
 })

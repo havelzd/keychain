@@ -5,14 +5,14 @@
     color-scheme: light dark;
 
     /* colors */
-    --clr-primary: light-dark(#{$clr-primary-light}, #{$clr-primary-dark});
-    --clr-secondary: light-dark(#{$clr-secondary-light}, #{$clr-primary-dark});
-    --clr-accent: light-dark(#{$clr-accent-light}, #{$clr-accent-dark});
-    --clr-bg: light-dark(#{$clr-background-light}, #{$clr-background-dark});
-    --clr-bg-elevated: light-dark(#{$clr-background-elevated-light},
-        #{$clr-background-elevated-dark});
-    --clr-text: light-dark(#{$clr-text-light}, #{$clr-text-dark});
-    --clr-text-primary: light-dark(#{$clr-text-dark}, #{$clr-text-light});
+    --clr-primary: light-dark(#{$primary-500-l}, #{$primary-500-d});
+    --clr-secondary: light-dark(#{$secondary-400-l}, #{$secondary-400-d});
+    --clr-accent: light-dark(#{$accent-950-l}, #{$accent-950-d});
+    --clr-bg: light-dark(#{$background-50-l}, #{$background-50-d});
+    --clr-bg-elevated: light-dark(#{$background-200-l}, #{$background-200-d});
+    --clr-text: light-dark(#{$text-950-l}, #{$text-950-d});
+    --clr-text-mute: light-dark(#{$text-700-l}, #{$text-700-d});
+    --clr-text-primary: light-dark(#{$text-950-d}, #{$text-950-l});
 
     /* types */
     --fs-regular: #{$font-size-0};
@@ -25,6 +25,9 @@
     --space-sm: #{$space-2xs};
     --space-xsm: #{$space-3xs};
     --space-large: #{$space-m};
+
+    /* border-radius */
+    --br-reg: 4px;
 }
 
 body {
@@ -35,17 +38,8 @@ body {
     color: var(--clr-text);
 }
 
-.container {
-    padding: var(--space-reg);
 
-    &.elevated {
-        background: var(--clr-bg-elevated);
-    }
-
-    &--max-height {
-        overflow-y: auto;
-        scrollbar-gutter: stable;
-        scrollbar-width: thin;
-        scrollbar-color: var(--clr-accent);
-    }
+.bg-elevated {
+    background: var(--clr-bg-elevated);
 }
+

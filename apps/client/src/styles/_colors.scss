@@ -1,25 +1,119 @@
-/* $clr-text-light: hsl(5, 32%, 7%); */
-/* $clr-background-light: hsl(0, 33%, 97%); */
-/* $clr-primary-light: hsl(6, 33%, 53%); */
-/* $clr-secondary-light: hsl(37, 33%, 74%); */
-/* $clr-accent-light: hsl(47, 33%, 62%); */
-/**/
-/* $clr-text-dark: hsl(5, 33%, 93%); */
-/* $clr-background-dark: hsl(0, 33%, 3%); */
-/* $clr-primary-dark: hsl(6, 33%, 47%); */
-/* $clr-secondary-dark: hsl(37, 33%, 26%); */
-/* $clr-accent-dark: hsl(47, 33%, 38%); */
+$text-50-l: hsl(220, 12%, 95%);
+$text-100-l: hsl(223, 14%, 90%);
+$text-200-l: hsl(220, 12%, 80%);
+$text-300-l: hsl(221, 12%, 70%);
+$text-400-l: hsl(220, 12%, 60%);
+$text-500-l: hsl(221, 12%, 50%);
+$text-600-l: hsl(220, 12%, 40%);
+$text-700-l: hsl(221, 12%, 30%);
+$text-800-l: hsl(220, 12%, 20%);
+$text-900-l: hsl(223, 14%, 10%);
+$text-950-l: hsl(220, 12%, 5%);
 
-$clr-text-light: hsl(353, 18%, 10%);
-$clr-background-light: hsl(350, 20%, 94%);
-$clr-background-elevated-light: #efefef;
-$clr-primary-light: hsl(352, 16%, 28%);
-$clr-secondary-light: hsl(51, 16%, 66%);
-$clr-accent-light: hsl(69, 16%, 42%);
+$background-50-l: hsl(216, 20%, 95%);
+$background-100-l: hsl(207, 22%, 90%);
+$background-200-l: hsl(210, 20%, 80%);
+$background-300-l: hsl(209, 20%, 70%);
+$background-400-l: hsl(210, 20%, 60%);
+$background-500-l: hsl(211, 20%, 50%);
+$background-600-l: hsl(210, 20%, 40%);
+$background-700-l: hsl(211, 20%, 30%);
+$background-800-l: hsl(210, 20%, 20%);
+$background-900-l: hsl(213, 22%, 10%);
+$background-950-l: hsl(204, 20%, 5%);
 
-$clr-text-dark: hsl(353, 18%, 90%);
-$clr-background-dark: hsl(350, 20%, 6%);
-$clr-background-elevated-dark: #303030;
-$clr-primary-dark: hsl(352, 16%, 72%);
-$clr-secondary-dark: hsl(49, 16%, 34%);
-$clr-accent-dark: hsl(69, 16%, 58%);
+$primary-50-l: hsl(218, 31%, 95%);
+$primary-100-l: hsl(220, 29%, 90%);
+$primary-200-l: hsl(218, 29%, 80%);
+$primary-300-l: hsl(219, 29%, 70%);
+$primary-400-l: hsl(218, 30%, 60%);
+$primary-500-l: hsl(218, 30%, 50%);
+$primary-600-l: hsl(218, 30%, 40%);
+$primary-700-l: hsl(219, 29%, 30%);
+$primary-800-l: hsl(218, 29%, 20%);
+$primary-900-l: hsl(220, 29%, 10%);
+$primary-950-l: hsl(218, 31%, 5%);
+
+$secondary-50-l: hsl(216, 38%, 95%);
+$secondary-100-l: hsl(218, 37%, 90%);
+$secondary-200-l: hsl(218, 37%, 80%);
+$secondary-300-l: hsl(218, 39%, 70%);
+$secondary-400-l: hsl(218, 38%, 60%);
+$secondary-500-l: hsl(218, 38%, 50%);
+$secondary-600-l: hsl(218, 38%, 40%);
+$secondary-700-l: hsl(218, 39%, 30%);
+$secondary-800-l: hsl(218, 37%, 20%);
+$secondary-900-l: hsl(218, 37%, 10%);
+$secondary-950-l: hsl(222, 38%, 5%);
+
+$accent-50-l: hsl(220, 46%, 95%);
+$accent-100-l: hsl(218, 49%, 90%);
+$accent-200-l: hsl(218, 49%, 80%);
+$accent-300-l: hsl(219, 49%, 70%);
+$accent-400-l: hsl(219, 49%, 60%);
+$accent-500-l: hsl(219, 49%, 50%);
+$accent-600-l: hsl(219, 49%, 40%);
+$accent-700-l: hsl(219, 49%, 30%);
+$accent-800-l: hsl(218, 49%, 20%);
+$accent-900-l: hsl(218, 49%, 10%);
+$accent-950-l: hsl(220, 46%, 5%);
+
+$text-50-d: hsl(220, 12%, 5%);
+$text-100-d: hsl(223, 14%, 10%);
+$text-200-d: hsl(220, 12%, 20%);
+$text-300-d: hsl(221, 12%, 30%);
+$text-400-d: hsl(220, 12%, 40%);
+$text-500-d: hsl(221, 12%, 50%);
+$text-600-d: hsl(220, 12%, 60%);
+$text-700-d: hsl(221, 12%, 70%);
+$text-800-d: hsl(220, 12%, 80%);
+$text-900-d: hsl(223, 14%, 90%);
+$text-950-d: hsl(220, 12%, 95%);
+
+$background-50-d: hsl(204, 20%, 5%);
+$background-100-d: hsl(213, 22%, 10%);
+$background-200-d: hsl(210, 20%, 20%);
+$background-300-d: hsl(211, 20%, 30%);
+$background-400-d: hsl(210, 20%, 40%);
+$background-500-d: hsl(211, 20%, 50%);
+$background-600-d: hsl(210, 20%, 60%);
+$background-700-d: hsl(209, 20%, 70%);
+$background-800-d: hsl(210, 20%, 80%);
+$background-900-d: hsl(207, 22%, 90%);
+$background-950-d: hsl(216, 20%, 95%);
+
+$primary-50-d: hsl(218, 31%, 5%);
+$primary-100-d: hsl(220, 29%, 10%);
+$primary-200-d: hsl(218, 29%, 20%);
+$primary-300-d: hsl(219, 29%, 30%);
+$primary-400-d: hsl(218, 30%, 40%);
+$primary-500-d: hsl(218, 30%, 50%);
+$primary-600-d: hsl(218, 30%, 60%);
+$primary-700-d: hsl(219, 29%, 70%);
+$primary-800-d: hsl(218, 29%, 80%);
+$primary-900-d: hsl(220, 29%, 90%);
+$primary-950-d: hsl(218, 31%, 95%);
+
+$secondary-50-d: hsl(222, 38%, 5%);
+$secondary-100-d: hsl(218, 37%, 10%);
+$secondary-200-d: hsl(218, 37%, 20%);
+$secondary-300-d: hsl(218, 39%, 30%);
+$secondary-400-d: hsl(218, 38%, 40%);
+$secondary-500-d: hsl(218, 38%, 50%);
+$secondary-600-d: hsl(218, 38%, 60%);
+$secondary-700-d: hsl(218, 39%, 70%);
+$secondary-800-d: hsl(218, 37%, 80%);
+$secondary-900-d: hsl(218, 37%, 90%);
+$secondary-950-d: hsl(216, 38%, 95%);
+
+$accent-50-d: hsl(220, 46%, 5%);
+$accent-100-d: hsl(218, 49%, 10%);
+$accent-200-d: hsl(218, 49%, 20%);
+$accent-300-d: hsl(219, 49%, 30%);
+$accent-400-d: hsl(219, 49%, 40%);
+$accent-500-d: hsl(219, 49%, 50%);
+$accent-600-d: hsl(219, 49%, 60%);
+$accent-700-d: hsl(219, 49%, 70%);
+$accent-800-d: hsl(218, 49%, 80%);
+$accent-900-d: hsl(218, 49%, 90%);
+$accent-950-d: hsl(220, 46%, 95%);

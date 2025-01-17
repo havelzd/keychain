@@ -3,7 +3,8 @@
         (recordRenamed)="onRecordRenamed($event)" (recordGroupCreated)="onRecordGroupCreated($event)"
         (recordRemoved)="onRecordRemoved($event)" (recordSelected)="onRecordSelected($event)" />
     @if (selectedRecordItem()) {
-    <app-record-detail [record]="selectedRecordItem()" (saved)="onRecordSave($event)" />
+    <app-record-detail [record]="selectedRecordItem()"
+    />
     } @else if (selectedRecordGroup()) {
     <app-record-group-detail [recordGroup]="selectedRecordGroup()" />
     }

@@ -12,10 +12,22 @@
 }
 
 
-.flex {
-    display: flex;
+.border-right {
+    border-right: 1px solid var(--clr-primary);
+}
 
-    &.col {
-        flex-direction: column;
-    }
+.py-xsm {
+    padding-block: var(--space-xsm);
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.mute {
+    color: var(--clr-text-mute);
+}
+
+.bb-sm {
+    border-bottom: 1px solid var(--clr-bg);
 }

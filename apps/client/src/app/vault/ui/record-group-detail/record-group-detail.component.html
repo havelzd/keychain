@@ -1,26 +1,5 @@
-<section class="container">
-    <div class="section-header">
-        <h2>{{ recordGroup()?.name }}</h2>
-    </div>
-    <p class="mute">Description</p>
-    <p>{{ recordGroup()?.description }}</p>
-    <p class="mute">Records</p>
-    <table>
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Username</th>
-            <th>Description</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let item of records()" (click)="copyToClipboard($event, item)">
-            <td>{{ item.name }}</td>
-            <td>{{ item.username }}</td>
-            <td>{{ item.description }}</td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
-</section>
+<article class="flex f-wrap f-grow">
+    @for(record of records(); track $index){
+    <app-record-detail [record]="record" />
+    }
+</article>

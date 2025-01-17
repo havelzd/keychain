@@ -1,11 +1,32 @@
-/* .row { */
-/*     display: grid; */
-/*     grid-template-columns: repeat(12, 1fr); */
-/* } */
-/**/
-/* .col-sp-1 { */
-/*     grid-column: span 1; */
-/* } */
-/* .col-sp-6 { */
-/*     grid-column: span 1; */
-/* } */
+.container {
+    padding: var(--space-reg);
+
+    &--max-height {
+        height: 100%;
+        width: 100%;
+        overflow-y: auto;
+        scrollbar-gutter: stable;
+        scrollbar-width: thin;
+        scrollbar-color: var(--clr-accent);
+    }
+}
+
+.grid {
+    display: grid;
+}
+
+.flex {
+    display: flex;
+
+    &.col {
+        flex-direction: column;
+    }
+}
+
+.f-wrap {
+    flex-wrap: wrap;
+}
+
+.f-grow {
+    flex-grow: grow;
+}

@@ -1,6 +1,3 @@
-:host {
-    min-width: 25%;
-}
 lib-tree {
     padding: 0.5rem;
 }
@@ -11,8 +8,8 @@ lib-tree {
     cursor: pointer;
     align-items: center;
     gap: var(--space-sm);
-    padding: var(--space-sm);
-    border-radius: 4px;
+    padding-block: var(--space-xsm);
+    padding-inline: var(--space-sm);
 
     &.leaf {
         position: relative;
@@ -20,13 +17,10 @@ lib-tree {
 
     &:hover {
         background-color: var(--clr-bg) !important;
-        border-radius: 4px;
     }
 
     &.selected {
-        background-color: var(--clr-bg) !important;
-        color: var(--clr-primary) !important;
-        border-radius: 4px;
+        background-color: var(--clr-bg-elevated) !important;
     }
 }
 
@@ -34,6 +28,10 @@ lib-tree {
     padding: 0 !important;
     gap: 0 !important;
     margin: 0.2rem 0;
+}
+
+::ng-deep.ui-tree__sub-level {
+    padding-left: var(--space-reg) !important;
 }
 
 //::ng-deep.ui-tree-node-content:hover {

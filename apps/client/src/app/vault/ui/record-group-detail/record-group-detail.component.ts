@@ -1,13 +1,13 @@
 import { Component, computed, inject, input } from "@angular/core";
-import { CommonModule } from "@angular/common";
 import { RecordEntity, RecordGroup, RecordItem } from "../../store/records/records.models";
 import { Clipboard } from "@angular/cdk/clipboard";
 import { Popup } from "@keychain/ui";
+import { RecordDetailComponent } from "../record-detail/record-detail.component";
 
 @Component({
     selector: "app-record-group-detail",
     standalone: true,
-    imports: [CommonModule],
+    imports: [RecordDetailComponent],
     providers: [Clipboard, Popup],
     templateUrl: "./record-group-detail.component.html",
     styleUrl: "./record-group-detail.component.scss",
@@ -36,8 +36,6 @@ export class RecordGroupDetailComponent {
         event.stopPropagation();
         this.clipboard.copy(record.password);
         console.log("Copied to clipboard", record.password);
-        this.popupService.showPopup({body: "Copied to clipboard"});
+        this.popupService.showPopup({ body: "Copied to clipboard" });
     }
-
-
 }

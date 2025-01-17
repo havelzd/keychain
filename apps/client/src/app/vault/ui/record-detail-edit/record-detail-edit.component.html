@@ -1,0 +1,65 @@
+<section class="card">
+    <div class="card__header">
+        <h2>{{ record().name }}</h2>
+        <button
+            class="btn btn--icon"
+            (click)="saveRecord()"
+        >
+            <span class="visually-hidden">Save</span>
+            <fa-icon [icon]="faSave" />
+        </button>
+    </div>
+    <form class="form">
+        <div class="form__group">
+            <label for="type_select">Type</label>
+            <select id="type_select">
+                @for (entry of recordTypeOpts; track $index) {
+                <option>{{ entry[1] }}</option>
+                }
+            </select>
+        </div>
+        <div class="form__group">
+            <label for="name_input">Name</label>
+            <input
+                id="name_input"
+                name="name_input"
+                type="text"
+                [ngModel]="record().name"
+                (ngModelChange)="record().name = $event"
+                placeholder="Name"
+            />
+        </div>
+        <div class="form__group">
+            <label for="username_input">Username</label>
+            <input
+                id="username_input"
+                name="username_input"
+                type="text"
+                [ngModel]="record().username"
+                (ngModelChange)="record().username = $event"
+                placeholder="Username"
+            />
+        </div>
+        <div class="form__group">
+            <label for="password_input">Password</label>
+            <input
+                id="password_input"
+                name="password_input"
+                type="password"
+                [ngModel]="record().password"
+                (ngModelChange)="record().password = $event"
+                placeholder="Password"
+            />
+        </div>
+        <div class="form__group">
+            <label for="description_input">Description</label>
+            <textarea
+                id="description_input"
+                name="description_input"
+                [ngModel]="record().description"
+                (ngModelChange)="record().description = $event"
+                placeholder="Description"
+            ></textarea>
+        </div>
+    </form>
+</section>

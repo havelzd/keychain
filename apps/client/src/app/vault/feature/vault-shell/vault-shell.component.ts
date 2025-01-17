@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from "@angular/core";
-import { AsyncPipe } from "@angular/common";
 import { RecordEvent, RecordListComponent } from "../../ui/record-list/record-list.component";
 import { RecordDetailComponent } from "../../ui/record-detail/record-detail.component";
 import { RecordsStore } from "../../store/records/records.store";
@@ -10,7 +9,7 @@ import { isRecordGroup, isRecordItem } from "../../store/records/records.guards"
 @Component({
     selector: "app-vault-shell",
     standalone: true,
-    imports: [AsyncPipe, RecordListComponent, RecordDetailComponent, RecordGroupDetailComponent],
+    imports: [RecordListComponent, RecordDetailComponent, RecordGroupDetailComponent],
     templateUrl: "./vault-shell.component.html",
     styleUrl: "./vault-shell.component.scss",
     changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,4 +1,5 @@
 @import "styles/reset.scss" layer(reset);
+@import "styles/layout.scss" layer(layout);
 @import "styles/base.scss" layer(base);
 @import "styles/components.scss" layer(components);
 @import "styles/utils.scss" layer(utils);
@@ -18,14 +19,23 @@
         grid-template-columns: minmax(max-content, 80px) 1fr;
     }
 
-    .main-wrapper > * {
+    .main-wrapper>* {
         max-height: 100%;
+    }
+
+    .password-container {
+        display: flex;
+        padding: var(--space-xsm);
+        margin: auto 0;
+        border-radius: var(--space-xsm);
+        justify-content: space-between;
     }
 
     @media (max-width: 480px) {
         .main-wrapper {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            flex-direction: column-reverse;
         }
     }
 }

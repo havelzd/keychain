@@ -5,7 +5,6 @@ import {
     inject,
     input,
     OnChanges,
-    output,
     signal,
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
@@ -27,7 +26,6 @@ import { Popup } from "@keychain/ui";
 })
 export class RecordDetailComponent implements OnChanges {
     record = input.required<RecordItem | undefined>();
-    saved = output<RecordItem>();
 
     private readonly clipboard = inject(Clipboard);
     private readonly popup = inject(Popup);
@@ -35,15 +33,14 @@ export class RecordDetailComponent implements OnChanges {
     protected readonly eyeIcon = faEye;
     protected readonly eyeSlashIcon = faEyeSlash;
     protected readonly faPenToSquare = faPenToSquare;
-    protected readonly faSave = faSave;
-    protected readonly recordTypeLabels = RecordTypeLabels;
-    protected readonly recordTypeOpts = Object.entries(RecordTypeLabels);
     protected readonly passwordVisible = signal(false);
     protected readonly password = computed(() =>
         this.passwordVisible()
             ? this.record()?.password
             : "•".repeat(this.record()?.password?.length ?? 0),
     );
+    protected readonly recordTypeLabels = RecordTypeLabels;
+    protected readonly recordTypeOpts = Object.entries(RecordTypeLabels);
     protected readonly recordType = computed(() => {
         const record = this.record();
         return record != null ? this.recordTypeLabels[record.type] : "N/A";
@@ -76,11 +73,4 @@ export class RecordDetailComponent implements OnChanges {
         }
     }
 
-    protected saveRecord() {
-        this.isEdit.set(false);
-        const record = this.editedRecord();
-        if (record) {
-            this.saved.emit(record);
-        }
-    }
 }

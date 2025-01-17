@@ -20,6 +20,10 @@
         font-size: 1rem;
         cursor: pointer;
         width: fit-content;
+
+        &--inline {
+            padding: 0;
+        }
     }
 }
 
@@ -30,6 +34,11 @@
 .navbar {
     height: 100%;
     width: 100%;
+
+    &>.nav--vertical {
+        border-right: 1px solid var(--clr-primary);
+        padding-block: var(--space-large);
+    }
 }
 
 .nav {
@@ -55,7 +64,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-xsm);
-    color: var(--clr-text);
+    color: var(--clr-text-mute);
     padding: var(--space-xsm);
     cursor: pointer;
     text-decoration: none;
@@ -67,18 +76,19 @@
         font-size: 1.1rem;
     }
 
-    &.active,
     &:hover {
         color: var(--clr-primary);
     }
 
     &.active {
+        background: var(--clr-bg-elevated);
         position: relative;
+        color: var(--clr-text);
 
         &::after {
             content: "";
             position: absolute;
-            left: 0;
+            left: var(--space-xsm);
             top: 0;
             height: 100%;
             width: 2px;
@@ -92,13 +102,76 @@
 }
 
 @media (max-width: 480px) {
-    .nav__item__link {
-        --fs: var(--fs-regular);
+    .navbar {
+        &>.nav--vertical {
+            border-top: 1px solid var(--clr-primary);
+            border-right: none;
+            padding-inline: var(--space-reg);
+            margin-block: var(--space-xsm);
+        }
+    }
+
+    .nav,
+    .nav--vertical {
         flex-direction: row;
-        justify-content: flex-start;
+        justify-content: space-evenly;
+        gap: var(--space-reg);
+    }
+
+    .nav__item__link.active::after {
+        top: unset;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+    }
+
+    .nav__item:last-of-type {
+        margin: 0;
     }
 
     .nav__toggle {
-        display: block;
+        display: none;
+    }
+}
+
+.card {
+    background: var(--clr-bg-elevated);
+    border-radius: var(--br-reg);
+    padding: var(--space-reg);
+
+    &__header {
+        display: flex;
+        gap: var(--space-reg);
+    }
+}
+
+.form {
+    &__group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xsm);
+        padding-block: var(--space-sm);
+
+        &>* {
+            width: 100%;
+        }
+    }
+}
+
+.popup {
+    position: absolute;
+    bottom: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 2rem;
+    background: var(--clr-secondary);
+    color: var(--clr-text);
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+    transition: opacity 2.5s ease-out;
+
+    &--hidden {
+        opacity: 0;
     }
 }
