@@ -1,35 +1,71 @@
 {{ nothing() }}
-<div class="container container--max-height border-right " (contextmenu)="onContextMenu($event, undefined)">
+<div
+    class="container container--max-height border-right"
+    (contextmenu)="onContextMenu($event, undefined)"
+>
     <div class="top-bar">
-        <label for="record-search" class="visually-hidden">Search</label>
-        <input id="record-search" placeholder="Search..." />
+        <label
+            for="record-search"
+            class="visually-hidden"
+            >Search</label
+        >
+        <span class="rich-input">
+            <input
+                class="rich-input__input"
+                id="record-search"
+                placeholder="Search..."
+            />
+            <fa-icon
+                class="rich-input__after"
+                [icon]="faMagnifyingGlass"
+            />
+        </span>
     </div>
-    <lib-tree [dataSource]="dataSource" bindLabel="name">
-        <ng-template #parentNode let-node="node">
+    <lib-tree
+        [dataSource]="dataSource"
+        bindLabel="name"
+    >
+        <ng-template
+            #parentNode
+            let-node="node"
+        >
             <div
                 class="node"
                 (contextmenu)="onContextMenu($event, node)"
                 [class.selected]="selectedRecord()?.id === node.id"
-                (click)="toggleNode($event, node)"
             >
-                <fa-icon
-                    class="icon"
-                    [icon]="dataSource.isNodeExpanded(node) ? folderOpenIcon : folderIcon"
-                />
-                <ng-container
-                    [ngTemplateOutlet]="nodeTemplate"
-                    [ngTemplateOutletContext]="{ node: node }"
-                ></ng-container>
+                <button
+                    class="btn btn--icon p-0"
+                    (click)="toggleNode($event, node)"
+                >
+                    <span class="visually-hidden">Toggle</span>
+                    <fa-icon
+                        class="icon"
+                        [icon]="dataSource.isNodeExpanded(node) ? folderOpenIcon : folderIcon"
+                    />
+                </button>
+                <div class="flex-grow-1" (click)="selectNode($event, node)">
+                    <ng-container
+                        [ngTemplateOutlet]="nodeTemplate"
+                        [ngTemplateOutletContext]="{ node: node }"
+                    ></ng-container>
+                </div>
             </div>
         </ng-template>
-        <ng-template #leafNode let-node="node">
+        <ng-template
+            #leafNode
+            let-node="node"
+        >
             <div
                 class="node leaf"
                 [class.selected]="selectedRecord()?.id === node.id"
                 (contextmenu)="onContextMenu($event, node)"
                 (click)="selectNode($event, node)"
             >
-                <fa-icon class="icon" [icon]="keyIcon" />
+                <fa-icon
+                    class="icon"
+                    [icon]="keyIcon"
+                />
                 <ng-container
                     [ngTemplateOutlet]="nodeTemplate"
                     [ngTemplateOutletContext]="{ node: node }"
@@ -49,18 +85,21 @@
     <button (click)="removeNode()">Remove</button>
     <button (click)="renameNode($event)">Rename</button>
 </div>
-<ng-template #nodeTemplate let-node="node">
+<ng-template
+    #nodeTemplate
+    let-node="node"
+>
     @if (nodeRenaming()?.id === node.id) {
-        <input
-            #renameInput
-            id="nodeRename"
-            type="text"
-            [value]="node.name"
-            (blur)="cancelRename()"
-            (keyup.enter)="completeRename()"
-            (keyup.escape)="cancelRename()"
-        />
+    <input
+        #renameInput
+        id="nodeRename"
+        type="text"
+        [value]="node.name"
+        (blur)="cancelRename()"
+        (keyup.enter)="completeRename()"
+        (keyup.escape)="cancelRename()"
+    />
     } @else {
-        <p>{{ node.id }}{{ node.name }}</p>
+    <p>{{ node.id }}{{ node.name }}</p>
     }
 </ng-template>

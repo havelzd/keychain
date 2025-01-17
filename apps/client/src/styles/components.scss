@@ -32,12 +32,11 @@
 */
 
 .navbar {
-    height: 100%;
     width: 100%;
 
-    &>.nav--vertical {
+    & > .nav--vertical {
         border-right: 1px solid var(--clr-primary);
-        padding-block: var(--space-large);
+        padding-block: var(--space-sm);
     }
 }
 
@@ -72,7 +71,7 @@
     align-items: center;
     font-size: var(--fs);
 
-    &>fa-icon {
+    & > fa-icon {
         font-size: 1.1rem;
     }
 
@@ -103,11 +102,10 @@
 
 @media (max-width: 480px) {
     .navbar {
-        &>.nav--vertical {
+        & > .nav--vertical {
             border-top: 1px solid var(--clr-primary);
             border-right: none;
-            padding-inline: var(--space-reg);
-            margin-block: var(--space-xsm);
+            padding: 0;
         }
     }
 
@@ -118,16 +116,20 @@
         gap: var(--space-reg);
     }
 
+    .nav__item {
+        flex: 1;
+
+        &:last-of-type {
+            margin: 0;
+        }
+    }
+
     .nav__item__link.active::after {
         top: unset;
         bottom: 0;
         left: 0;
         width: 100%;
         height: 2px;
-    }
-
-    .nav__item:last-of-type {
-        margin: 0;
     }
 
     .nav__toggle {
@@ -142,6 +144,7 @@
 
     &__header {
         display: flex;
+        align-items: center;
         gap: var(--space-reg);
     }
 }
@@ -153,7 +156,7 @@
         gap: var(--space-xsm);
         padding-block: var(--space-sm);
 
-        &>* {
+        & > * {
             width: 100%;
         }
     }
@@ -173,5 +176,34 @@
 
     &--hidden {
         opacity: 0;
+    }
+}
+
+.rich-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-inline: var(--space-sm);
+    gap: var(--space-xsm);
+    border-radius: var(--br-reg);
+    border: 1px solid var(--clr-secondary);
+    background: var(--clr-bg-elevated);
+
+    &__input {
+        appearance: none;
+        width: 100%;
+        border: none;
+        border-radius: 0;
+        outline: none;
+
+        &:focus-within {
+            outline: none;
+        }
+    }
+
+    &__before,
+    &__after {
+        color: var(--clr-text-mute);
+        font-size: var(--fs-sm);
     }
 }

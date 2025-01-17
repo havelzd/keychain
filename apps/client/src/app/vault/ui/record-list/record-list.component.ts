@@ -14,7 +14,12 @@ import { CommonModule, NgStyle } from "@angular/common";
 import { RecordEntity, RecordGroup, RecordItem } from "../../store/records/records.models";
 import { TreeComponent, StaticTreeDataSource } from "@keychain/ui";
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
-import { faFolder, faFolderOpen, faKey } from "@fortawesome/free-solid-svg-icons";
+import {
+    faFolder,
+    faFolderOpen,
+    faKey,
+    faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
 
 export type RecordEvent = {
     record: RecordEntity;
@@ -37,6 +42,8 @@ export class RecordListComponent implements OnChanges {
     recordRenamed = output<RecordEvent>();
     recordRemoved = output<RecordEntity>();
     recordSelected = output<RecordEntity>();
+
+    protected readonly faMagnifyingGlass = faMagnifyingGlass;
 
     // Tree
     protected readonly folderIcon = faFolder;

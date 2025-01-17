@@ -1,10 +1,4 @@
-import {
-    patchState,
-    signalStore,
-    withHooks,
-    withMethods,
-    withState,
-} from "@ngrx/signals";
+import { patchState, signalStore, withHooks, withMethods, withState } from "@ngrx/signals";
 import {
     addEntities,
     removeEntity,
@@ -108,6 +102,7 @@ export const RecordsStore = signalStore(
             } else {
                 patchState(store, setEntity(newRecord as RecordEntity));
             }
+            patchState(store, { selectedRecord: newRecord });
         },
         renameRecord: (record: RecordEntity, name: string): void => {
             patchState(store, updateEntity({ id: record.id, changes: { name } }));
