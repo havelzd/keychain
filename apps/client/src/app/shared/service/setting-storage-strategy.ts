@@ -1,5 +1,5 @@
 import { inject, InjectionToken } from "@angular/core";
-import { APP_PLATFORM, IS_WEB_OR_TAURI } from "../tokens/platform.token";
+import { APP_PLATFORM, IsWebOrTauri } from "../tokens/platform.token";
 import { FileStorage } from "./file-setting-storage";
 import { RemoteStorage } from "./remote-setting-storage";
 
@@ -7,7 +7,7 @@ export const StorageType = new InjectionToken<StorageStrategy>("SettingStorageSt
 export const BrowserStorageType = new InjectionToken<Storage>("BrowserStorageType");
 
 export const StorageStrategyFactory = () => {
-    const appPlatform: APP_PLATFORM = inject(IS_WEB_OR_TAURI);
+    const appPlatform: APP_PLATFORM = inject(IsWebOrTauri);
     if (appPlatform === APP_PLATFORM.TAURI) {
         return FileStorage;
     } else if (appPlatform === APP_PLATFORM.WEB) {

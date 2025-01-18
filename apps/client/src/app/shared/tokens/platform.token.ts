@@ -6,6 +6,6 @@ export enum APP_PLATFORM {
     TAURI, // 1
 }
 
-export const IS_WEB_OR_TAURI = new InjectionToken<APP_PLATFORM>("PLATFORM_TOKEN");
+export const IsWebOrTauri = new InjectionToken<APP_PLATFORM>("PLATFORM_TOKEN");
 
-export const IS_WEB_OR_TAURI_FACTORY = () => (isTauri() ? APP_PLATFORM.TAURI : APP_PLATFORM.WEB);
+export const isWebOrTauriFactory = () => (isTauri() ? APP_PLATFORM.TAURI : APP_PLATFORM.WEB);

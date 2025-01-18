@@ -1,9 +1,7 @@
 <div class="container--fluid">
     <div class="flex h-100">
-        <app-record-list [records]="records()" [selectedRecord]="selectedRecord()"
-            (recordCreated)="onRecordCreated($event)" (recordRenamed)="onRecordRenamed($event)"
-            (recordGroupCreated)="onRecordGroupCreated($event)" (recordRemoved)="onRecordRemoved($event)"
-            (recordSelected)="onRecordSelected($event)" />
+        <app-record-list
+            />
         @if (selectedRecordItem()) {
         <app-record-detail [record]="selectedRecordItem()" />
         } @else if (selectedRecordGroup()) {

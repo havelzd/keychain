@@ -30,17 +30,17 @@ export class VaultShellComponent {
     });
     protected readonly records = this.recordsStore.entities;
 
-    onRecordCreated(selectedNode: RecordGroup | undefined) {
-        this.recordsStore.createRecord(selectedNode);
-    }
+    // onRecordCreated(selectedNode: RecordGroup | undefined) {
+    //     this.recordsStore.createRecord(selectedNode);
+    // }
+    //
+    // onRecordGroupCreated(selectedNode: RecordEntity | undefined) {
+    //     this.recordsStore.createRecordGroup(selectedNode);
+    // }
 
-    onRecordGroupCreated(selectedNode: RecordEntity | undefined) {
-        this.recordsStore.createRecordGroup(selectedNode);
-    }
-
-    onRecordRenamed(event: RecordEvent) {
-        this.recordsStore.renameRecord(event.record, event.value);
-    }
+    // onRecordRenamed(event: RecordEvent) {
+    //     this.recordsStore.renameRecord(event.record, event.value);
+    // }
 
     onRecordRemoved(record: RecordEntity) {
         this.recordsStore.removeRecord(record);

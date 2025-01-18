@@ -1,11 +1,11 @@
 import { inject, Injectable, Renderer2 } from "@angular/core";
-import { IS_WEB_OR_TAURI } from "../tokens/platform.token";
+import { IsWebOrTauri } from "../tokens/platform.token";
 import { StorageStrategy, StorageType } from "./setting-storage-strategy";
 import { configDir } from "@tauri-apps/api/path";
 
 @Injectable({ providedIn: "root" })
 export class SettingService {
-    private readonly platformToken = inject(IS_WEB_OR_TAURI);
+    private readonly platformToken = inject(IsWebOrTauri);
     private readonly settingStorage: StorageStrategy = inject(StorageType);
     // private readonly renderer = inject(Renderer2);
 

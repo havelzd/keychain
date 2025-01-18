@@ -5,10 +5,7 @@ import {
     HostListener,
     signal,
     viewChild,
-    OnChanges,
-    input,
-    output,
-    SimpleChanges,
+    inject,
 } from "@angular/core";
 import { CommonModule, NgStyle } from "@angular/common";
 import { RecordEntity, RecordGroup, RecordItem } from "../../store/records/records.models";
@@ -20,6 +17,8 @@ import {
     faKey,
     faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
+import { RecordsStore } from "../../store/records/records.store";
+import { takeUntilDestroyed, toObservable } from "@angular/core/rxjs-interop";
 
 export type RecordEvent = {
     record: RecordEntity;
@@ -34,27 +33,39 @@ export type RecordEvent = {
     styleUrl: "./record-list.component.scss",
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RecordListComponent implements OnChanges {
-    records = input.required<RecordEntity[]>();
-    selectedRecord = input<RecordEntity | undefined>();
-    recordCreated = output<RecordGroup | undefined>();
-    recordGroupCreated = output<RecordEntity | undefined>();
-    recordRenamed = output<RecordEvent>();
-    recordRemoved = output<RecordEntity>();
-    recordSelected = output<RecordEntity>();
+export class RecordListComponent {
+    /** Records store */
+    private readonly recordsStore = inject(RecordsStore);
 
+    /** List of available records */
+    private readonly records = this.recordsStore.entities;
+
+    protected readonly selectedRecord = this.recordsStore.selectedRecord;
+
+    /** Search icon */
     protected readonly faMagnifyingGlass = faMagnifyingGlass;
 
-    // Tree
+    /** Tree root node toggle collapsed icon */
     protected readonly folderIcon = faFolder;
+
+    /** Tree root node toggle opened icon */
     protected readonly folderOpenIcon = faFolderOpen;
+
+    /** Tree leaf node icon */
     protected readonly keyIcon = faKey;
+
+    /** Node trackBy function required by TreeDataSource */
     protected readonly trackBy = (_idx: number, value: RecordEntity) => value.id;
-    // protected readonly treeTrackBy = (val: RecordEntity) => val.id;
+
+    /** hasChildren function indicating wheter node is root */
     protected readonly hasChildren = (node: RecordEntity) =>
         "records" in node ? node?.records != null : false;
+
+    /** getChildren function retrieving nodes children */
     protected readonly getChildren = (node: RecordEntity) =>
         "records" in node ? node?.records : [];
+
+    /** TreeDataSource */
     protected readonly dataSource = new StaticTreeDataSource(
         [],
         this.hasChildren,
@@ -73,13 +84,17 @@ export class RecordListComponent implements OnChanges {
     protected nodeRenaming = signal<RecordEntity | undefined>(undefined);
     protected renameInput = viewChild<ElementRef<HTMLInputElement>>("renameInput");
 
-    ngOnChanges(changes: SimpleChanges) {
-        console.log("SELECTED RECORD INP", this.selectedRecord());
-        if (changes["records"]) {
-            console.log(this.records());
-            this.dataSource.nodes = this.records() ?? [];
-        }
-    }
+    private readonly recordSubscription = toObservable(this.records)
+        .pipe(takeUntilDestroyed())
+        .subscribe({
+            next: (records) => (this.dataSource.nodes = records ?? []),
+        });
+
+    // ngOnChanges(changes: SimpleChanges) {
+    //     if (changes["records"]) {
+    //         this.dataSource.nodes = this.records() ?? [];
+    //     }
+    // }
 
     onContextMenu($event: MouseEvent | PointerEvent, node: RecordGroup | undefined) {
         $event.stopPropagation();
@@ -96,7 +111,7 @@ export class RecordListComponent implements OnChanges {
     }
 
     @HostListener("document:mousedown", ["$event"])
-    onDocumentClick(event: MouseEvent): void {
+    protected onDocumentClick(event: MouseEvent): void {
         if (
             this.contextMenu() &&
             !this.contextMenu()?.nativeElement?.contains(event.target as Node)
@@ -105,32 +120,36 @@ export class RecordListComponent implements OnChanges {
         }
     }
 
-    toggleNode($event: Event, node: RecordItem) {
+    protected toggleNode($event: Event, node: RecordItem) {
         $event.stopPropagation();
         this.dataSource.toggleNode(node);
-        this.recordSelected.emit(node);
         this.selectRecord(node);
     }
 
-    addNode() {
+    protected addNode() {
+        let node;
         if (this.contextMenuNode != null && "records" in this.contextMenuNode) {
             this.dataSource.toggleNode(this.contextMenuNode, true);
-            this.recordCreated.emit(this.contextMenuNode);
+            node = this.contextMenuNode;
         } else {
-            this.recordCreated.emit(undefined);
+            node = undefined;
         }
         this.closeContextMenu();
+        const newNode = this.recordsStore.createRecord(node);
+        setTimeout(() => {
+            this.nodeRenaming.set(newNode);
+        });
     }
 
-    addRecordGroup() {
+    protected addRecordGroup() {
         if (this.contextMenuNode != null && "records" in this.contextMenuNode) {
             this.dataSource.toggleNode(this.contextMenuNode, true);
         }
-        this.recordGroupCreated.emit(this.contextMenuNode);
         this.closeContextMenu();
+        this.recordsStore.createRecordGroup(this.contextMenuNode);
     }
 
-    renameNode($event: Event) {
+    protected renameNode($event: Event) {
         this.nodeRenaming.set(this.contextMenuNode);
         $event.stopPropagation();
         setTimeout(() => {
@@ -141,22 +160,22 @@ export class RecordListComponent implements OnChanges {
         this.closeContextMenu();
     }
 
-    cancelRename() {
+    protected cancelRename() {
         this.nodeRenaming.set(undefined);
     }
 
-    completeRename() {
+    protected completeRename() {
         const newName = this.renameInput()?.nativeElement.value;
         const node = this.nodeRenaming();
         if (node != null && newName) {
-            this.recordRenamed.emit({ record: node, value: newName });
+            this.recordsStore.renameRecord(node, newName);
         }
         this.nodeRenaming.set(undefined);
     }
 
-    removeNode() {
+    protected removeNode() {
         if (this.contextMenuNode) {
-            this.recordRemoved.emit(this.contextMenuNode);
+            this.recordsStore.removeRecord(this.contextMenuNode);
         }
     }
 
@@ -170,10 +189,10 @@ export class RecordListComponent implements OnChanges {
 
     protected selectNode($event: MouseEvent, node: RecordEntity) {
         $event.stopPropagation();
-        this.selectRecord(node);
+        this.recordsStore.selectItem(node);
     }
 
     private selectRecord(record: RecordEntity) {
-        this.recordSelected.emit(record);
+        this.recordsStore.selectItem(record);
     }
 }

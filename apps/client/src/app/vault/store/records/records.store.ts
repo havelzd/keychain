@@ -86,7 +86,7 @@ export const RecordsStore = signalStore(
         },
     }),
     withMethods((store) => ({
-        createRecord: (parent: RecordGroup | undefined): void => {
+        createRecord: (parent: RecordGroup | undefined): RecordItem => {
             const newRecord: RecordItem = {
                 id: new Date().getTime(),
                 name: "New Record",
@@ -103,11 +103,12 @@ export const RecordsStore = signalStore(
                 patchState(store, setEntity(newRecord as RecordEntity));
             }
             patchState(store, { selectedRecord: newRecord });
+            return newRecord;
         },
         renameRecord: (record: RecordEntity, name: string): void => {
             patchState(store, updateEntity({ id: record.id, changes: { name } }));
         },
-        createRecordGroup(parent: RecordEntity | undefined): void {
+        createRecordGroup(parent: RecordEntity | undefined): RecordGroup {
             const recordGroup: RecordGroup = {
                 id: new Date().getTime(),
                 name: "New Record Group",
@@ -119,6 +120,7 @@ export const RecordsStore = signalStore(
             } else {
                 patchState(store, setEntity(recordGroup as RecordEntity));
             }
+            return recordGroup;
         },
         removeRecord(record: RecordEntity): void {
             patchState(store, removeEntity(record.id));

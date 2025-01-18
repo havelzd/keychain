@@ -9,8 +9,8 @@ import { provideRouter } from "@angular/router";
 import { appRoutes } from "./app.routes";
 import {
     APP_PLATFORM,
-    IS_WEB_OR_TAURI,
-    IS_WEB_OR_TAURI_FACTORY,
+    IsWebOrTauri,
+    isWebOrTauriFactory,
 } from "./shared/tokens/platform.token";
 import { SettingService } from "./shared/service/setting.service";
 import {
@@ -20,7 +20,7 @@ import {
 } from "./shared/service/setting-storage-strategy";
 import { provideClientHydration } from "@angular/platform-browser";
 
-const storageFactory = (platform: APP_PLATFORM = inject(IS_WEB_OR_TAURI)) => {
+const storageFactory = (platform: APP_PLATFORM = inject(IsWebOrTauri)) => {
     return platform === APP_PLATFORM.WEB ? localStorage : null;
 };
 
@@ -36,8 +36,8 @@ export const appConfig: ApplicationConfig = {
         provideClientHydration(),
         provideExperimentalZonelessChangeDetection(),
         provideRouter(appRoutes),
-        { provide: IS_WEB_OR_TAURI, useFactory: IS_WEB_OR_TAURI_FACTORY },
-        { provide: BrowserStorageType, useFactory: storageFactory, deps: [IS_WEB_OR_TAURI] },
+        { provide: IsWebOrTauri, useFactory: isWebOrTauriFactory },
+        { provide: BrowserStorageType, useFactory: storageFactory, deps: [IsWebOrTauri] },
         { provide: StorageType, useFactory: StorageStrategyFactory },
         {
             provide: APP_INITIALIZER,
