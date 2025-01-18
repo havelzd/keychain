@@ -34,7 +34,7 @@
 .navbar {
     width: 100%;
 
-    & > .nav--vertical {
+    &>.nav--vertical {
         border-right: 1px solid var(--clr-primary);
         padding-block: var(--space-sm);
     }
@@ -71,7 +71,7 @@
     align-items: center;
     font-size: var(--fs);
 
-    & > fa-icon {
+    &>fa-icon {
         font-size: 1.1rem;
     }
 
@@ -102,7 +102,7 @@
 
 @media (max-width: 480px) {
     .navbar {
-        & > .nav--vertical {
+        &>.nav--vertical {
             border-top: 1px solid var(--clr-primary);
             border-right: none;
             padding: 0;
@@ -156,12 +156,13 @@
         gap: var(--space-xsm);
         padding-block: var(--space-sm);
 
-        & > * {
+        &>* {
             width: 100%;
         }
     }
 }
 
+/** Popup */
 .popup {
     position: absolute;
     bottom: 30%;
@@ -178,6 +179,10 @@
         opacity: 0;
     }
 }
+
+/** Rich Input
+*  A rich input field with before and after text
+*/
 
 .rich-input {
     display: flex;

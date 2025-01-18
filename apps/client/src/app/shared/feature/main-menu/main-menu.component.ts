@@ -2,13 +2,12 @@ import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
 import { MENU_ITEMS } from "./menu-items";
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { NgClass } from "@angular/common";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 
 @Component({
     selector: "app-main-menu",
     standalone: true,
-    imports: [FaIconComponent, NgClass, RouterLink, RouterLinkActive],
+    imports: [FaIconComponent, RouterLink, RouterLinkActive],
     templateUrl: "./main-menu.component.html",
     styleUrl: "./main-menu.component.scss",
     changeDetection: ChangeDetectionStrategy.OnPush,

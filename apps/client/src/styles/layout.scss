@@ -1,3 +1,4 @@
+/** Containers */
 .container {
     padding-inline: var(--space-reg);
 
@@ -16,9 +17,13 @@
     }
 }
 
+/** Grid */
+
 .grid {
     display: grid;
 }
+
+/** Flex */
 
 .flex {
     display: flex;
@@ -34,4 +39,8 @@
 
 .f-grow {
     flex-grow: grow;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
 }
