@@ -3,7 +3,6 @@ import {
     ApplicationConfig,
     inject,
     provideExperimentalZonelessChangeDetection,
-    Renderer2,
 } from "@angular/core";
 import { provideRouter } from "@angular/router";
 import { appRoutes } from "./app.routes";
@@ -18,7 +17,6 @@ import {
     StorageStrategyFactory,
     StorageType,
 } from "./shared/service/setting-storage-strategy";
-import { provideClientHydration } from "@angular/platform-browser";
 
 const storageFactory = (platform: APP_PLATFORM = inject(IsWebOrTauri)) => {
     return platform === APP_PLATFORM.WEB ? localStorage : null;
@@ -33,7 +31,6 @@ const initFactory = (settingService: SettingService) => {
 export const appConfig: ApplicationConfig = {
     providers: [
         // provideZoneChangeDetection({ eventCoalescing: true }),
-        provideClientHydration(),
         provideExperimentalZonelessChangeDetection(),
         provideRouter(appRoutes),
         { provide: IsWebOrTauri, useFactory: isWebOrTauriFactory },

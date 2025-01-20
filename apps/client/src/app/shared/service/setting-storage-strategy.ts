@@ -12,9 +12,9 @@ export const StorageStrategyFactory = () => {
         return FileStorage;
     } else if (appPlatform === APP_PLATFORM.WEB) {
         return RemoteStorage;
+    } else {
+        return null;
     }
-
-    throw new Error("Unknown platform " + appPlatform);
 };
 
 export interface StorageStrategy {
