@@ -1,0 +1,11 @@
+.card {
+    background: var(--clr-bg-elevated);
+    border-radius: var(--br-reg);
+    padding: var(--space-reg);
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: var(--space-reg);
+    }
+}

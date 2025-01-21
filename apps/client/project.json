@@ -28,7 +28,7 @@
                 "ssr": {
                     "entry": "apps/client/src/server.ts"
                 },
-                "prerender": true
+                "prerender": false
             },
             "configurations": {
                 "production": {

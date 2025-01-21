@@ -1,8 +1,4 @@
-@import "styles/reset.scss" layer(reset);
-@import "styles/layout.scss" layer(layout);
-@import "styles/base.scss" layer(base);
-@import "styles/components.scss" layer(components);
-@import "styles/utils.scss" layer(utils);
+@import "styles/main.scss" layer(base);
 
 @layer app {
     .main-wrapper {

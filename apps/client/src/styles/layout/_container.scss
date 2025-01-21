@@ -1,9 +1,11 @@
-/** Containers */
+@use "../variables/" as *;
 .container {
-    padding-inline: var(--space-reg);
+    margin-inline: auto;
+    width: min(100% - 2 * var(--space-reg), 80rem);
 
     &--fluid {
         width: 100%;
+        margin-inline: 2rem;
         max-width: 100%;
     }
 

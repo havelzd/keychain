@@ -1,11 +1,8 @@
-<div class="container--fluid">
-    <div class="flex h-100">
-        <app-record-list
-            />
-        @if (selectedRecordItem()) {
-        <app-record-detail [record]="selectedRecordItem()" />
-        } @else if (selectedRecordGroup()) {
-        <app-record-group-detail [recordGroup]="selectedRecordGroup()" />
-        }
-    </div>
+<div class="flex h-100">
+    <app-record-list />
+    @if (selectedRecordItem()) {
+    <app-record-detail [record]="selectedRecordItem()" />
+    } @else if (selectedRecordGroup()) {
+    <app-record-group-detail [recordGroup]="selectedRecordGroup()" />
+    }
 </div>

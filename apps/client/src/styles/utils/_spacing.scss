@@ -1,0 +1,32 @@
+@use "../variables/spacing" as *;
+
+.section {
+    padding-block: 1rem;
+}
+
+
+@each $name, $value in $space-map {
+    .m {
+        &-#{$name} {
+            margin: $value;
+        }
+        &x-#{$name} {
+            margin-block: $value;
+        }
+        &y-#{$name} {
+            margin-inline: $value;
+        }
+    }
+
+    .p {
+        &-#{$name} {
+            padding: $value;
+        }
+        &x-#{$name} {
+            padding-block: $value;
+        }
+        &y-#{$name} {
+            padding-inline: $value;
+        }
+    }
+}

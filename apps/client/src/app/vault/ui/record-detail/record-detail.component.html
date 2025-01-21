@@ -1,73 +1,39 @@
-<div class="container">
-    @if (record()) {
-    <section class="card">
-        @if (!isEdit()) {
-        <div class="card__header">
-            <h2>{{ record()?.name }}</h2>
-            <button
-                class="btn btn--icon"
-                (click)="isEdit.set(true)"
-            >
-                <span class="visually-hidden">Edit</span>
-                <fa-icon [icon]="faPenToSquare" />
-            </button>
-        </div>
-        <div class="py-xsm">
-            <p class="mute">Type</p>
-            <p class="bb-sm">{{ recordType() }}</p>
-        </div>
-        <div class="py-xsm">
-            <p class="mute">Username</p>
-            <p
-                class="pointer bb-sm underline"
-                (click)="copyToClipBoard(record()?.username)"
-            >
-                {{ record()?.username }}
-            </p>
-        </div>
-        <div class="py-xsm">
-            <p class="mute">Password</p>
-            <p
-                class="password-container pointer bb-sm"
-                (click)="copyToClipBoard(record()?.password)"
-            >
-                {{ password() }}
-                <button class="btn btn--icon btn--icon--inline">
-                    @if (passwordVisible()) {
-                    <fa-icon
-                        [icon]="eyeSlashIcon"
-                        (click)="$event.stopPropagation(); passwordVisible.set(false)"
-                    />
-                    } @else {
-                    <fa-icon
-                        [icon]="eyeIcon"
-                        (click)="$event.stopPropagation(); passwordVisible.set(true)"
-                    />
-                    }
-                </button>
-            </p>
-        </div>
-        <div class="py-xsm">
-            <p class="mute">Description</p>
-            <label
-                for="view_description_dis"
-                class="visually-hidden"
-                >Description</label
-            >
-            <textarea
-                id="view_description_dis"
-                placeholder="No description"
-                data-noresize
-                disabled
-                >{{ record()?.description }}</textarea
-            >
-        </div>
-        } @else {
-        }
-    </section>
-    } @else {
-    <div class="container-middle">
-        <p class="no-content-msg">No record selected.</p>
+<section class="card">
+    <div class="card__header">
+        <h2>{{ record()?.name }}</h2>
+        <button class="btn btn--icon" (click)="isEdit.set(true)">
+            <span class="visually-hidden">Edit</span>
+            <fa-icon [icon]="faPenToSquare" />
+        </button>
     </div>
-    }
-</div>
+    <div class="py-xsm">
+        <p class="mute">Type</p>
+        <p class="bb-sm">{{ recordType() }}</p>
+    </div>
+    <div class="py-xsm">
+        <p class="mute">Username</p>
+        <p class="pointer bb-sm underline" (click)="copyToClipBoard(record()?.username)">
+            {{ record()?.username }}
+        </p>
+    </div>
+    <div class="py-xsm">
+        <p class="mute">Password</p>
+        <p class="password-container pointer bb-sm" (click)="copyToClipBoard(record()?.password)">
+            {{ password() }}
+            <button class="btn btn--icon btn--icon--inline">
+                <span class="visually-hidden">Toggle password visibility</span>
+                @if (passwordVisible()) {
+                <fa-icon [icon]="eyeSlashIcon" (click)="$event.stopPropagation(); passwordVisible.set(false)" />
+                } @else {
+                <fa-icon [icon]="eyeIcon" (click)="$event.stopPropagation(); passwordVisible.set(true)" />
+                }
+            </button>
+        </p>
+    </div>
+    <div class="py-xsm">
+        <p class="mute">Description</p>
+        <label for="view_description_dis" class="visually-hidden">Description</label>
+        <textarea id="view_description_dis" placeholder="No description" data-noresize disabled>{{ record()?.description
+            }}</textarea>
+    </div>
+</section>

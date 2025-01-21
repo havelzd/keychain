@@ -73,15 +73,7 @@ export const RecordsStore = signalStore(
         onInit: (store) => {
             patchState(store, addEntities(initialRecords));
             patchState(store, {
-                selectedRecord: {
-                    id: 10,
-                    name: "GrandChild1",
-                    type: RecordType.LOGIN,
-                    description: "",
-                    username: "user",
-                    password: "user",
-                    createdOn: new Date("2024-01-01"),
-                },
+                selectedRecord: initialRecords[0],
             });
         },
     }),

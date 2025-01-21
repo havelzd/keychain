@@ -1,5 +1,24 @@
-<article class="flex f-wrap f-grow">
-    @for(record of records(); track $index){
-    <app-record-detail [record]="record" />
-    }
+<article class="container--fluid">
+    <h1>Record Group</h1>
+    <p>Record group description</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec pur</p>
+    <section class="section flow">
+        <h3>
+            Records
+            <div class="| flex-group float-right">
+                <button class="btn btn--icon">
+                    <span class="visually-hidden">Edit</span>
+                    <!-- <fa-icon [icon]="faPenToSquare" /> -->
+                </button>
+                <button class="btn btn--icon" >
+                    <span class="visually-hidden">Delete</span>
+                </button>
+            </div>
+        </h3>
+        <div class="cluster">
+            @for(record of records(); track $index){
+            <app-record-detail [record]="record" />
+            }
+        </div>
+    </section>
 </article>

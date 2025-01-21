@@ -1,0 +1,20 @@
+.btn {
+    border-radius: var(--br-reg);
+    padding: var(--space-reg);
+
+    &--primary {
+        background: var(--clr-primary);
+    }
+
+    &--icon {
+        background: none;
+        border: none;
+        font-size: 1rem;
+        cursor: pointer;
+        width: fit-content;
+
+        &--inline {
+            padding: 0;
+        }
+    }
+}

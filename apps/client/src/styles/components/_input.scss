@@ -1,0 +1,38 @@
+/** Rich Input
+*  A rich input field with before and after text
+*/
+
+@mixin input-base {
+    appearance: none;
+}
+
+
+.rich-input {
+    @include input-base;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-sm);
+    gap: var(--space-xsm);
+    border-radius: var(--br-reg);
+    border: 1px solid var(--clr-secondary);
+
+    &__input {
+        appearance: none;
+        width: 100%;
+        border: none;
+        border-radius: 0;
+        outline: none;
+        background: transparent;
+
+        &:focus-within {
+            outline: none;
+        }
+    }
+
+    &__before,
+    &__after {
+        color: var(--clr-text-mute);
+        font-size: var(--fs-sm);
+    }
+}

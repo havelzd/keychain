@@ -4,6 +4,7 @@ import express from "express";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import bootstrap from "./main.server";
+import compression from "compression";
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, "../browser");
@@ -23,6 +24,8 @@ const commonEngine = new CommonEngine();
  * });
  * ```
  */
+
+app.use(compression());
 
 /**
  * Serve static files from /browser
