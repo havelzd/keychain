@@ -3,11 +3,13 @@ import { RecordEntity, RecordGroup, RecordItem } from "../../store/records/recor
 import { Clipboard } from "@angular/cdk/clipboard";
 import { Popup } from "@keychain/ui";
 import { RecordDetailComponent } from "../record-detail/record-detail.component";
+import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 
 @Component({
     selector: "app-record-group-detail",
     standalone: true,
-    imports: [RecordDetailComponent],
+    imports: [RecordDetailComponent, FaIconComponent],
     providers: [Clipboard, Popup],
     templateUrl: "./record-group-detail.component.html",
     styleUrl: "./record-group-detail.component.scss",
@@ -15,8 +17,11 @@ import { RecordDetailComponent } from "../record-detail/record-detail.component"
 export class RecordGroupDetailComponent {
     recordGroup = input.required<RecordGroup | undefined>();
 
-    clipboard = inject(Clipboard);
-    popupService = inject(Popup);
+    private clipboard = inject(Clipboard);
+    private popupService = inject(Popup);
+
+    protected faPenToSquare  = faPenToSquare;
+    protected faTrash = faTrash;
 
     protected records = computed(() => {
         // flatten the records to get RecordItems[]
@@ -35,7 +40,6 @@ export class RecordGroupDetailComponent {
         event.preventDefault();
         event.stopPropagation();
         this.clipboard.copy(record.password);
-        console.log("Copied to clipboard", record.password);
         this.popupService.showPopup({ body: "Copied to clipboard" });
     }
 }

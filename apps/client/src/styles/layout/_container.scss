@@ -1,12 +1,15 @@
 @use "../variables/" as *;
 .container {
-    margin-inline: auto;
     width: min(100% - 2 * var(--space-reg), 80rem);
 
+    &--center {
+        margin-inline: auto;
+    }
+
     &--fluid {
-        width: 100%;
-        margin-inline: 2rem;
+        min-width: fit-content;
         max-width: 100%;
+        margin-inline: 2rem;
     }
 
     &--max-height {

@@ -1,0 +1,37 @@
+.section-header {
+    display: flex;
+    padding: var(--space-reg) 0;
+}
+
+.section-header__search {
+    width: max-content;
+    margin: 0 auto;
+}
+
+.collapsible-menu {
+    position: static;
+}
+
+.collapse-menu-toggle {
+    appearance: none;
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .collapse-menu-toggle {
+        display: inline;
+    }
+
+    .collapsible-menu {
+        border-radius: var(--space-xsm);
+        border: none;
+        display: none;
+        position: absolute;
+        z-index: 1000;
+        background: var(--clr-bg)
+    }
+
+    .collapsible-menu[data-visible=true] {
+        display: block;
+    }
+}

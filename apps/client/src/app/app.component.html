@@ -1,9 +1,11 @@
-{{ nothing() }}
-<div class="main-wrapper">
-    <aside>
-        <app-main-menu />
-    </aside>
-    <main>
-        <router-outlet></router-outlet>
-    </main>
+<div class="app-wrapper">
+    <app-header id="main-header" />
+    <div class="main-wrapper">
+        <aside>
+            <app-main-menu />
+        </aside>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+    </div>
 </div>

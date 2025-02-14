@@ -1,5 +1,9 @@
-<div class="flex h-100">
-    <app-record-list />
+<div class="flex h-100 w-full my-2">
+    <app-record-list
+        [attr.data-visible]="listVisible()"
+        id="menu"
+        class="collapsible-menu"
+    />
     @if (selectedRecordItem()) {
     <app-record-detail [record]="selectedRecordItem()" />
     } @else if (selectedRecordGroup()) {

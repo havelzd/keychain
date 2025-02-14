@@ -1,26 +1,7 @@
-{{ nothing() }}
-<div
-    class="section container--max-height border-right py-3"
+<section
+    class="section container--max-height py-3"
     (contextmenu)="onContextMenu($event, undefined)"
 >
-    <div class="top-bar">
-        <label
-            for="record-search"
-            class="visually-hidden"
-            >Search</label
-        >
-        <span class="rich-input">
-            <input
-                class="rich-input__input"
-                id="record-search"
-                placeholder="Search..."
-            />
-            <fa-icon
-                class="rich-input__after"
-                [icon]="faMagnifyingGlass"
-            />
-        </span>
-    </div>
     <lib-tree
         [dataSource]="dataSource"
         bindLabel="name"
@@ -44,7 +25,10 @@
                         [icon]="dataSource.isNodeExpanded(node) ? folderOpenIcon : folderIcon"
                     />
                 </button>
-                <div class="flex-grow-1" (click)="selectNode($event, node)">
+                <div
+                    class="flex-grow-1"
+                    (click)="selectNode($event, node)"
+                >
                     <ng-container
                         [ngTemplateOutlet]="nodeTemplate"
                         [ngTemplateOutletContext]="{ node: node }"
@@ -73,11 +57,11 @@
             </div>
         </ng-template>
     </lib-tree>
-</div>
+</section>
+@if (showContextMenu()) {
 <div
     #contextMenu
     class="contextMenu"
-    *ngIf="showContextMenu()"
     [ngStyle]="{ top: menuXY()[1] + 'px', left: menuXY()[0] + 'px' }"
 >
     <button (click)="addNode()">Create Record</button>
@@ -85,6 +69,7 @@
     <button (click)="removeNode()">Remove</button>
     <button (click)="renameNode($event)">Rename</button>
 </div>
+}
 <ng-template
     #nodeTemplate
     let-node="node"

@@ -1,17 +1,32 @@
 @import "styles/main.scss" layer(base);
 
-@layer app {
-    .main-wrapper {
-        height: 100svh;
-        max-height: 100svh;
-        overflow: hidden;
+/* * { */
+/*     outline: 2px solid lime; */
+/* } */
 
+@layer app {
+    #main-header {
+        max-height: fit-content;
+    }
+    .app-wrapper {
+        height: 100svh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    .main-wrapper {
+        flex: 1;
         display: grid;
         grid-template-columns: minmax(max-content, 80px) 1fr;
     }
 
-    .main-wrapper>* {
-        max-height: 100%;
+    .app-wrapper > * {
+        height: 100%;
+    }
+
+    main {
+        padding-block: var(--space-reg);
+        padding-bottom: var(--space-reg);
     }
 
     .password-container {
@@ -22,7 +37,7 @@
         justify-content: space-between;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
         .main-wrapper {
             display: flex;
             justify-content: space-between;

@@ -3,30 +3,30 @@
 @use "../variables/spacing";
 
 :root {
-  color-scheme: light dark;
+    color-scheme: light dark;
 
-  /* colors */
-  --clr-primary: light-dark(#{colors.$primary-500-l}, #{colors.$primary-500-d});
-  --clr-secondary: light-dark(#{colors.$secondary-400-l}, #{colors.$secondary-400-d});
-  --clr-accent: light-dark(#{colors.$accent-950-l}, #{colors.$accent-950-d});
-  --clr-bg: light-dark(#{colors.$background-50-l}, #{colors.$background-50-d});
-  --clr-bg-elevated: light-dark(#{colors.$background-200-l}, #{colors.$background-200-d});
-  --clr-text: light-dark(#{colors.$text-950-l}, #{colors.$text-950-d});
-  --clr-text-mute: light-dark(#{colors.$text-700-l}, #{colors.$text-700-d});
-  --clr-text-primary: light-dark(#{colors.$text-950-d}, #{colors.$text-950-l});
+    /* colors */
+    --clr-primary: light-dark(#{colors.$primary-500-l}, #{colors.$primary-500-d});
+    --clr-secondary: light-dark(#{colors.$secondary-400-l}, #{colors.$secondary-400-d});
+    --clr-accent: light-dark(#{colors.$accent-950-l}, #{colors.$accent-950-d});
+    --clr-bg: light-dark(#{colors.$background-400-l}, #{colors.$background-200-d});
+    --clr-bg-elevated: light-dark(#{colors.$background-100-l}, #{colors.$background-300-d});
+    --clr-text: light-dark(#{colors.$text-950-l}, #{colors.$text-950-d});
+    --clr-text-mute: light-dark(#{colors.$text-700-l}, #{colors.$text-700-d});
+    --clr-text-primary: light-dark(#{colors.$text-950-d}, #{colors.$text-950-l});
 
-  /* types */
-  --fs-regular: #{typography.$font-size-0};
-  --fs-sm: #{typography.$font-size--1};
-  --fs-large: #{typography.$font-size-1};
-  --fs-larger: #{typography.$font-size-2};
+    /* types */
+    --fs-regular: #{typography.$font-size-0};
+    --fs-sm: #{typography.$font-size--1};
+    --fs-large: #{typography.$font-size-1};
+    --fs-larger: #{typography.$font-size-2};
 
-  /* spaces */
-  --space-reg: #{spacing.$space-xs};
-  --space-sm: #{spacing.$space-2xs};
-  --space-xsm: #{spacing.$space-3xs};
-  --space-large: #{spacing.$space-m};
+    /* spaces */
+    --space-reg: #{spacing.$space-xs};
+    --space-sm: #{spacing.$space-2xs};
+    --space-xsm: #{spacing.$space-3xs};
+    --space-large: #{spacing.$space-m};
 
-  /* border-radius */
-  --br-reg: 4px;
+    /* border-radius */
+    --br-reg: 4px;
 }

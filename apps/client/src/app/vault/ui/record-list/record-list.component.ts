@@ -7,7 +7,7 @@ import {
     viewChild,
     inject,
 } from "@angular/core";
-import { CommonModule, NgStyle } from "@angular/common";
+import { NgStyle, NgTemplateOutlet } from "@angular/common";
 import { RecordEntity, RecordGroup, RecordItem } from "../../store/records/records.models";
 import { TreeComponent, StaticTreeDataSource } from "@keychain/ui";
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
@@ -28,7 +28,7 @@ export type RecordEvent = {
 @Component({
     selector: "app-record-list",
     standalone: true,
-    imports: [CommonModule, TreeComponent, NgStyle, FaIconComponent],
+    imports: [NgTemplateOutlet, TreeComponent, NgStyle, FaIconComponent],
     templateUrl: "./record-list.component.html",
     styleUrl: "./record-list.component.scss",
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -177,10 +177,6 @@ export class RecordListComponent {
         if (this.contextMenuNode) {
             this.recordsStore.removeRecord(this.contextMenuNode);
         }
-    }
-
-    nothing() {
-        console.log("RecordList rerender");
     }
 
     private closeContextMenu() {

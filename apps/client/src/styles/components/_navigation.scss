@@ -5,8 +5,7 @@
 .navbar {
     width: 100%;
 
-    &>.nav--vertical {
-        border-right: 1px solid var(--clr-primary);
+    & > .nav--vertical {
         padding-block: var(--space-sm);
     }
 }
@@ -42,7 +41,7 @@
     align-items: center;
     font-size: var(--fs);
 
-    &>fa-icon {
+    & > fa-icon {
         font-size: 1.1rem;
     }
 
@@ -71,9 +70,9 @@
     display: none;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .navbar {
-        &>.nav--vertical {
+        & > .nav--vertical {
             border-top: 1px solid var(--clr-primary);
             border-right: none;
             padding: 0;

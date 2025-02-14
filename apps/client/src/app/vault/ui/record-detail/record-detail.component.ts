@@ -10,7 +10,7 @@ import {
 import { CommonModule } from "@angular/common";
 import { RecordItem, RecordType, RecordTypeLabels } from "../../store/records/records.models";
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
-import { faEye, faEyeSlash, faPenToSquare, faSave } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FormsModule } from "@angular/forms";
 import { Clipboard } from "@angular/cdk/clipboard";
 import { Popup } from "@keychain/ui";
@@ -73,4 +73,7 @@ export class RecordDetailComponent implements OnChanges {
         }
     }
 
+    protected togglePassword() {
+        this.passwordVisible.update(v => !v);
+    }
 }

@@ -11,8 +11,8 @@ export class SettingService {
 
     public init() {
         console.log("Inititalizing SettingService");
-        console.log(this.platformToken);
-        console.log(this.settingStorage);
+        // console.log(this.platformToken);
+        // console.log(this.settingStorage);
         // const theme = this.settingStorage.get("appearance.theme");
         // this.renderer.setStyle(document.querySelector("body"), "color-scheme", theme);
     }

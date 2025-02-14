@@ -1,0 +1,25 @@
+<header class="section-header">
+    <button
+        type="button"
+        class="btn btn--icon | collapse-menu-toggle"
+        (click)="toggleMenu()"
+    >
+        <span class="visually-hidden">Menu toggle</span><fa-icon [icon]="faBars" />
+    </button>
+    <label
+        for="record-search"
+        class="visually-hidden"
+        >Search</label
+    >
+    <span class="section-header__search rich-input">
+        <input
+            class="rich-input__input"
+            id="record-search"
+            placeholder="Search..."
+        />
+        <fa-icon
+            class="rich-input__after"
+            [icon]="faMagnifyingGlass"
+        />
+    </span>
+</header>

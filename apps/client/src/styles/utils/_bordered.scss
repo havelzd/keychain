@@ -1,0 +1,9 @@
+@use "../variables/spacing";
+.rounded {
+    border-radius: 1rem;
+}
+@each $name, $value in spacing.$space-map {
+    .rounded-#{$name} {
+        border-radius: $value;
+    }
+}
